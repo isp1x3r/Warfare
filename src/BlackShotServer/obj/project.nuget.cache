@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mNlrrau4DhwkzHf5vYZI+0rQWNILDZxNAp5DwPGBcT78BIx3w2bHWRTv5D/4t/RpgALzt2h76mZ0ceKzc+Z7pg==",
+  "dgSpecHash": "a5zUmlioge2fojyqd5sgpHOOqmEpntHaPwD+8NCqElY8hNOzr0nEqMbJRKpMQNv4BJ8Gr0VoEeMJXK4mpsSuQw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\BlackShotServer\\AuthServer.csproj",
+  "projectFilePath": "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\src\\BlackShotServer\\AuthServer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rabie\\.nuget\\packages\\log4net\\2.0.15\\log4net.2.0.15.nupkg.sha512",
     "C:\\Users\\rabie\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",

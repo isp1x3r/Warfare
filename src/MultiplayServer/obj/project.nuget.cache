@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "IPgn9fSp8g5se2MLHHmhGsl/kF7OfFtJ91HNLKklJr7noavxvK81A5BH0Z6NQ26c5R2R7qp87iMxwzO4whb8AA==",
+  "dgSpecHash": "HdbQtq0fd6p5zyDjYUYyNk/8wy6teOMpe4EOGiUMDjY6HboLaPh+9fXkjWzeMqRhvPjh1LkZN3cm2SH4wbcjlA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\MultiplayServer\\MatchServer.csproj",
+  "projectFilePath": "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\src\\MultiplayServer\\MatchServer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rabie\\.nuget\\packages\\log4net\\2.0.15\\log4net.2.0.15.nupkg.sha512",
     "C:\\Users\\rabie\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",

@@ -418,11 +418,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\BlackShotServer\\AuthServer.csproj",
+      "projectUniqueName": "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\src\\BlackShotServer\\AuthServer.csproj",
       "projectName": "AuthServer",
-      "projectPath": "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\BlackShotServer\\AuthServer.csproj",
+      "projectPath": "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\src\\BlackShotServer\\AuthServer.csproj",
       "packagesPath": "C:\\Users\\rabie\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\BlackShotServer\\obj\\",
+      "outputPath": "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\src\\BlackShotServer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\rabie\\AppData\\Roaming\\NuGet\\NuGet.Config",

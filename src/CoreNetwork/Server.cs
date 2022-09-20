@@ -8,7 +8,7 @@ using NetworkCore;
 
 namespace CoreNetwork
 {
-    class Server : TcpServer
+    public class Server : TcpServer
     {
         private static readonly ILog _logger = LogManager.GetLogger(typeof(Server));
         public IPAddress _serveraddr { get; set; }

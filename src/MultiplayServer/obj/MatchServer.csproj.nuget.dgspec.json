@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\MultiplayServer\\MatchServer.csproj": {}
+    "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\src\\MultiplayServer\\MatchServer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\MultiplayServer\\MatchServer.csproj": {
+    "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\src\\MultiplayServer\\MatchServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\MultiplayServer\\MatchServer.csproj",
+        "projectUniqueName": "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\src\\MultiplayServer\\MatchServer.csproj",
         "projectName": "MatchServer",
-        "projectPath": "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\MultiplayServer\\MatchServer.csproj",
+        "projectPath": "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\src\\MultiplayServer\\MatchServer.csproj",
         "packagesPath": "C:\\Users\\rabie\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\MultiplayServer\\obj\\",
+        "outputPath": "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\src\\MultiplayServer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\rabie\\AppData\\Roaming\\NuGet\\NuGet.Config",

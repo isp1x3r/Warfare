@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uQTnBfGduW7wPVYj6GeUwtbFNtSVR82bmx2jga60kGWbhKFLrsMqmBZMzqXlsmzJkhHM3K1TQg/yQpN4Ozq5nA==",
+  "dgSpecHash": "FbqNoOy3tFfWc0Ksm6MuGCAKOVuJsZUjwL+85Uqyw3ZdttPObW7Lz7aJqupHQjoee6wFv6dtBzXrZZeISlCYbQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\CoreNetwork\\CoreNetwork.csproj",
+  "projectFilePath": "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\src\\CoreNetwork\\CoreNetwork.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rabie\\.nuget\\packages\\log4net\\2.0.15\\log4net.2.0.15.nupkg.sha512",
     "C:\\Users\\rabie\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",

@@ -6,12 +6,12 @@ using NetCoreServer;
 using log4net;
 
 
-namespace NetworkCore
+namespace CoreNetwork
 {
     public class Session : TcpSession
     {
         private static readonly ILog _logger = LogManager.GetLogger(typeof(Session));
-        public Session(TcpServer server) : base(server) { }
+        public Session(Server server) : base(server) { }
 
         protected override void OnConnected()
         {

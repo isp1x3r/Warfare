@@ -418,11 +418,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\LobbyServer\\LobbyServer.csproj",
+      "projectUniqueName": "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\src\\LobbyServer\\LobbyServer.csproj",
       "projectName": "LobbyServer",
-      "projectPath": "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\LobbyServer\\LobbyServer.csproj",
+      "projectPath": "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\src\\LobbyServer\\LobbyServer.csproj",
       "packagesPath": "C:\\Users\\rabie\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\LobbyServer\\obj\\",
+      "outputPath": "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\src\\LobbyServer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\rabie\\AppData\\Roaming\\NuGet\\NuGet.Config",

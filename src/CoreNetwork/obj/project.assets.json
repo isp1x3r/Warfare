@@ -440,11 +440,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\CoreNetwork\\CoreNetwork.csproj",
+      "projectUniqueName": "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\src\\CoreNetwork\\CoreNetwork.csproj",
       "projectName": "CoreNetwork",
-      "projectPath": "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\CoreNetwork\\CoreNetwork.csproj",
+      "projectPath": "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\src\\CoreNetwork\\CoreNetwork.csproj",
       "packagesPath": "C:\\Users\\rabie\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\CoreNetwork\\obj\\",
+      "outputPath": "C:\\Users\\rabie\\source\\repos\\BlackShotServer\\src\\CoreNetwork\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\rabie\\AppData\\Roaming\\NuGet\\NuGet.Config",
