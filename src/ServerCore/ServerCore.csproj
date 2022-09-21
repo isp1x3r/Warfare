@@ -13,7 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Database\" />
+    <Folder Include="Database\Auth\" />
+    <Folder Include="Database\Game\" />
   </ItemGroup>
 
 </Project>
