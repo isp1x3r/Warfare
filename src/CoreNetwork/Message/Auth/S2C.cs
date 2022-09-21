@@ -16,10 +16,10 @@ namespace NetworkCore.Message.Auth
         public ushort Errorcode { get; set; }
 
         [ProtoMember(1)]
-        public int Errorcode2 { get; set; } // lul
+        public uint Errorcode2 { get; set; } // lul
 
         [ProtoMember(2)]
-        public int Unk1 { get; set; }
+        public uint Unk1 { get; set; }
 
         [ProtoMember(3)]
         public long Unk2 { get; set; }
@@ -28,19 +28,19 @@ namespace NetworkCore.Message.Auth
         public short Unk3 { get; set; }
 
         [ProtoMember(5)]
-        public int Unk4 { get; set; } // GameVersion??
+        public uint Unk4 { get; set; } // GameVersion??
 
         [ProtoMember(6)]
         public byte Unk5 { get; set; }
 
         [ProtoMember(7)]
-        public int Unk6 { get; set; }
+        public uint Unk6 { get; set; }
 
         [ProtoMember(8)]
-        public int Unk7 { get; set; }
+        public uint Unk7 { get; set; }
 
         [ProtoMember(9)]
-        public int Unk8 { get; set; } // Game Status or sth..
+        public uint Unk8 { get; set; } // Game Status or sth..
 
         [ProtoMember(10)]
         public byte Unk9 { get; set; }
@@ -65,7 +65,7 @@ namespace NetworkCore.Message.Auth
         public ushort Errorcode { get; set; }
 
         [ProtoMember(1)]
-        public int CharacterCount { get; set; }
+        public uint CharacterCount { get; set; }
 
         [ProtoMember(2)]
         public byte[] padding { get; set; }
@@ -86,7 +86,7 @@ namespace NetworkCore.Message.Auth
         public ushort ErrorCode { get; set; }
 
         [ProtoMember(1)]
-        public int Unk1 { get; set; }
+        public uint Unk1 { get; set; }
 
         [ProtoMember(2)]
         public string CharacterName { get; set; }
@@ -98,22 +98,22 @@ namespace NetworkCore.Message.Auth
         public CharacterHero Hero { get; set; }
 
         [ProtoMember(5)]
-        public int Experience { get; set; }
+        public uint Experience { get; set; }
 
         [ProtoMember(6)]
-        public int BountyPoints { get; set; }
+        public uint BountyPoints { get; set; }
 
         [ProtoMember(7)]
-        public int Unk2 { get; set; }
+        public uint Unk2 { get; set; }
 
         [ProtoMember(8)]
-        public int Kills { get; set; }
+        public uint Kills { get; set; }
 
         [ProtoMember(9)]
-        public int Deaths { get; set; }
+        public uint Deaths { get; set; }
 
         [ProtoMember(10)]
-        public int Wins { get; set; }
+        public uint Wins { get; set; }
 
         [ProtoMember(11)]
         public int Losses { get; set; }
@@ -122,10 +122,10 @@ namespace NetworkCore.Message.Auth
         public byte[] Padding { get; set; } // Has a length of 16 (suspecting a string)
 
         [ProtoMember(13)]
-        public int Unk3 { get; set; }
+        public uint Unk3 { get; set; }
 
         [ProtoMember(14)]
-        public int Unk4 { get; set; }
+        public uint Unk4 { get; set; }
 
         [ProtoMember(15)]
         public string ClanName { get; set; }

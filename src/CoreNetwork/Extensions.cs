@@ -9,6 +9,7 @@ namespace CoreNetwork
 {
     public static class Extensions
     {
+
         public static byte ReadAuthServerOpCode(byte[] packet)
         {
             byte opCode;
@@ -29,5 +30,10 @@ namespace CoreNetwork
             }
             return opCode;
         }
+        // TODO
+        /*public static byte ReadLobbyServerOpCode(byte[] packet)
+        {
+
+        }*/
     }
 }

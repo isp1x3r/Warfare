@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NetworkCore
+namespace CoreNetwork
 {
     #region Authentication
     public enum CharacterHero : byte
@@ -19,6 +19,12 @@ namespace NetworkCore
     {
         CharacterInformationDoesNotExist = 65404,
         CharacterDoesNotExist = 65405
+    }
+    public enum CharacterCreationError : ushort
+    {
+        ERR_CHARINFO = 65403,
+        NameAlreadyExists = 65404,
+        NotEnoughSlots = 65405
     }
     #endregion
 
