@@ -1,4 +1,7 @@
-﻿using System;
+﻿using log4net;
+using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
+using NetCoreServer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +11,34 @@ namespace ServerCore
 {
     internal class MessageHandler
     {
+        private static readonly ILog _logger = LogManager.GetLogger(typeof(MessageHandler));
+        private Session _session { get; set; }
+        public MessageHandler(Session session)
+        {
+            _session = session;
+        }
+        public void HandleMessage(byte[] message)
+        {
+           
+
+        }
+        private short GetPacketID(byte[] message)
+        {
+            // Get Packet ID based on server type : 
+            short id;
+            switch (_session._server._servertype)
+            {
+                case ServerType.AuthServer:
+                    Extensions.ReadAuthServerOpCode(message, out id);
+                    break;
+                case ServerType.LobbyServer:
+                    Extensions.ReadGameServerOpCode(message, out id);
+                    break;
+                case ServerType.MultiplayServer:
+                    // TO DO
+                    break;
+            }
+            return id;
+        }
     }
 }

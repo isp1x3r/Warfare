@@ -11,10 +11,13 @@ namespace ServerCore
     public class Session : TcpSession
     {
         private static readonly ILog _logger = LogManager.GetLogger(typeof(Session));
-        private Server _server { get; set; }
+        internal Server _server { get; set; }
+        internal MessageHandler _messagehandler { get; set; }
+
         public Session(Server server) : base(server) 
         {
             _server = server;
+            _messagehandler = new MessageHandler(this);
         }
 
         protected override void OnConnected()
@@ -29,22 +32,7 @@ namespace ServerCore
 
         protected override void OnReceived(byte[] buffer, long offset, long size)
         {
-            // Get Packet ID based on server type : 
-            short packetid;
-            switch(_server._servertype)
-            {
-                case ServerType.AuthServer:
-                    packetid = Extensions.ReadAuthServerOpCode(buffer);
-                    break;
-                case ServerType.LobbyServer:
-                    packetid = Extensions.ReadGameServerOpCode(buffer);
-                    break;
-                case ServerType.MultiplayServer:
-                    // TO DO
-                    break;
-            }
-            TcpSession _r = new TcpSession(this.Server);
-            _r.SendAsync(buffer);
+            _messagehandler.HandleMessage(buffer);
         }
 
         protected override void OnError(SocketError error)

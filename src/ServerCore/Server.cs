@@ -16,12 +16,13 @@ namespace ServerCore
         public ServerType _servertype { get; set; }
         internal MessageFactory _messagefactory { get; set; }
 
-        public Server(IPAddress address, int port, ServerType type) : base(address, port) 
+        public Server(IPAddress address, short port, ServerType type) : base(address, port) 
         { 
             _serveraddr = address;
-            _port = (short)port;
+            _port = port;
             _servertype = type;
             _sessionMgr = new SessionManager();
+            _messagefactory = new MessageFactory(this);
         }
 
         protected override TcpSession CreateSession() 
