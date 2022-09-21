@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NetworkCore.Message.Auth
+namespace ServerCore.Message.Auth
 {
     [ProtoContract]
     public class AuthenticationAckMessage : IMessage

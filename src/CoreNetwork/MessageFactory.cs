@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 using System.Reflection;
 using log4net;
 
-namespace CoreNetwork
+namespace ServerCore
 {
     internal class MessageFactory
     {

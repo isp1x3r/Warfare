@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoreNetwork
+namespace ServerCore
 {
     #region Authentication
     public enum CharacterHero : byte

@@ -6,7 +6,7 @@ using NetCoreServer;
 using log4net;
 
 
-namespace CoreNetwork
+namespace ServerCore
 {
     public class Session : TcpSession
     {

@@ -2,9 +2,8 @@
 using System.Collections.Concurrent;
 using log4net;
 using NetCoreServer;
-using NetworkCore;
 
-namespace CoreNetwork
+namespace ServerCore
 {
     internal class SessionManager
     {

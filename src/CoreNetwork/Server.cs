@@ -4,9 +4,8 @@ using System.Net.Sockets;
 using System.Text;
 using log4net;
 using NetCoreServer;
-using NetworkCore;
 
-namespace CoreNetwork
+namespace ServerCore
 {
     public class Server : TcpServer
     {

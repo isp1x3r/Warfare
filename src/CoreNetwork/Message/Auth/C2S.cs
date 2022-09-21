@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoreNetwork.Message.Auth
+namespace ServerCore.Message.Auth
 {
     internal class C2S
     {

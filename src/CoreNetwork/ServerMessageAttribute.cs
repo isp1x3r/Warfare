@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoreNetwork
+namespace ServerCore
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     internal class ServerMessageAttribute : Attribute
