@@ -15,6 +15,7 @@ namespace ServerCore
         public short _port { get; set; }
         public ServerType _servertype { get; set; }
         internal MessageFactory _messagefactory { get; set; }
+        internal MessageHandler _messagehandler { get; set; }
 
         public Server(IPAddress address, short port, ServerType type) : base(address, port) 
         { 
@@ -23,6 +24,7 @@ namespace ServerCore
             _servertype = type;
             _sessionMgr = new SessionManager();
             _messagefactory = new MessageFactory(this);
+            _messagehandler = new MessageHandler();
         }
 
         protected override TcpSession CreateSession() 

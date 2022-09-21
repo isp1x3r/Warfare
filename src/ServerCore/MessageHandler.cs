@@ -12,12 +12,10 @@ namespace ServerCore
     internal class MessageHandler
     {
         private static readonly ILog _logger = LogManager.GetLogger(typeof(MessageHandler));
-        private Session _session { get; set; }
-        public MessageHandler(Session session)
+        public MessageHandler()
         {
-            _session = session;
         }
-        public void HandleMessage(byte[] message)
+        public void HandleMessage(Session session, byte[] message)
         {
            
 
