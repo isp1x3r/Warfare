@@ -10,10 +10,12 @@ namespace ServerCore
     public class Server : TcpServer
     {
         private static readonly ILog _logger = LogManager.GetLogger(typeof(Server));
+        private SessionManager _sessionMgr { get; set; }
         public IPAddress _serveraddr { get; set; }
         public short _port { get; set; }
         public ServerType _servertype { get; set; }
-        private SessionManager _sessionMgr { get; set; }
+        internal MessageFactory _messagefactory { get; set; }
+
         public Server(IPAddress address, int port, ServerType type) : base(address, port) 
         { 
             _serveraddr = address;
@@ -24,9 +26,9 @@ namespace ServerCore
 
         protected override TcpSession CreateSession() 
         {
-            var sessiontoadd = new TcpSession(this);
+            TcpSession sessiontoadd = new TcpSession(this);
             _sessionMgr.AddSession(sessiontoadd);
-            return new TcpSession(this); 
+            return sessiontoadd; 
         
         }
 
