@@ -49,7 +49,7 @@ namespace CoreNetwork
 
         protected override void OnError(SocketError error)
         {
-            _logger.Error($"Chat TCP session caught an error with code {error}");
+            _logger.Error($"Session with id {this.Id} caught an error with code {error}");
         }
         public override long Send(IMessage message)
         {
