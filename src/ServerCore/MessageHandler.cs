@@ -17,26 +17,18 @@ namespace ServerCore
         }
         public void HandleMessage(Session session, byte[] message)
         {
-           
+            short opCode = Extensions.ReadOpCodeFromPacket(message, session._server._servertype);
+
+            // Find a handler with corresponding opCode  
+            Type handler = session._server._messagefactory.GetHandler(opCode);
+
+            // Prepare message to be serialized 
+
+            
+
+
 
         }
-        private short GetPacketID(byte[] message)
-        {
-            // Get Packet ID based on server type : 
-            short id;
-            switch (_session._server._servertype)
-            {
-                case ServerType.AuthServer:
-                    Extensions.ReadAuthServerOpCode(message, out id);
-                    break;
-                case ServerType.LobbyServer:
-                    Extensions.ReadGameServerOpCode(message, out id);
-                    break;
-                case ServerType.MultiplayServer:
-                    // TO DO
-                    break;
-            }
-            return id;
-        }
+       
     }
 }

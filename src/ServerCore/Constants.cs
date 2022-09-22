@@ -17,14 +17,30 @@ namespace ServerCore
     }
     public enum CharacterInfoError : ushort
     {
+        Success = 0,
         CharacterInformationDoesNotExist = 65404,
         CharacterDoesNotExist = 65405
     }
     public enum CharacterCreationError : ushort
     {
+        Success = 0,
         ERR_CHARINFO = 65403,
         NameAlreadyExists = 65404,
         NotEnoughSlots = 65405
+    }
+    /* Most broken bullshit gamemessages i've ever seen.
+       Somehow all of these messages lead to the character selection screen with/without character deletion
+     */
+    public enum CharacterScreenResult : int
+    {
+        Success = 0,
+        ClanNameTemporarilySuspended = -73,
+        BannedFromService = 65401,
+        ItemNotAvailableForSale = 65423,
+        ExistingNameChangeWilLBeDeleted = 64537,
+        InvalidCashItem = 65283,
+        ItemAlreadyInUse = 65422
+
     }
     #endregion
 
@@ -90,4 +106,10 @@ namespace ServerCore
         MultiplayServer = 0x03
     }
     #endregion
+
+    public static class Constants
+    {
+        public const short lobbyackheader = 255;
+        public const int MagicHeader = 1076895760;
+    }
 }

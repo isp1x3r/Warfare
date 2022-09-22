@@ -10,12 +10,24 @@ namespace ServerCore
     public static class Extensions
     {
 
-        public static void ReadAuthServerOpCode(byte[] packet, out short opCode)
+        public static short ReadOpCodeFromPacket(byte[] packet, ServerType servertype)
         {
             using (BinaryReader _r = new BinaryReader(new MemoryStream(packet)))
             {
-                _r.BaseStream.Position = 3;
-                opCode = _r.ReadByte();
+                switch(servertype)
+                {
+                    case ServerType.AuthServer:
+                        _r.BaseStream.Position = 3;
+                        break;
+                    case ServerType.LobbyServer:
+                        _r.BaseStream.Position = 8;
+                        break;
+                    case ServerType.MultiplayServer:
+                        // TODO
+                        break;
+                }
+
+                return _r.ReadInt16();
             }
         }
         public static void ReadGameServerOpCode(byte[] packet, out short opCode)

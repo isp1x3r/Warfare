@@ -1,4 +1,5 @@
 ﻿using CoreNetwork;
+using log4net.Core;
 using ProtoBuf;
 using System;
 using System.Collections.Generic;
@@ -80,7 +81,7 @@ namespace ServerCore.Message.Auth
     }
 
     [ProtoContract]
-    internal class CharacterInfoAckMessage
+    public class CharacterInfoAckMessage
     {
         [ProtoMember(0)]
         public ushort ErrorCode { get; set; }
@@ -145,4 +146,31 @@ namespace ServerCore.Message.Auth
             ItemCount = 0; // For now
         }
     }
+
+    [ProtoContract]
+    public class CharacterDeleteAckMessage
+    {
+        [ProtoMember(0)]
+        public CharacterScreenResult ScreenResult { get; set; }
+
+        [ProtoMember(1)]
+        public uint Unk1 { get; set; }
+        
+        public CharacterDeleteAckMessage()
+        {
+
+        }
+    }
+
+    [ProtoContract]
+    public class ServiceConnectAckMessage
+    {
+        [ProtoMember(0)]
+        public CharacterScreenResult ScreenResult { get; set; }
+
+        [ProtoMember(1)]
+
+    }
+
+
 }

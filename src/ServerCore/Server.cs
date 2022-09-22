@@ -14,16 +14,16 @@ namespace ServerCore
         public IPAddress _serveraddr { get; set; }
         public short _port { get; set; }
         public ServerType _servertype { get; set; }
-        internal MessageFactory _messagefactory { get; set; }
+        public MessageFactory _messagefactory { get; set; }
         internal MessageHandler _messagehandler { get; set; }
 
-        public Server(IPAddress address, short port, ServerType type) : base(address, port) 
+        public Server(IPAddress address, short port, ServerType type, MessageFactory messagefactory) : base(address, port) 
         { 
             _serveraddr = address;
             _port = port;
             _servertype = type;
+            _messagefactory = messagefactory;
             _sessionMgr = new SessionManager();
-            _messagefactory = new MessageFactory(this);
             _messagehandler = new MessageHandler();
         }
 

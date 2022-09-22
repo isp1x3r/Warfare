@@ -5,7 +5,7 @@ using log4net;
 
 namespace ServerCore
 {
-    internal class MessageFactory
+    public class MessageFactory
     {
         private readonly ConcurrentDictionary<ushort, Type> _handlers = new ConcurrentDictionary<ushort, Type>();
         private static readonly ILog _logger = LogManager.GetLogger(typeof(MessageFactory));
@@ -37,12 +37,16 @@ namespace ServerCore
             _logger.Debug($"Added {_handlers.Count} messages to the message factory");
         }
 
-        public Type GetHandler(ushort opCode)
+        public Type GetHandler(short opCode)
         {
-            Type? handler;
-            if (!_handlers.TryGetValue(opCode, out handler))
+            Type handler;
+            if (!_handlers.TryGetValue((ushort)opCode, out handler))
                 _logger.Error($"Couldn't find any handlers for opCode : {opCode}");
             return handler;
+        }
+        public void ExecuteHandler(Session session, Type message)
+        {
+
         }
     }
 }
