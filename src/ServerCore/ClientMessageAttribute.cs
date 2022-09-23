@@ -8,7 +8,7 @@ namespace ServerCore
         internal ushort _opCode;
         public ClientMessageAttribute(ushort opCode)
         {
-            _opCode = (ushort)opCode;
+            _opCode = opCode;
         }
     }
 }
