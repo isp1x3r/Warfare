@@ -10,12 +10,9 @@ namespace ServerCore.Message.Auth
         public string Nickname { get; set; }
 
         [ProtoMember(1)]
-        public byte Unk1 { get; set; } // Slot??
-
-        [ProtoMember(2)]
         public CharacterHero Hero { get; set; }
 
-        [ProtoMember(3)]
+        [ProtoMember(2)]
         public byte SkinColor { get; set; }
     }
 }
