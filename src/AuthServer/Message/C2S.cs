@@ -1,10 +1,12 @@
 ﻿using ServerCore;
 using ProtoBuf;
 
-namespace ServerCore.Message.Auth
+namespace AuthServer.Message
 {
-   [ProtoContract]
-   public class CharacterCreateReqMessage
+
+    [ClientMessage(772)]
+    [ProtoContract]
+    public class CharacterCreateReqMessage
     {
         [ProtoMember(0)]
         public string Nickname { get; set; }

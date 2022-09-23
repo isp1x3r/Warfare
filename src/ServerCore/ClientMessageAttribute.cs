@@ -3,12 +3,12 @@
 namespace ServerCore
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-    public class ServerMessageAttribute : Attribute
+    public class ClientMessageAttribute : Attribute
     {
         internal ushort _opCode;
-        public ServerMessageAttribute(ushort opCode)
+        public ClientMessageAttribute(ushort opCode)
         {
-            _opCode = opCode;
+            _opCode = (ushort)opCode;
         }
     }
 }

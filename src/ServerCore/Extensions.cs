@@ -10,7 +10,7 @@ namespace ServerCore
     public static class Extensions
     {
 
-        public static short ReadOpCodeFromPacket(byte[] packet, ServerType servertype)
+        public static ushort ReadOpCodeFromPacket(byte[] packet, ServerType servertype)
         {
             using (BinaryReader _r = new BinaryReader(new MemoryStream(packet)))
             {
@@ -27,15 +27,15 @@ namespace ServerCore
                         break;
                 }
 
-                return _r.ReadInt16();
+                return _r.ReadUInt16();
             }
         }
-        public static void ReadGameServerOpCode(byte[] packet, out short opCode)
+        public static void ReadGameServerOpCode(byte[] packet, out ushort opCode)
         {
             using (BinaryReader _r = new BinaryReader(new MemoryStream(packet)))
             {
                 _r.BaseStream.Position = 8;
-                opCode = _r.ReadInt16();
+                opCode = _r.ReadUInt16();
             }
         }
         // TODO

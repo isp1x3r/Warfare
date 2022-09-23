@@ -1,8 +1,7 @@
-﻿using ServerCore;
-using ProtoBuf;
+﻿using ProtoBuf;
 
 
-namespace ServerCore.Message.Auth
+namespace AuthServer.Message
 {
     [ProtoContract]
     public class AuthenticationAckMessage
@@ -150,7 +149,7 @@ namespace ServerCore.Message.Auth
 
         [ProtoMember(1)]
         public uint Unk1 { get; set; }
-        
+
         public CharacterDeleteAckMessage()
         {
 
@@ -182,7 +181,7 @@ namespace ServerCore.Message.Auth
         public byte ServerEntries { get; set; }
 
         [ProtoMember(2)]
-        public byte Unk2 { get; set; } 
+        public byte Unk2 { get; set; }
 
         [ProtoMember(3)]
         public byte Id { get; set; } // gotta check to make sure x')
