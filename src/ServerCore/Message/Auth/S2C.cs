@@ -1,12 +1,11 @@
 ﻿using ServerCore;
-using log4net.Core;
 using ProtoBuf;
 
 
 namespace ServerCore.Message.Auth
 {
     [ProtoContract]
-    public class AuthenticationAckMessage : IMessage
+    public class AuthenticationAckMessage
     {
 
         [ProtoMember(0)]
@@ -86,7 +85,7 @@ namespace ServerCore.Message.Auth
         public uint Unk1 { get; set; }
 
         [ProtoMember(2)]
-        public string CharacterName { get; set; }
+        public string Nickname { get; set; }
 
         [ProtoMember(3)]
         public ushort Level { get; set; }
