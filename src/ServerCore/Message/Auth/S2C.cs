@@ -1,11 +1,7 @@
-﻿using CoreNetwork;
+﻿using ServerCore;
 using log4net.Core;
 using ProtoBuf;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace ServerCore.Message.Auth
 {
@@ -169,8 +165,57 @@ namespace ServerCore.Message.Auth
         public CharacterScreenResult ScreenResult { get; set; }
 
         [ProtoMember(1)]
+        public byte[] Unk1 { get; set; }
 
+        public ServiceConnectAckMessage()
+        {
+            Unk1 = new byte[125];
+        }
     }
 
+    [ProtoContract]
+    public class ServerListAckMessage
+    {
+        [ProtoMember(0)]
+        public ushort Unk1 { get; set; }
+
+        [ProtoMember(1)]
+        public byte ServerEntries { get; set; }
+
+        [ProtoMember(2)]
+        public byte Unk2 { get; set; } 
+
+        [ProtoMember(3)]
+        public byte Id { get; set; } // gotta check to make sure x')
+
+        [ProtoMember(4)]
+        public ushort Unk3 { get; set; }
+
+        [ProtoMember(5)]
+        public ushort Unk4 { get; set; }
+
+        [ProtoMember(6)]
+        public short Unk5 { get; set; } // ServerPort Maybe?
+
+        [ProtoMember(7)]
+        public uint Unk6 { get; set; } // ServerIP Maybe?
+
+        [ProtoMember(8)]
+        public byte[] Unk7 { get; set; } // 241 bytes x')
+
+        [ProtoMember(9)]
+        public byte[] Unk8 { get; set; } // Same 241 bytes again!
+
+        [ProtoMember(10)]
+        public byte[] Unk9 { get; set; } // Only 33 bytes this time
+
+        public ServerListAckMessage(byte id)
+        {
+            Id = (byte)(id & 7);
+            Unk7 = new byte[241];
+            Unk8 = new byte[241];
+            Unk9 = new byte[33];
+        }
+    }
 
 }
