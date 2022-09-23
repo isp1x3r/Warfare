@@ -13,4 +13,13 @@
     <PackageReference Include="protobuf-net" Version="3.1.17" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Handlers\" />
+    <Folder Include="Message\Auth\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ServerCore\ServerCore.csproj" />
+  </ItemGroup>
+
 </Project>

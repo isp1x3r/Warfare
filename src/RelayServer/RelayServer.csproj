@@ -11,4 +11,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.9" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ServerCore\ServerCore.csproj" />
+  </ItemGroup>
+
 </Project>
