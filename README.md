@@ -13,3 +13,10 @@ This project is open for both curious people that want to see how things are ran
 * [MySQL](https://www.mysql.com/)
 * [.NET 6.0 Runtime/SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 * BlackShot Client - EU v2014: [Download(mediafire.com - 2.01 GB)](https://www.mediafire.com/file/cso7x9vs0zcl668/BS2014Client.zip/file)]
+
+### InGame ScreenShots
+![Character Selection](https://i.ibb.co/6Zj1sBn/Screen-Shot0805164537.jpg)
+![Character Selection](https://i.ibb.co/sRgqXfj/Screen-Shot0805164540.jpg)
+![Partner](https://cdn.discordapp.com/attachments/942414761105178634/957243551815704616/unknown.png)
+![Shop](https://cdn.discordapp.com/attachments/889253697664741428/939891320779051028/ScreenShot1224125357.png)
+![Rooms(Testing)](https://cdn.discordapp.com/attachments/889253697664741428/939891192013922335/ScreenShot1226135329.png)
