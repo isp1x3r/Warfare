@@ -17,4 +17,24 @@ namespace AuthServer.Message
         [ProtoMember(2)]
         public byte SkinColor { get; set; }
     }
+    [ClientMessage(1028)]
+    [ProtoContract]
+    public class CharacterDeleteReqMessage
+    {
+        /* Available only in JP version which is included in the client,
+           so might as well add it here!
+         */
+        [ProtoMember(0)]
+        public uint Unk1 { get; set; }
+
+        [ProtoMember(1)]
+        public uint Unk2 { get; set; }
+
+        [ProtoMember(2)]
+        public CharacterHero Hero { get; set; }
+
+        [ProtoMember(3)]
+        public byte Slot { get; set; }
+
+    }
 }
