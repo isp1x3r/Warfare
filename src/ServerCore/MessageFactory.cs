@@ -17,13 +17,11 @@ namespace ServerCore
         public MessageFactory(Server serverinstance)
         {
             _serverinstance = serverinstance;
-        }
-        
-        internal void InitializeHandlers()
-        {
             LoadMessageHandlers();
             LoadClientMessages();
+            LoadServerMessages();
         }
+
         void LoadMessageHandlers()
         {
             // Probably not the best code out there but hey.. It works!
@@ -84,19 +82,28 @@ namespace ServerCore
                 }
             }
         }
-        public Type? GetHandler(ushort opCode)
+        public Type GetHandler(ushort opCode)
         {
             Type handler;
             if (!_handlers.TryGetValue(opCode, out handler))
                 _logger.Error($"Couldn't find any handlers for message with opCode : {opCode}");
             return handler;
         }
-        public ushort? GetServerOpCode(Type message)
+        public (Type, bool) GetClientMessage(ushort opCode)
+        {
+            Type message;
+            if (!_clientmessages.TryGetValue(opCode, out message))
+                _logger.Error($"Couldn't find any client messages for opCode : {opCode}");
+                return (null, false);
+            return (message, true);
+        }
+        public (ushort, bool) GetServerOpCode(Type message)
         {
             ushort opCode;
             if (!_servermessages.TryGetValue(message, out opCode))
-                _logger.Error($"Couldn't find any opcodes for type : {message.Name}");
-            return opCode;
+                _logger.Error($"Couldn't find any server opcodes for type : {message.Name}");
+                return (0, false);
+            return (opCode, true);
         }
         
     }

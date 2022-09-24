@@ -20,12 +20,14 @@ namespace ServerCore
 
         protected override void OnConnected()
         {
-            _logger.Info($"Session created {Id} connected!");
+            
         }
 
         protected override void OnDisconnected()
         {
             _logger.Info($"Session with Id {Id} disconnected!");
+            _server._sessionMgr.RemoveSession(this);
+            this.Dispose();
         }
 
         protected override void OnReceived(byte[] buffer, long offset, long size)
@@ -37,13 +39,14 @@ namespace ServerCore
         {
             _logger.Error($"Session with id {this.Id} caught an error with code {error}");
         }
-        public override long Send(IMessage message)
+        public long Send(Type message)
         {
-            return base.Send(buffer);
+            return base.Send(_server._messagehandler.SerializeMessage(message));
+
         }
-        public override bool SendAsync(byte[] buffer)
+        public bool SendAsync(Type message)
         {
-            return base.SendAsync(buffer);
+            return base.SendAsync(_server._messagehandler.SerializeMessage(message));
         }
     }
 }

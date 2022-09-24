@@ -9,11 +9,10 @@ namespace ServerCore
     public class Server : TcpServer
     {
         private static readonly ILog _logger = LogManager.GetLogger(typeof(Server));
-        private SessionManager _sessionMgr { get; set; }
         public IPAddress _serveraddr { get; set; }
         public short _port { get; set; }
         public ServerType _servertype { get; set; }
-        public MessageFactory _messagefactory { get; set; }
+        internal SessionManager _sessionMgr { get; set; }
         internal MessageHandler _messagehandler { get; set; }
 
         public Server(IPAddress address, short port, ServerType type, MessageFactory messagefactory) : base(address, port) 
@@ -21,9 +20,8 @@ namespace ServerCore
             _serveraddr = address;
             _port = port;
             _servertype = type;
-            _messagefactory = messagefactory;
             _sessionMgr = new SessionManager();
-            _messagehandler = new MessageHandler();
+            _messagehandler = new MessageHandler(messagefactory);
         }
 
         protected override TcpSession CreateSession() 
