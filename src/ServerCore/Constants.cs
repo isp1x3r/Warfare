@@ -15,6 +15,11 @@ namespace ServerCore
         Cathy = 0x03
 
     }
+    public enum RetrieveCharacterInfoError : ushort
+    {
+        Success = 0,
+        Failed = 65405
+    }
     public enum CharacterInfoError : ushort
     {
         Success = 0,

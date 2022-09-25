@@ -4,11 +4,12 @@ using ProtoBuf;
 
 namespace AuthServer.Message
 {
+    [ServerMessage(4)]
     [ProtoContract]
     public class AuthenticationAckMessage
     {
 
-        [ProtoMember(1)]
+        [ProtoMember(1, IsRequired = false)]
         public ushort Errorcode { get; set; }
 
         [ProtoMember(2)]
@@ -54,11 +55,12 @@ namespace AuthServer.Message
 
     }
 
+    [ServerMessage(260)]
     [ProtoContract]
     public class RetrieveCharacterAckMessage
     {
-        [ProtoMember(1)]
-        public ushort Errorcode { get; set; }
+        [ProtoMember(1, IsRequired = false)]
+        public RetrieveCharacterInfoError ErrorCode { get; set; }
 
         [ProtoMember(2)]
         public uint CharacterCount { get; set; }
@@ -69,17 +71,22 @@ namespace AuthServer.Message
         [ProtoMember(4)]
         public string username { get; set; }
 
+        public RetrieveCharacterAckMessage(RetrieveCharacterInfoError error )
+        {
+            ErrorCode = error;
+        }
         public RetrieveCharacterAckMessage()
         {
             padding = new byte[16];
         }
     }
 
+    [ServerMessage(516)]
     [ProtoContract]
     public class CharacterInfoAckMessage
     {
-        [ProtoMember(1)]
-        public ushort ErrorCode { get; set; }
+        [ProtoMember(1, IsRequired = false)]
+        public CharacterInfoError ErrorCode { get; set; }
 
         [ProtoMember(2)]
         public uint Unk1 { get; set; }
@@ -135,6 +142,10 @@ namespace AuthServer.Message
         [ProtoMember(19)]
         public byte ItemCount { get; set; }
 
+        public CharacterInfoAckMessage(CharacterInfoError error)
+        {
+            ErrorCode = error;
+        }
         public CharacterInfoAckMessage()
         {
             Padding = new byte[16];
@@ -142,47 +153,78 @@ namespace AuthServer.Message
         }
     }
 
+    [ServerMessage(772)]
+    [ProtoContract]
+    public class CharacterCreateAckMessage
+    {
+       [ProtoMember(1, IsRequired = false)]
+       public CharacterCreationError ErrorCode { get; set; }
+
+        [ProtoMember(2)]
+        public uint Unk1 { get; set; }
+
+        public CharacterCreateAckMessage(CharacterCreationError error)
+        {
+            ErrorCode = error;
+        }
+        public CharacterCreateAckMessage()
+        {
+
+        }
+    }
+
+    [ServerMessage(1028)]
     [ProtoContract]
     public class CharacterDeleteAckMessage
     {
-        [ProtoMember(1)]
+        [ProtoMember(1, IsRequired = false)]
         public CharacterScreenResult ScreenResult { get; set; }
 
         [ProtoMember(2)]
         public uint Unk1 { get; set; }
 
+        public CharacterDeleteAckMessage(CharacterScreenResult result)
+        {
+            ScreenResult = result;
+        }
         public CharacterDeleteAckMessage()
         {
 
         }
     }
 
+    [ServerMessage(1284)]
     [ProtoContract]
     public class ServiceConnectAckMessage
     {
-        [ProtoMember(1)]
+        [ProtoMember(1, IsRequired = false)]
         public CharacterScreenResult ScreenResult { get; set; }
 
         [ProtoMember(2)]
         public byte[] Unk1 { get; set; }
 
+        public ServiceConnectAckMessage(CharacterScreenResult result)
+        {
+            ScreenResult = result;
+        }
         public ServiceConnectAckMessage()
         {
             Unk1 = new byte[125];
         }
     }
 
+    [ServerMessage(1540)]
     [ProtoContract]
     public class ServerListAckMessage
     {
         [ProtoMember(1)]
-        public ushort Unk1 { get; set; }
+        public ushort padding { get; set; } // Message starts after 6 bytes of the payload so this is useless
 
         [ProtoMember(2)]
         public byte ServerEntries { get; set; }
 
         [ProtoMember(3)]
-        public byte Unk2 { get; set; }
+        public byte Unk2 { get; set; } 
 
         [ProtoMember(4)]
         public byte Id { get; set; } // gotta check to make sure x')
@@ -210,7 +252,7 @@ namespace AuthServer.Message
 
         public ServerListAckMessage(byte id)
         {
-            Id = (byte)(id & 7);
+            Unk2 = 0;
             Unk7 = new byte[241];
             Unk8 = new byte[241];
             Unk9 = new byte[33];

@@ -112,7 +112,6 @@ namespace ServerCore
             using (var memoryStream = new MemoryStream())
             {
 
-                // Serialize type to a byte array
                 try
                 {
                     Serializer.Serialize(memoryStream, message);

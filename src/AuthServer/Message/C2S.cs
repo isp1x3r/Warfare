@@ -17,6 +17,7 @@ namespace AuthServer.Message
         [ProtoMember(3)]
         public byte SkinColor { get; set; }
     }
+
     [ClientMessage(1028)]
     [ProtoContract]
     public class CharacterDeleteReqMessage
