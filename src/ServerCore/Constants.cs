@@ -110,6 +110,6 @@ namespace ServerCore
     public static class Constants
     {
         public const short lobbyackheader = 255;
-        public const int MagicHeader = 1076895760;
+        public const int MagicHeader = 0x40302010;
     }
 }
