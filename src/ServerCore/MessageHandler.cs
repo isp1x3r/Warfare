@@ -124,7 +124,7 @@ namespace ServerCore
                 var byteArray = memoryStream.ToArray();
 
                 // Allocate new buffer for message
-                ushort newsize = (ushort)((ushort)byteArray.Length + 4);
+                ushort newsize = Convert.ToUInt16(byteArray.Length + 4);
                 byte[] buffer = new byte[newsize];
 
                 BinaryWriter _w = new BinaryWriter(new MemoryStream(buffer));
