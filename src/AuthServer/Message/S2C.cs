@@ -12,20 +12,20 @@ namespace AuthServer.Message
         [ProtoMember(1, IsRequired = false)]
         public ushort Errorcode { get; set; }
 
-        [ProtoMember(2)]
-        public uint Errorcode2 { get; set; }
+        [ProtoMember(2, IsRequired = false)]
+        public uint AuthErrorCode { get; set; }
 
         [ProtoMember(3)]
         public uint Unk1 { get; set; }
 
         [ProtoMember(4)]
-        public long Unk2 { get; set; }
+        public long Unk2 { get; set; } // Retarted devs
 
         [ProtoMember(5)]
-        public short Unk3 { get; set; }
+        public short Unk3 { get; set; } // Retarded devs v2
 
         [ProtoMember(6)]
-        public uint Unk4 { get; set; } // GameVersion??
+        public uint MaxCharacterSlots { get; set; }
 
         [ProtoMember(7)]
         public byte Unk5 { get; set; }
@@ -48,6 +48,11 @@ namespace AuthServer.Message
         [ProtoMember(13)]
         public string ServerVersion { get; set; }
 
+        public AuthenticationAckMessage(ushort errorcode, ushort autherrorcode)
+        {
+            Errorcode = errorcode;
+            AuthErrorCode = autherrorcode;
+        }
         public AuthenticationAckMessage()
         {
 
@@ -161,7 +166,7 @@ namespace AuthServer.Message
        public CharacterCreationError ErrorCode { get; set; }
 
         [ProtoMember(2)]
-        public uint Unk1 { get; set; }
+        public uint Unk1 { get; set; } // Slot?
 
         public CharacterCreateAckMessage(CharacterCreationError error)
         {
