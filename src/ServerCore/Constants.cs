@@ -88,6 +88,7 @@ namespace ServerCore
     }
     public enum RoomEnterResult
     {
+        Success = 0,
         NotFound = 1,
         ClanAndPlayerDontMatch = 2,
         PasswordRequired = 3,
@@ -108,7 +109,8 @@ namespace ServerCore
     {
         AuthServer = 0x01,
         LobbyServer = 0x02,
-        MultiplayServer = 0x03
+        MultiplayServer = 0x03,
+        RelayServer = 0x04
     }
     #endregion
 
