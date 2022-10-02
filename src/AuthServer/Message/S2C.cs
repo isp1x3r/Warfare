@@ -229,7 +229,7 @@ namespace AuthServer.Message
         public byte ServerEntries { get; set; }
 
         [ProtoMember(3)]
-        public byte Unk2 { get; set; } 
+        public byte Unk2 { get; set; } // Sorting ID?
 
         [ProtoMember(4)]
         public byte Id { get; set; } // gotta check to make sure x')
@@ -241,10 +241,10 @@ namespace AuthServer.Message
         public ushort Unk4 { get; set; }
 
         [ProtoMember(7)]
-        public short Unk5 { get; set; } // ServerPort Maybe?
+        public ushort ServerPort { get; set; } 
 
         [ProtoMember(8)]
-        public uint Unk6 { get; set; } // ServerIP Maybe?
+        public uint ServerIP { get; set; }
 
         [ProtoMember(9)]
         public byte[] Unk7 { get; set; } // 241 bytes x')
