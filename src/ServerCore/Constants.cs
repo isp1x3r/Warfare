@@ -33,23 +33,20 @@ namespace ServerCore
         NameAlreadyExists = 65404,
         NotEnoughSlots = 65405
     }
-    /* Most broken bullshit gamemessages i've ever seen.
-       Somehow all of these messages lead to the character selection screen with/without character deletion
-     */
+
+    }
+#endregion
+
+#region Lobby
     public enum CharacterScreenResult : int
     {
         Success = 0,
-        ClanNameTemporarilySuspended = -73,
         BannedFromService = 65401,
         ItemNotAvailableForSale = 65423,
         ExistingNameChangeWilLBeDeleted = 64537,
         InvalidCashItem = 65283,
         ItemAlreadyInUse = 65422
-
     }
-    #endregion
-
-    #region Lobby
     public enum ClanDisbandResult
     {
         Success = 0,
