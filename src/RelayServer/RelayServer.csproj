@@ -15,4 +15,9 @@
     <ProjectReference Include="..\ServerCore\ServerCore.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Handlers\" />
+    <Folder Include="Messages\" />
+  </ItemGroup>
+
 </Project>

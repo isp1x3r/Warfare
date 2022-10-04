@@ -7,14 +7,6 @@ using System.Threading.Tasks;
 namespace ServerCore
 {
     #region Authentication
-    public enum CharacterHero : byte
-    {
-        Travis = 0x00,
-        Vanessa = 0x01,
-        Adam = 0x02,
-        Cathy = 0x03
-
-    }
     public enum RetrieveCharacterInfoError : ushort
     {
         Success = 0,
@@ -38,7 +30,7 @@ namespace ServerCore
 #endregion
 
 #region Lobby
-    public enum CharacterScreenResult : int
+    public enum CharacterScreenResult : ushort
     {
         Success = 0,
         BannedFromService = 65401,
@@ -47,7 +39,14 @@ namespace ServerCore
         InvalidCashItem = 65283,
         ItemAlreadyInUse = 65422
     }
-    public enum ClanDisbandResult
+    public enum CharacterHero : byte
+    {
+        Travis = 0,
+        Vanessa = 1,
+        Adam = 2,
+        Cathy = 3
+    }
+public enum ClanDisbandResult : byte
     {
         Success = 0,
         NotaMember = 1,
@@ -55,20 +54,20 @@ namespace ServerCore
         ClanDoesNotExist = 3,
         CannotDisband = 4,
     }
-    public enum ChatRoomInviteResult
+    public enum ChatRoomInviteResult : byte
     {
         NoUsers = 1,
         ChatRoomClosed = 2,
         AlreadyInChatRoom = 3
-    }
-    public enum ClanRightChange
+}
+    public enum ClanRightChange : byte
     {
         Master = 1,
         AssistantMaster = 2,
         Elite = 3,
         Normal = 4
-    }
-    public enum ClanCreateResult
+}
+    public enum ClanCreateResult : byte
     {
         Success = 0,
         Error = 1,
@@ -83,31 +82,43 @@ namespace ServerCore
         NotFound = 10,
         UserNotFound = 11,
     }
-    public enum RoomEnterResult
+    public enum RoomEnterResult : byte
     {
         Success = 0,
-        NotFound = 1,
-        ClanAndPlayerDontMatch = 2,
-        PasswordRequired = 3,
-        FullCapacity = 4,
-        OnlyPreviousEntry = 5,
-        RequirementsNotMet = 6,
-        NotInLobby = 7,
-        SameUserLobby = 8,
-        NotSameChannel = 9,
-        NotInChannel = 19,
-        FullCapacity2 = 23,
-        Kicked = 24
+        Unk1 = 242, // "err: -14"
+        Unk2 = 243, // "err: -13"
+        Unk3 = 244, // "err: -12"
+        FullCapacity = 245,
+        IncorrectPassword = 246,
+        Kicked = 250,
+        NoPermission = 251,
+        RoomNotExisting = 253,
     }
+    public enum RoomEnterResult2 : byte // Through Invitation/Follow User
+        {   
+            Success = 0,
+            NotFound = 1,
+            ClanAndPlayerDontMatch = 2,
+            PasswordRequired = 3,
+            FullCapacity = 4,
+            OnlyPreviousEntry = 5,
+            RequirementsNotMet = 6,
+            NotInLobby = 7,
+            SameUserLobby = 8,
+            NotSameChannel = 9,
+            NotInChannel = 19,
+            FullCapacity2 = 23,
+            Kicked = 24
+        }
     #endregion
     #region Core
 
     public enum ServerType : byte
     {
-        AuthServer = 0x01,
-        LobbyServer = 0x02,
-        MultiplayServer = 0x03,
-        RelayServer = 0x04
+        AuthServer = 1,
+        LobbyServer = 2,
+        MultiplayServer = 3,
+        RelayServer = 4
     }
     #endregion
 
