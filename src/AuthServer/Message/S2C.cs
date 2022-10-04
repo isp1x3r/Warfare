@@ -47,15 +47,15 @@ namespace AuthServer.Message
 
         [ProtoMember(13)]
         public string ServerVersion { get; set; }
+      
+        public AuthenticationAckMessage()
+        {
 
+        }
         public AuthenticationAckMessage(ushort errorcode, ushort autherrorcode)
         {
             Errorcode = errorcode;
             AuthErrorCode = autherrorcode;
-        }
-        public AuthenticationAckMessage()
-        {
-
         }
 
     }
@@ -64,7 +64,7 @@ namespace AuthServer.Message
     [ProtoContract]
     public class RetrieveCharacterAckMessage
     {
-        [ProtoMember(1, IsRequired = false)]
+        [ProtoMember(1)]
         public RetrieveCharacterInfoError ErrorCode { get; set; }
 
         [ProtoMember(2)]
@@ -75,14 +75,14 @@ namespace AuthServer.Message
 
         [ProtoMember(4)]
         public string username { get; set; }
-
-        public RetrieveCharacterAckMessage(RetrieveCharacterInfoError error )
-        {
-            ErrorCode = error;
-        }
+      
         public RetrieveCharacterAckMessage()
         {
             padding = new byte[16];
+        }
+        public RetrieveCharacterAckMessage(RetrieveCharacterInfoError error)
+        {
+            ErrorCode = error;
         }
     }
 
@@ -146,15 +146,15 @@ namespace AuthServer.Message
 
         [ProtoMember(19)]
         public byte ItemCount { get; set; }
-
-        public CharacterInfoAckMessage(CharacterInfoError error)
-        {
-            ErrorCode = error;
-        }
+      
         public CharacterInfoAckMessage()
         {
             Padding = new byte[16];
             ItemCount = 0; // For now
+        }
+        public CharacterInfoAckMessage(CharacterInfoError error)
+        {
+            ErrorCode = error;
         }
     }
 
@@ -208,13 +208,13 @@ namespace AuthServer.Message
         [ProtoMember(2)]
         public byte[] Unk1 { get; set; }
 
-        public ServiceConnectAckMessage(CharacterScreenResult result)
-        {
-            ScreenResult = result;
-        }
         public ServiceConnectAckMessage()
         {
             Unk1 = new byte[125];
+        }
+        public ServiceConnectAckMessage(CharacterScreenResult result)
+        {
+            ScreenResult = result;
         }
     }
 
