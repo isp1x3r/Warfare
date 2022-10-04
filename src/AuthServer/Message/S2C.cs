@@ -9,10 +9,10 @@ namespace AuthServer.Message
     public class AuthenticationAckMessage
     {
 
-        [ProtoMember(1, IsRequired = false)]
+        [ProtoMember(1)]
         public ushort Errorcode { get; set; }
 
-        [ProtoMember(2, IsRequired = false)]
+        [ProtoMember(2)]
         public uint AuthErrorCode { get; set; }
 
         [ProtoMember(3)]
@@ -90,7 +90,7 @@ namespace AuthServer.Message
     [ProtoContract]
     public class CharacterInfoAckMessage
     {
-        [ProtoMember(1, IsRequired = false)]
+        [ProtoMember(1)]
         public CharacterInfoError ErrorCode { get; set; }
 
         [ProtoMember(2)]
@@ -162,7 +162,7 @@ namespace AuthServer.Message
     [ProtoContract]
     public class CharacterCreateAckMessage
     {
-       [ProtoMember(1, IsRequired = false)]
+       [ProtoMember(1)]
        public CharacterCreationError ErrorCode { get; set; }
 
         [ProtoMember(2)]
@@ -182,7 +182,7 @@ namespace AuthServer.Message
     [ProtoContract]
     public class CharacterDeleteAckMessage
     {
-        [ProtoMember(1, IsRequired = false)]
+        [ProtoMember(1)]
         public CharacterScreenResult ScreenResult { get; set; }
 
         [ProtoMember(2)]
@@ -202,7 +202,7 @@ namespace AuthServer.Message
     [ProtoContract]
     public class ServiceConnectAckMessage
     {
-        [ProtoMember(1, IsRequired = false)]
+        [ProtoMember(1)]
         public CharacterScreenResult ScreenResult { get; set; }
 
         [ProtoMember(2)]
