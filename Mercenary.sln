@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mercenary.Core", "src\Merce
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mercenary.Relay", "src\Mercenary.Relay\Mercenary.Relay.csproj", "{DF69B22E-AEAC-4D73-8310-9DD11AA5724C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mercenary.Database", "Mercenary.Database\Mercenary.Database.csproj", "{58BA6B6F-D483-4592-9E93-D2D63588F56C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{DF69B22E-AEAC-4D73-8310-9DD11AA5724C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF69B22E-AEAC-4D73-8310-9DD11AA5724C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF69B22E-AEAC-4D73-8310-9DD11AA5724C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58BA6B6F-D483-4592-9E93-D2D63588F56C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58BA6B6F-D483-4592-9E93-D2D63588F56C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58BA6B6F-D483-4592-9E93-D2D63588F56C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58BA6B6F-D483-4592-9E93-D2D63588F56C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

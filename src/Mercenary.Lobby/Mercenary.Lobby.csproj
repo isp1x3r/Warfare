@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ServerCore\Mercenary.Core.csproj" />
+    <ProjectReference Include="..\Mercenary.Core\Mercenary.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
