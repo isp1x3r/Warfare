@@ -10,51 +10,41 @@ namespace AuthServer.Message
     {
 
         [ProtoMember(1)]
-        internal ushort Errorcode { get; set; }
+        internal ushort ErrorCode { get; set; }
 
         [ProtoMember(2)]
         internal uint AuthErrorCode { get; set; }
 
         [ProtoMember(3)]
-        internal uint Unk1 { get; set; }
+        internal byte[] Padding1 { get; set; }
 
         [ProtoMember(4)]
-        internal long Unk2 { get; set; } // Retarted devs
+        internal uint CharacterSlots { get; set; }
 
-        [ProtoMember(5)]
-        internal short Unk3 { get; set; } // Retarded devs v2
+        [ProtoMember(5)]                      
+        internal uint IsPCRoom { get; set; } // Was used back in the day when garena was organizing LAN tournaments in internet coffee shops 
 
         [ProtoMember(6)]
-        internal uint MaxCharacterSlots { get; set; }
+        internal uint AccountNumber { get; set; }
 
         [ProtoMember(7)]
-        internal byte Unk5 { get; set; }
+        internal string Country { get; set; }
 
         [ProtoMember(8)]
-        internal uint Unk6 { get; set; }
-
-        [ProtoMember(9)]
-        internal uint Unk7 { get; set; }
+        internal byte Unk1 { get; set; }
 
         [ProtoMember(10)]
-        internal uint Unk8 { get; set; } // Game Status or sth..
-
-        [ProtoMember(11)]
-        internal byte Unk9 { get; set; }
-
-        [ProtoMember(12)]
-        internal byte Unk10 { get; set; }
-
-        [ProtoMember(13)]
-        internal string ServerVersion { get; set; }
+        internal string TimeStamp { get; set; }
 
         internal AuthenticationAckMessage()
         {
-
+            ErrorCode = 0;
+            AuthErrorCode = 0;
+            Padding1 = new byte[10];
         }
         internal AuthenticationAckMessage(ushort errorcode, ushort autherrorcode)
         {
-            Errorcode = errorcode;
+            ErrorCode = errorcode;
             AuthErrorCode = autherrorcode;
         }
 
@@ -71,14 +61,14 @@ namespace AuthServer.Message
         internal uint CharacterCount { get; set; }
 
         [ProtoMember(3)]
-        internal byte[] padding { get; set; }
+        internal byte[] Padding { get; set; }
 
         [ProtoMember(4)]
         internal string username { get; set; }
 
         internal RetrieveCharacterAckMessage()
         {
-            padding = new byte[16];
+            Padding = new byte[16];
         }
         internal RetrieveCharacterAckMessage(RetrieveCharacterInfoError error)
         {
@@ -223,22 +213,22 @@ namespace AuthServer.Message
     internal class ServerListAckMessage
     {
         [ProtoMember(1)]
-        internal ushort padding { get; set; } // Message starts after 6 bytes of the payload so this is useless
+        internal ushort Padding { get; set; } // Message starts after 6 bytes of the payload so this is useless
 
         [ProtoMember(2)]
         internal byte ServerEntries { get; set; }
 
         [ProtoMember(3)]
-        internal byte Unk2 { get; set; } // Sorting ID?
+        internal byte Unk1 { get; set; } // Sorting ID?
 
         [ProtoMember(4)]
         internal byte Id { get; set; } // gotta check to make sure x')
 
         [ProtoMember(5)]
-        internal ushort Unk3 { get; set; }
+        internal ushort Unk2 { get; set; }
 
         [ProtoMember(6)]
-        internal ushort Unk4 { get; set; }
+        internal ushort Unk3 { get; set; }
 
         [ProtoMember(7)]
         internal ushort ServerPort { get; set; } 
@@ -246,21 +236,22 @@ namespace AuthServer.Message
         [ProtoMember(8)]
         internal uint ServerIP { get; set; }
 
-        [ProtoMember(9)]
-        internal byte[] Unk7 { get; set; } // 241 bytes x')
+        [ProtoMember(9, IsPacked = true)]
+        internal byte[] Unk4 { get; set; } 
 
-        [ProtoMember(10)]
-        internal byte[] Unk8 { get; set; } // Same 241 bytes again!
+        [ProtoMember(10, IsPacked = true)]
+        internal byte[] Unk5 { get; set; }
 
-        [ProtoMember(11)]
-        internal byte[] Unk9 { get; set; } // Only 33 bytes this time
+        [ProtoMember(11, IsPacked = true)]
+        internal byte[] Unk6 { get; set; }
 
         internal ServerListAckMessage(byte id)
         {
+            Padding = 0;
             Unk2 = 0;
-            Unk7 = new byte[241];
-            Unk8 = new byte[241];
-            Unk9 = new byte[33];
+            Unk4= new byte[241];
+            Unk5 = new byte[241];
+            Unk6 = new byte[33];
         }
     }
 
