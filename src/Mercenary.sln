@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthServer", "AuthServer\AuthServer.csproj", "{C7F8D689-84DC-4373-A018-F68B8AB7EF8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mercenary.Auth", "AuthServer\Mercenary.Auth.csproj", "{C7F8D689-84DC-4373-A018-F68B8AB7EF8C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LobbyServer", "LobbyServer\LobbyServer.csproj", "{87B723CE-3B8F-4EC4-8331-8336854CE43E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mercenary.Lobby", "LobbyServer\Mercenary.Lobby.csproj", "{87B723CE-3B8F-4EC4-8331-8336854CE43E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MatchServer", "MultiplayServer\MatchServer.csproj", "{9D077682-2DA5-44D3-B251-106D94A60448}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mercenary.Game", "MultiplayServer\Mercenary.Game.csproj", "{9D077682-2DA5-44D3-B251-106D94A60448}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerCore", "ServerCore\ServerCore.csproj", "{87ED5084-4CE4-473F-9865-E060B6B76ACA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mercenary.Core", "ServerCore\Mercenary.Core.csproj", "{87ED5084-4CE4-473F-9865-E060B6B76ACA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelayServer", "RelayServer\RelayServer.csproj", "{DF69B22E-AEAC-4D73-8310-9DD11AA5724C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mercenary.Relay", "RelayServer\Mercenary.Relay.csproj", "{DF69B22E-AEAC-4D73-8310-9DD11AA5724C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

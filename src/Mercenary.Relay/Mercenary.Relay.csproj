@@ -8,17 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="log4net" Version="2.0.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.9" />
-    <PackageReference Include="protobuf-net" Version="3.1.17" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ServerCore\ServerCore.csproj" />
+    <ProjectReference Include="..\ServerCore\Mercenary.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Handlers\" />
+    <Folder Include="Messages\" />
   </ItemGroup>
 
 </Project>
