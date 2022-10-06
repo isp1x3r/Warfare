@@ -1,6 +1,6 @@
 ﻿using ServerCore;
 using ProtoBuf;
-
+using Mercenary.Auth.Data;
 
 namespace AuthServer.Message
 {
@@ -117,7 +117,7 @@ namespace AuthServer.Message
         internal int Losses { get; set; }
 
         [ProtoMember(13)]
-        internal byte[] Padding { get; set; } // Has a length of 16 (suspecting a string)
+        internal byte[] Padding { get; set; } // either a string or ape devs
 
         [ProtoMember(14)]
         internal uint Unk3 { get; set; }
@@ -137,10 +137,12 @@ namespace AuthServer.Message
         [ProtoMember(19)]
         internal byte ItemCount { get; set; }
 
+        [ProtoMember(20)]
+        internal CharacterItemsDto[] Items { get; set; }
+
         internal CharacterInfoAckMessage()
         {
             Padding = new byte[16];
-            ItemCount = 0; // For now
         }
         internal CharacterInfoAckMessage(CharacterInfoError error)
         {

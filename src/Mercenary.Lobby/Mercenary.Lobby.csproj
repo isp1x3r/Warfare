@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <Folder Include="Handlers\" />
+    <Folder Include="Data\" />
   </ItemGroup>
 
 </Project>
