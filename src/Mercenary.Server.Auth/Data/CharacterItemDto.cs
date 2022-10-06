@@ -2,7 +2,7 @@
 namespace Mercenary.Auth.Data
 {
     [ProtoContract]
-    internal class CharacterItemsDto
+    internal class CharacterItemDto
     {
         [ProtoMember(1)]
         internal uint ItemCode { get; set; }
