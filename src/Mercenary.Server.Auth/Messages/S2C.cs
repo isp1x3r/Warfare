@@ -138,7 +138,7 @@ namespace Mercenary.Server.Auth.Message
         internal byte ItemCount { get; set; }
 
         [ProtoMember(20)]
-        internal CharacterItemsDto[] Items { get; set; }
+        internal CharacterItemDto[] Items { get; set; }
 
         internal CharacterInfoAckMessage()
         {
