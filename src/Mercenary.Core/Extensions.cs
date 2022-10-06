@@ -22,7 +22,7 @@ namespace ServerCore
                     case ServerType.LobbyServer:
                         _r.BaseStream.Position = 8;
                         break;
-                    case ServerType.MultiplayServer:
+                    case ServerType.GameServer:
                         // TODO
                         break;
                 }

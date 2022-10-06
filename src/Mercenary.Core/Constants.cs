@@ -29,7 +29,7 @@ namespace ServerCore
     }
 #endregion
 
-#region Lobby
+    #region Lobby
     public enum CharacterScreenResult : ushort
     {
         Success = 0,
@@ -46,7 +46,7 @@ namespace ServerCore
         Adam = 2,
         Cathy = 3
     }
-public enum ClanDisbandResult : byte
+    public enum ClanDisbandResult : byte
     {
         Success = 0,
         NotaMember = 1,
@@ -111,13 +111,14 @@ public enum ClanDisbandResult : byte
             Kicked = 24
         }
     #endregion
+
     #region Core
 
     public enum ServerType : byte
     {
         AuthServer = 1,
         LobbyServer = 2,
-        MultiplayServer = 3,
+        GameServer = 3,
         RelayServer = 4
     }
     #endregion
