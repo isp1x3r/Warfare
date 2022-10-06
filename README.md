@@ -12,7 +12,8 @@ This project is open for both curious people that want to see how things are ran
 * [Visual Studio(.NET 6.0 Compatible)](https://visualstudio.microsoft.com/downloads/)
 * [MySQL](https://www.mysql.com/)
 * [.NET 6.0 Runtime/SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
-* BlackShot Client - EU v2014: [Download(mediafire.com - 2.01 GB)](https://www.mediafire.com/file/cso7x9vs0zcl668/BS2014Client.zip/file)]
+* BlackShot Client - EU v2014 : [Download(mediafire.com - 2.01 GB)](https://www.mediafire.com/file/cso7x9vs0zcl668/BS2014Client.zip/file)]
+* BlackShot.exe With No HackShield : [Download(mediafire.com - 4.84 MB)](https://www.mediafire.com/file/63fsv8tmvly5vjg/blackshot.exe/file)]
 
 ### InGame ScreenShots
 ![Character Selection](https://i.ibb.co/6Zj1sBn/Screen-Shot0805164537.jpg)
