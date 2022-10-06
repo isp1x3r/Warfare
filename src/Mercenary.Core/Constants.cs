@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace Mercenary.Core
 {
@@ -123,7 +119,7 @@ namespace Mercenary.Core
 
     public static class Constants
     {
-        public const short lobbyackheader = 255;
+        public const short Lobbyackheader = 255;
         public const int MagicHeader = 0x40302010;
     }
 }

@@ -1,7 +1,7 @@
-﻿using ServerCore;
+﻿using Mercenary.Core;
 using ProtoBuf;
 
-namespace AuthServer.Message
+namespace Mercenary.Server.Auth.Message
 {
 
     [ClientMessage(772)]

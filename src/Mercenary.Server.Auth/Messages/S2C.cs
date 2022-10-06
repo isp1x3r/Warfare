@@ -1,4 +1,4 @@
-﻿using ServerCore;
+﻿using Mercenary.Core;
 using ProtoBuf;
 using Mercenary.Auth.Data;
 
@@ -16,7 +16,7 @@ namespace Mercenary.Server.Auth.Message
         internal uint AuthErrorCode { get; set; }
 
         [ProtoMember(3)]
-        internal byte[] Padding1 { get; set; }
+        internal byte[] Padding { get; set; }
 
         [ProtoMember(4)]
         internal uint CharacterSlots { get; set; }
@@ -40,7 +40,7 @@ namespace Mercenary.Server.Auth.Message
         {
             ErrorCode = 0;
             AuthErrorCode = 0;
-            Padding1 = new byte[10];
+            Padding = new byte[10];
         }
         internal AuthenticationAckMessage(ushort errorcode, ushort autherrorcode)
         {
@@ -64,7 +64,7 @@ namespace Mercenary.Server.Auth.Message
         internal byte[] Padding { get; set; }
 
         [ProtoMember(4)]
-        internal string username { get; set; }
+        internal string sername { get; set; }
 
         internal RetrieveCharacterAckMessage()
         {
