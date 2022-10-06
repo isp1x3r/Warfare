@@ -21,9 +21,9 @@ namespace AuthServer.Message
         [ProtoMember(4)]
         internal uint CharacterSlots { get; set; }
 
-        [ProtoMember(5)]                      
-        internal uint IsPCRoom { get; set; } // Was used back in the day when garena was organizing LAN tournaments in internet coffee shops 
-
+        [ProtoMember(5)]                      // Was used back in the day when garena was organizing LAN tournaments in internet coffee shops 
+        internal uint IsPCRoom { get; set; }  // Client actually expects 1 byte only since it's a boolean but them ape devs forgot to correctly cast it on their end *sigh*
+                                    
         [ProtoMember(6)]
         internal uint AccountNumber { get; set; }
 
@@ -221,39 +221,11 @@ namespace AuthServer.Message
         internal byte ServerEntries { get; set; }
 
         [ProtoMember(3)]
-        internal byte Unk1 { get; set; } // Sorting ID?
+        internal ServerInfoDto[] Servers { get; set; }
 
-        [ProtoMember(4)]
-        internal byte Id { get; set; } // gotta check to make sure x')
-
-        [ProtoMember(5)]
-        internal ushort Unk2 { get; set; }
-
-        [ProtoMember(6)]
-        internal ushort Unk3 { get; set; }
-
-        [ProtoMember(7)]
-        internal ushort ServerPort { get; set; } 
-
-        [ProtoMember(8)]
-        internal uint ServerIP { get; set; }
-
-        [ProtoMember(9, IsPacked = true)]
-        internal byte[] Unk4 { get; set; } 
-
-        [ProtoMember(10, IsPacked = true)]
-        internal byte[] Unk5 { get; set; }
-
-        [ProtoMember(11, IsPacked = true)]
-        internal byte[] Unk6 { get; set; }
-
-        internal ServerListAckMessage(byte id)
+        internal ServerListAckMessage()
         {
             Padding = 0;
-            Unk2 = 0;
-            Unk4= new byte[241];
-            Unk5 = new byte[241];
-            Unk6 = new byte[33];
         }
     }
 
