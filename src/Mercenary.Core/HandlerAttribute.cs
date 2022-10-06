@@ -1,6 +1,6 @@
 ﻿
 
-namespace ServerCore
+namespace Mercenary.Core
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     internal class HandlerAttribute : Attribute

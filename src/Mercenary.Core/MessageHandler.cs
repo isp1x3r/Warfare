@@ -1,15 +1,10 @@
 ﻿using log4net;
-using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
 using NetCoreServer;
 using ProtoBuf;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ServerCore
+
+namespace Mercenary.Core
 {
     internal class MessageHandler
     {

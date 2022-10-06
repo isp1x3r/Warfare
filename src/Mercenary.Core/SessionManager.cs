@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 using log4net;
 using NetCoreServer;
 
-namespace ServerCore
+namespace Mercenary.Core
 {
     internal class SessionManager
     {

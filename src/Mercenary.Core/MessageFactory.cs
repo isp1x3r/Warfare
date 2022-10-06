@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using log4net;
 
-namespace ServerCore
+namespace Mercenary.Core
 {
     public class MessageFactory
     {

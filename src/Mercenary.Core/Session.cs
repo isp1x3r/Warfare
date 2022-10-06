@@ -6,7 +6,7 @@ using NetCoreServer;
 using log4net;
 
 
-namespace ServerCore
+namespace Mercenary.Core
 {
     public class Session : TcpSession
     {

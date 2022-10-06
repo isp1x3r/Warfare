@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServerCore
+namespace Mercenary.Core
 {
     #region Authentication
     public enum RetrieveCharacterInfoError : ushort
@@ -25,9 +25,7 @@ namespace ServerCore
         NameAlreadyExists = 65404,
         NotEnoughSlots = 65405
     }
-
-    }
-#endregion
+    #endregion
 
     #region Lobby
     public enum CharacterScreenResult : ushort
@@ -59,7 +57,7 @@ namespace ServerCore
         NoUsers = 1,
         ChatRoomClosed = 2,
         AlreadyInChatRoom = 3
-}
+    }
     public enum ClanRightChange : byte
     {
         Master = 1,
@@ -95,7 +93,7 @@ namespace ServerCore
         RoomNotExisting = 253,
     }
     public enum RoomEnterResult2 : byte // Through Invitation/Follow User
-        {   
+    {   
             Success = 0,
             NotFound = 1,
             ClanAndPlayerDontMatch = 2,
@@ -109,7 +107,7 @@ namespace ServerCore
             NotInChannel = 19,
             FullCapacity2 = 23,
             Kicked = 24
-        }
+    }
     #endregion
 
     #region Core

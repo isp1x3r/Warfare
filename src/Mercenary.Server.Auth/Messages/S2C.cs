@@ -2,7 +2,7 @@
 using ProtoBuf;
 using Mercenary.Auth.Data;
 
-namespace AuthServer.Message
+namespace Mercenary.Server.Auth.Message
 {
     [ServerMessage(4)]
     [ProtoContract]

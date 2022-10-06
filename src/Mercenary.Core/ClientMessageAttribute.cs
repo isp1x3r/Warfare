@@ -1,6 +1,6 @@
 ﻿
 
-namespace ServerCore
+namespace Mercenary.Core
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public class ClientMessageAttribute : Attribute

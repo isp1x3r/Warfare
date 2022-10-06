@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServerCore
+namespace Mercenary.Core
 {
     public static class Extensions
     {
 
         public static ushort ReadOpCodeFromPacket(byte[] packet, ServerType servertype)
         {
-            using (BinaryReader _r = new BinaryReader(new MemoryStream(packet)))
+            using (var _r = new BinaryReader(new MemoryStream(packet)))
             {
                 switch(servertype)
                 {
