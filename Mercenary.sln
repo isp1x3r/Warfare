@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mercenary.Server.Relay", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mercenary.Database", "src\Mercenary.Database\Mercenary.Database.csproj", "{58BA6B6F-D483-4592-9E93-D2D63588F56C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mercenary.Network", "Mercenary.Network\Mercenary.Network.csproj", "{B567FF79-A6D7-42AA-9B11-DBD7505620AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mercenary.Network", "src\Mercenary.Network\Mercenary.Network.csproj", "{B567FF79-A6D7-42AA-9B11-DBD7505620AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
