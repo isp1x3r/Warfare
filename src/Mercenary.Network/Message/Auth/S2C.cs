@@ -52,7 +52,7 @@ namespace Mercenary.Network.Message.Auth
 
     [ServerMessage(260)]
     [ProtoContract]
-    public class RetrieveCharacterAckMessage
+    public class CharacterListAckMessage
     {
         [ProtoMember(1)]
         public RetrieveCharacterInfoError ErrorCode { get; set; }
@@ -66,11 +66,11 @@ namespace Mercenary.Network.Message.Auth
         [ProtoMember(4)]
         public string Username { get; set; }
 
-        public RetrieveCharacterAckMessage()
+        public CharacterListAckMessage()
         {
             Padding = new byte[16];
         }
-        public RetrieveCharacterAckMessage(RetrieveCharacterInfoError error)
+        public CharacterListAckMessage(RetrieveCharacterInfoError error)
         {
             ErrorCode = error;
         }

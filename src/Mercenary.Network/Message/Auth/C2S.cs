@@ -3,6 +3,31 @@ using ProtoBuf;
 
 namespace Mercenary.Network.Message.Auth
 {
+    [ClientMessage(4)]
+    [ProtoContract]
+    public class AuthenticationReqMessage
+    {
+        [ProtoMember(1)]
+        public uint AccountNumber { get; set; }
+
+        [ProtoMember(2)]
+        public string Username { get; set; }
+    }
+
+    [ClientMessage(260)]
+    [ProtoContract]
+    public class CharacterListReqMessage
+    {
+       
+    }
+
+    [ClientMessage(516)]
+    [ProtoContract]
+    public class CharacterInfoReqMessage
+    {
+        [ProtoMember(1)]
+        public uint CharacterId { get; set; }
+    }
 
     [ClientMessage(772)]
     [ProtoContract]

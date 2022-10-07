@@ -15,6 +15,24 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Mercenary.Core\Mercenary.Core.csproj" />
+    <ProjectReference Include="..\Mercenary.Database\Mercenary.Database.csproj" />
+    <ProjectReference Include="..\Mercenary.Network\Mercenary.Network.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="log4net.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>log4net.config</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="log4net.config">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>log4net.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

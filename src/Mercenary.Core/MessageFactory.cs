@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Reflection;
-using System.Reflection.Emit;
 using log4net;
 
 namespace Mercenary.Core
@@ -12,11 +11,11 @@ namespace Mercenary.Core
         private readonly ConcurrentDictionary<ushort, Type> _clientmessages = new ConcurrentDictionary<ushort, Type>();
         private readonly ConcurrentDictionary<Type, ushort> _servermessages = new ConcurrentDictionary<Type, ushort>();
         private static readonly ILog _logger = LogManager.GetLogger(typeof(MessageFactory));
-        private Server _serverinstance { get; set; }
+        private Server serverinstance { get; set; }
    
         public MessageFactory(Server serverinstance)
         {
-            _serverinstance = serverinstance;
+            serverinstance = serverinstance;
             LoadMessageHandlers();
             LoadClientMessages();
             LoadServerMessages();
@@ -42,7 +41,7 @@ namespace Mercenary.Core
                     }
                 }
             }
-            _logger.Debug($"Added {_handlers.Count} message handlers to the message factory");
+            _logger.Debug($"Added {_handlers.Count} message handlers");
         }
         void LoadClientMessages()
         {
@@ -62,6 +61,8 @@ namespace Mercenary.Core
                     }
                 }
             }
+            _logger.Debug($"Added {_handlers.Count} client messages");
+
         }
         void LoadServerMessages()
         {
@@ -81,6 +82,7 @@ namespace Mercenary.Core
                     }
                 }
             }
+            _logger.Debug($"Added {_handlers.Count} server messages");
         }
         public Type GetHandler(ushort opCode)
         {

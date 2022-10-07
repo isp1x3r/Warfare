@@ -1,12 +1,14 @@
 ﻿
 
+using System;
+
 namespace Mercenary.Core
 {
-    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
-    internal class HandlerAttribute : Attribute
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
+    public class HandlerAttribute : Attribute
     {
-        internal ushort _opCode;
-        HandlerAttribute(ushort opCode)
+        public ushort _opCode;
+        public HandlerAttribute(ushort opCode)
         {
             _opCode = opCode;
         }
