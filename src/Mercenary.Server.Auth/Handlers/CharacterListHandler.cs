@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mercenary.Server.Auth.Handlers
 {
-    internal class RetrieveCharacterInfoHandler
+    internal class CharacterListHandler
     {
     }
 }
