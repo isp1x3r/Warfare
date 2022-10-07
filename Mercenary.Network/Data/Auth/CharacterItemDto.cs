@@ -3,31 +3,31 @@
 namespace Mercenary.Network.Data.Auth
 {
     [ProtoContract]
-    internal class CharacterItemDto
+    public class CharacterItemDto
     {
         [ProtoMember(1)]
-        internal uint ItemCode { get; set; }
+        public uint ItemCode { get; set; }
 
         [ProtoMember(2)]
-        internal byte Type { get; set; }
+        public byte Type { get; set; }
 
         [ProtoMember(3)]
-        internal ushort ItemNumber { get; set; }
+        public ushort ItemNumber { get; set; }
 
         [ProtoMember(4)]
-        internal uint Unk1 { get; set; }
+        public uint Unk1 { get; set; }
 
         [ProtoMember(5)]
-        internal byte Unk2 { get; set; }
+        public byte Unk2 { get; set; }
 
         [ProtoMember(6)]
-        internal byte Unk3 { get; set; }
+        public byte Unk3 { get; set; }
 
         [ProtoMember(7)]
-        internal uint MinutesLeft { get; set; }
+        public uint MinutesLeft { get; set; }
 
         [ProtoMember(8)]
-        internal ushort SecondsLeft { get; set; }
+        public ushort SecondsLeft { get; set; }
 
 
     }
