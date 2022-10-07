@@ -1,5 +1,6 @@
 ﻿using ProtoBuf;
-namespace Mercenary.Auth.Data
+
+namespace Mercenary.Network.Data.Auth
 {
     [ProtoContract]
     internal class CharacterItemDto

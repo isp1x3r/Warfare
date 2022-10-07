@@ -9,11 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mercenary.Server.Lobby", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mercenary.Server.Game", "src\Mercenary.Server.Game\Mercenary.Server.Game.csproj", "{9D077682-2DA5-44D3-B251-106D94A60448}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mercenary.Server.Core", "src\Mercenary.Core\Mercenary.Core.csproj", "{87ED5084-4CE4-473F-9865-E060B6B76ACA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mercenary.Core", "src\Mercenary.Core\Mercenary.Core.csproj", "{87ED5084-4CE4-473F-9865-E060B6B76ACA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mercenary.Server.Relay", "src\Mercenary.Server.Relay\Mercenary.Server.Relay.csproj", "{DF69B22E-AEAC-4D73-8310-9DD11AA5724C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mercenary.Database", "src\Mercenary.Database\Mercenary.Database.csproj", "{58BA6B6F-D483-4592-9E93-D2D63588F56C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mercenary.Network", "Mercenary.Network\Mercenary.Network.csproj", "{B567FF79-A6D7-42AA-9B11-DBD7505620AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{58BA6B6F-D483-4592-9E93-D2D63588F56C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58BA6B6F-D483-4592-9E93-D2D63588F56C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58BA6B6F-D483-4592-9E93-D2D63588F56C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B567FF79-A6D7-42AA-9B11-DBD7505620AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B567FF79-A6D7-42AA-9B11-DBD7505620AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B567FF79-A6D7-42AA-9B11-DBD7505620AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B567FF79-A6D7-42AA-9B11-DBD7505620AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

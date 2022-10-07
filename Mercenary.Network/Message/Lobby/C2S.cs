@@ -1,4 +1,4 @@
-﻿using ServerCore;
+﻿using Mercenary.Core;
 using ProtoBuf;
 
 namespace LobbyServer.Messages
@@ -28,3 +28,4 @@ namespace LobbyServer.Messages
         [ProtoMember(7)]
         internal byte Unk5 { get; set; }
     }
+}
