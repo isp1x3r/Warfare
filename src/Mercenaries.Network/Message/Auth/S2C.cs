@@ -22,7 +22,7 @@ namespace Mercenaries.Network.Message.Auth
         public uint CharacterSlots { get; set; }
 
         [ProtoMember(5)]                      // Was used back in the day when garena was organizing LAN tournaments in internet coffee shops 
-        public uint IsPCRoom { get; set; }  // Client actually expects 1 byte only since it's a boolean but them ape devs forgot to correctly cast it on their end *sigh*
+        public uint IsPCRoom { get; set; }    // Client actually expects 1 byte only since it's a boolean but them ape devs forgot to correctly cast it on their end *sigh*
 
         [ProtoMember(6)]
         public uint AccountNumber { get; set; }
@@ -227,6 +227,86 @@ namespace Mercenaries.Network.Message.Auth
         {
             Padding = 0;
         }
+    }
+
+    [ServerMessage(1796)]
+    [ProtoContract]
+    public class ChannelListAckMessage
+    {        
+
+        public ChannelListAckMessage()
+        {
+
+        }
+    }
+
+    [ServerMessage(2820)]
+    [ProtoContract]
+    public class PlayerCashMessage
+    {
+        [ProtoMember(1)]
+        public uint Unk1 { get; set; }
+
+        [ProtoMember(2)]
+        public uint PlayerCash { get; set; }
+
+        public PlayerCashMessage(uint playercash)
+        {
+            Unk1 = 0;
+            PlayerCash = playercash;
+        }
+    }
+
+    [ServerMessage(65284)]
+    [ProtoContract]
+    public class NoticeMessage
+    {
+        [ProtoMember(1)]
+        public string Message { get; set; }
+
+        public NoticeMessage(string message)
+        {
+            Message = message;
+        }
+    }
+
+    [ServerMessage(4612)]
+    [ProtoContract]
+    public class ErrorDetectedMessage
+    {
+
+    }
+
+    [ServerMessage(3588)]
+    [ProtoContract]
+    public class UserBanMessage
+    {
+        [ProtoMember(1)]
+        public uint Unk1 { get; set; }
+
+        [ProtoMember(2)]
+        public byte[] Padding { get; set; }
+
+        [ProtoMember(3)]
+        public string BanReason { get; set; }
+
+        public UserBanMessage(string banreason)
+        {
+            Unk1 = 0;
+            Padding = new byte[51];
+            BanReason = banreason;
+        }
+    }
+
+    [ServerMessage(39172)]
+    [ProtoContract]
+    public class LoadBannerMessage
+    {
+        [ProtoMember(1)]
+        public string Unk1 { get; set; }
+
+        [ProtoMember(2)]
+        public string Unk2 { get; set; } // This is most likely the filename of the banner inside of Scene\Interface 
     }
 
 }

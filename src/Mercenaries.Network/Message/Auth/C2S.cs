@@ -1,4 +1,5 @@
-﻿using Mercenaries.Core;
+﻿using System.Formats.Asn1;
+using Mercenaries.Core;
 using ProtoBuf;
 
 namespace Mercenaries.Network.Message.Auth
@@ -48,7 +49,7 @@ namespace Mercenaries.Network.Message.Auth
     public class CharacterDeleteReqMessage
     {
         /* Available only in JP version which is included in the client,
-           so might as well add it here!
+           so might as well add it here
          */
         [ProtoMember(1)]
         public uint Unk1 { get; set; }
@@ -57,10 +58,18 @@ namespace Mercenaries.Network.Message.Auth
         public uint Unk2 { get; set; }
 
         [ProtoMember(3)]
-        public CharacterHero Hero { get; set; }
+        public uint Slot { get; set; }
 
-        [ProtoMember(4)]
-        public byte Slot { get; set; }
+    }
 
+    [ClientMessage(1284)]
+    [ProtoContract]
+    public class ServiceConnectReqMessage
+    {
+        [ProtoMember(1)]
+        public uint CharacterId { get; set; }
+
+        [ProtoMember(2)]
+        public byte[] Unk1 { get; set; }
     }
 }
