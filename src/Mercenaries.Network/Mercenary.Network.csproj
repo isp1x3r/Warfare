@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\Lobby\" />
+    <Folder Include="Data\Game\" />
+    <Folder Include="Data\Relay\" />
+    <Folder Include="Message\Game\" />
+    <Folder Include="Message\Relay\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mercenaries.Core\Mercenaries.Core.csproj" />
+  </ItemGroup>
+
+</Project>
