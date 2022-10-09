@@ -198,7 +198,7 @@ namespace Mercenaries.Network.Message.Auth
         public CharacterScreenResult ScreenResult { get; set; }
 
         [ProtoMember(2, IsPacked = true)]
-        public byte[] Unk1 { get; set; } // This is sent right back from the client on server join (Check LobbyServer.Messages => LoginReqMessage.Unk1)
+        public byte[] Unk1 { get; set; } // This is sent right back from the client on server join (Check Network.Message.Lobby => LoginReqMessage.Unk1)
 
         public ServiceConnectAckMessage()
         {

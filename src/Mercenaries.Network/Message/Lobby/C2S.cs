@@ -1,7 +1,7 @@
 ﻿using Mercenaries.Core;
 using ProtoBuf;
 
-namespace LobbyServer.Messages
+namespace Mercenaries.Network.Message.Lobby
 {
     [ClientMessage(2)]
     [ProtoContract]
