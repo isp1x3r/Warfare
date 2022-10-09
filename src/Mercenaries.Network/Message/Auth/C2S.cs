@@ -1,5 +1,4 @@
-﻿using System.Formats.Asn1;
-using Mercenaries.Core;
+﻿using Mercenaries.Core;
 using ProtoBuf;
 
 namespace Mercenaries.Network.Message.Auth
