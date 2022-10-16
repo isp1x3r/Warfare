@@ -33,8 +33,8 @@ namespace Mercenaries.Core
                 {
                     if (attr.GetType() == typeof(HandlerAttribute))
                     {
-                        var attrtoadd = (HandlerAttribute)attr;
-                        if (!_handlers.TryAdd(attrtoadd._opCode, atype.GetType()))
+                        var result = atype.GetCustomAttribute<HandlerAttribute>();
+                        if (!_handlers.TryAdd(result._opCode, atype.GetType()))
                         {
                             _logger.Error($"Couldn't add handler for type : {atype.Name}");
                         }
@@ -51,8 +51,8 @@ namespace Mercenaries.Core
                 {
                     if (attr.GetType() == typeof(ClientMessageAttribute))
                     {
-                        var attrtoadd = (ClientMessageAttribute)attr;
-                        if (!_handlers.TryAdd(attrtoadd._opCode, atype))
+                        var result = atype.GetCustomAttribute<ClientMessageAttribute>();
+                        if (!_clientmessages.TryAdd(result._opCode, atype))
                         {
                             _logger.Error($"Couldn't add client message for type : {atype.Name}");
                         }
@@ -70,8 +70,8 @@ namespace Mercenaries.Core
                 {
                     if (attr.GetType() == typeof(ServerMessageAttribute))
                     {
-                        var attrtoadd = (ServerMessageAttribute)attr;
-                        if (!_handlers.TryAdd(attrtoadd._opCode, atype.GetType()))
+                        var result = atype.GetCustomAttribute<ServerMessageAttribute>();
+                        if (!_servermessages.TryAdd(atype, result._opCode))
                         {
                             _logger.Error($"Couldn't add server message for type : {atype.Name}");
                         }

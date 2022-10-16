@@ -3,6 +3,7 @@ using Mercenaries.Core;
 using log4net;
 using System.Net;
 using log4net.Config;
+using System.IO;
 
 namespace Mercenaries.Server.Auth
 {
@@ -12,7 +13,6 @@ namespace Mercenaries.Server.Auth
 
        static void Main(string[] args)
        {
-            // Set up a simple configuration that logs on the console.
             BasicConfigurator.Configure();
             _logger.Info("Initializing Server...");
             ServerInstance server = new ServerInstance("127.0.0.1", 14000, ServerType.AuthServer, new MessageFactory());
