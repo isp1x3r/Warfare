@@ -16,7 +16,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Mercenaries.Core\Mercenaries.Core.csproj" />
     <ProjectReference Include="..\Mercenaries.Database\Mercenaries.Database.csproj" />
-    <ProjectReference Include="..\Mercenaries.Network\Mercenaries.Network.csproj" />
   </ItemGroup>
 
   <ItemGroup>

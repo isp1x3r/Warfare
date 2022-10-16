@@ -1,8 +1,8 @@
 ﻿using Mercenaries.Core;
+using Mercenaries.Server.Auth.Data;
 using ProtoBuf;
-using Mercenaries.Network.Data.Auth;
 
-namespace Mercenaries.Network.Message.Auth
+namespace Mercenaries.Server.Auth.Messages
 {
     [ServerMessage(4)]
     [ProtoContract]

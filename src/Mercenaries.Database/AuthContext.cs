@@ -4,6 +4,6 @@ namespace Mercenaries.Database
 {
     internal class AuthContext : DbContext
     {
-        public DbSet<>
+        //public DbSet<>
     }
 }

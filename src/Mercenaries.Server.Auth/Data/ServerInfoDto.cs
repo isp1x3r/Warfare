@@ -1,6 +1,6 @@
 ﻿using ProtoBuf;
 
-namespace Mercenaries.Network.Data.Auth
+namespace Mercenaries.Server.Auth.Data
 {
     [ProtoContract]
     public class ServerInfoDto

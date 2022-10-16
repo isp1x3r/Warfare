@@ -6,16 +6,16 @@ using NetCoreServer;
 
 namespace Mercenaries.Core
 {
-    public class Server : TcpServer
+    public class ServerInstance : TcpServer
     {
-        private static readonly ILog _logger = LogManager.GetLogger(typeof(Server));
-        public IPAddress _serveraddr { get; set; }
+        private static readonly ILog _logger = LogManager.GetLogger(typeof(ServerInstance));
+        public string _serveraddr { get; set; }
         public short _port { get; set; }
         public ServerType _servertype { get; set; }
         internal SessionManager _sessionMgr { get; set; }
         internal MessageHandler _messagehandler { get; set; }
 
-        public Server(IPAddress address, short port, ServerType type, MessageFactory messagefactory) : base(address, port) 
+        public ServerInstance(string address, short port, ServerType type, MessageFactory messagefactory) : base(address, port) 
         { 
             _serveraddr = address;
             _port = port;
@@ -26,7 +26,7 @@ namespace Mercenaries.Core
 
         protected override TcpSession CreateSession() 
         {
-            TcpSession sessiontoadd = new TcpSession(this);
+            Session sessiontoadd = new Session(this);
             _sessionMgr.AddSession(sessiontoadd);
             return sessiontoadd; 
         

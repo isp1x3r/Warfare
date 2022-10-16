@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Linq;
 using System.Reflection;
+using System.Reflection.Metadata;
 using log4net;
 
 namespace Mercenaries.Core
@@ -10,12 +12,12 @@ namespace Mercenaries.Core
         private readonly ConcurrentDictionary<ushort, Type> _handlers = new ConcurrentDictionary<ushort, Type>();
         private readonly ConcurrentDictionary<ushort, Type> _clientmessages = new ConcurrentDictionary<ushort, Type>();
         private readonly ConcurrentDictionary<Type, ushort> _servermessages = new ConcurrentDictionary<Type, ushort>();
+        private Assembly _assembly { get; set; }
         private static readonly ILog _logger = LogManager.GetLogger(typeof(MessageFactory));
-        private Server serverinstance { get; set; }
    
-        public MessageFactory(Server serverinstance)
+        public MessageFactory()
         {
-            serverinstance = serverinstance;
+            _assembly = Assembly.GetCallingAssembly();
             LoadMessageHandlers();
             LoadClientMessages();
             LoadServerMessages();
@@ -24,9 +26,7 @@ namespace Mercenaries.Core
         void LoadMessageHandlers()
         {
             // Probably not the best code out there but hey.. It works!
-            Assembly assembly = Assembly.GetCallingAssembly();
-
-            foreach (Type atype in assembly.GetTypes())
+            foreach (Type atype in _assembly.GetTypes())
             {
                 // Get associated attributes to said type :
                 foreach (Attribute attr in atype.GetCustomAttributes())
@@ -36,7 +36,7 @@ namespace Mercenaries.Core
                         var attrtoadd = (HandlerAttribute)attr;
                         if (!_handlers.TryAdd(attrtoadd._opCode, atype.GetType()))
                         {
-                            _logger.Error($"Couldn't add handler for already existing type {atype.Name}");
+                            _logger.Error($"Couldn't add handler for type : {atype.Name}");
                         }
                     }
                 }
@@ -45,44 +45,40 @@ namespace Mercenaries.Core
         }
         void LoadClientMessages()
         {
-            Assembly assembly = Assembly.GetCallingAssembly();
-
-            foreach (Type atype in assembly.GetTypes())
+            foreach (Type atype in _assembly.GetTypes())
             {
                 foreach (Attribute attr in atype.GetCustomAttributes())
                 {
                     if (attr.GetType() == typeof(ClientMessageAttribute))
                     {
                         var attrtoadd = (ClientMessageAttribute)attr;
-                        if (!_clientmessages.TryAdd(attrtoadd._opCode, atype.GetType()))
+                        if (!_handlers.TryAdd(attrtoadd._opCode, atype))
                         {
-                            _logger.Error($"Couldn't add client message for already existing type {atype.Name}");
+                            _logger.Error($"Couldn't add client message for type : {atype.Name}");
                         }
                     }
                 }
             }
-            _logger.Debug($"Added {_handlers.Count} client messages");
-
+            _logger.Debug($"Added {_clientmessages.Count} client messages");
         }
         void LoadServerMessages()
         {
-            Assembly assembly = Assembly.GetCallingAssembly();
 
-            foreach (Type atype in assembly.GetTypes())
+            foreach (Type atype in _assembly.GetTypes())
             {
                 foreach (Attribute attr in atype.GetCustomAttributes())
                 {
                     if (attr.GetType() == typeof(ServerMessageAttribute))
                     {
                         var attrtoadd = (ServerMessageAttribute)attr;
-                        if (!_clientmessages.TryAdd(attrtoadd._opCode, atype.GetType()))
+                        if (!_handlers.TryAdd(attrtoadd._opCode, atype.GetType()))
                         {
-                            _logger.Error($"Couldn't add server message for already existing type {atype.Name}");
+                            _logger.Error($"Couldn't add server message for type : {atype.Name}");
                         }
                     }
                 }
             }
-            _logger.Debug($"Added {_handlers.Count} server messages");
+            _logger.Debug($"Added {_servermessages.Count} server messages");
         }
         public Type GetHandler(ushort opCode)
         {

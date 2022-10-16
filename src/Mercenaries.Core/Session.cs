@@ -11,9 +11,9 @@ namespace Mercenaries.Core
     public class Session : TcpSession
     {
         private static readonly ILog _logger = LogManager.GetLogger(typeof(Session));
-        internal Server _server { get; set; }
+        internal ServerInstance _server { get; set; }
 
-        public Session(Server server) : base(server) 
+        public Session(ServerInstance server) : base(server) 
         {
             _server = server;
         }

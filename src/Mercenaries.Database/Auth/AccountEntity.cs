@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 namespace Mercenaries.Database.Auth
 {
-    [Table("")]
+    [Table("accounts")]
     public class AccountEntity
     {
     }

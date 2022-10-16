@@ -17,7 +17,7 @@ namespace Mercenaries.Core
                 switch(servertype)
                 {
                     case ServerType.AuthServer:
-                        _r.BaseStream.Position = 3;
+                        _r.BaseStream.Position = 2;
                         break;
                     case ServerType.LobbyServer:
                         _r.BaseStream.Position = 8;
@@ -43,5 +43,18 @@ namespace Mercenaries.Core
         {
 
         }*/
+        public static string WriteCString(string @string, int length)
+        {
+            // Do we need to fill the remaining bytes?
+            int remaining = length - @string.Length;
+            if (remaining > 0)
+            {
+                StringBuilder _builder = new StringBuilder(@string, length);
+                byte[] padding = new byte[remaining];
+                _builder.Append(Encoding.ASCII.GetString(padding));
+                return _builder.ToString();
+            }
+            return @string;
+        }      
     }
 }
