@@ -4,11 +4,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Mercenaries.Core
 {
     public static class Extensions
     {
+        /// <summary>
+        /// Gets the packet message by removing the first 4 bytes that are : 
+        /// [-] ushort packetLength
+        /// [-] ushort packetID
+        /// </summary>
+        /// <param name="packet">The entire packet</param>
+        /// <returns>The packet message</returns>
+        public static byte[]? GetMessageBuffer(byte[] packet)
+        {
+            using (var _r = new BinaryReader(new MemoryStream(packet)))
+            {
+                ushort length = _r.ReadUInt16();
+                return new byte[length - 4].Skip(4).ToArray();
+            }
+            return null;
+        }
 
         public static ushort ReadOpCodeFromPacket(byte[] packet, ServerType servertype)
         {

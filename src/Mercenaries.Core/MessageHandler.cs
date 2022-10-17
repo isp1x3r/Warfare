@@ -23,16 +23,18 @@ namespace Mercenaries.Core
             // Get the message opcode depending on the server (Auth, Lobby, Match etc..)
             ushort opCode = Extensions.ReadOpCodeFromPacket(packet, session._server._servertype);
             // Find a message type with the corresponding opCode
-            bool result;
-            (Type cmessage, result) = _messagefactory.GetClientMessage(opCode);
-            if (!result)
+            Type cmessage = _messagefactory.GetClientMessage(opCode);
+            if (cmessage == null)
                 return;
-            // Find a handler for the corresponding opCode  
+            // Find a handler for the corresponding opCode
             Type handler = _messagefactory.GetHandler(opCode);
             if (handler == null)
                 return;
             // Deserialize message
-            Type msg = (Type)DeSerializeMessage(packet, cmessage);
+            Type msg = DeSerializeMessage(packet, cmessage);
+            // We shall not continue if there is no message
+            if (msg == null)
+                return;
             // Call the handler
             ExecuteHandler(handler, session, msg);
 
@@ -70,26 +72,27 @@ namespace Mercenaries.Core
         /// <param name="message">Message to be deserialized</param>
         /// <param name="tmessage">Type to be deserialized into</param>
         /// <returns>The deserialized message as an object</returns>
-        public object DeSerializeMessage(byte[] message, Type tmessage)
+        public Type? DeSerializeMessage(byte[] packet, Type tmessage)
         {
-            // Prepare message to be deserialized 
-            byte[] buffer = new byte[message.Length - 4];
-            message.CopyTo(buffer, 4);
+            /* This has to do with the fact that NetCoreServer returns a large buffer of 8192 bytes 
+               which is why we try to replace it with one that contains only the packet bytes for them to be deserialized */
+            var payload = Extensions.GetMessageBuffer(packet);
+            if (payload == null)
+                return null;
             // Get buffer as stream
-            using (MemoryStream stream = new MemoryStream(buffer))
+            using (var stream = new MemoryStream(payload))
             {
                 try
                 {
-                    // Deserialize the message        
-                    return Serializer.Deserialize(tmessage, stream); ;
+                    // Deserialize the message
+                    return (Type)Serializer.Deserialize(tmessage,stream);
                 }
                 catch (Exception ex)
                 {
                     _logger.Error($"Error occured deserializing message : {tmessage.Name}\n {ex.Message}");
-
                 }          
             }
-            return new object();
+            return null;
 
 
         }
@@ -101,11 +104,10 @@ namespace Mercenaries.Core
         public byte[]? SerializeMessage(Type message)
         {
             ushort opCode;
-            bool result;
             // Find opcode for server message
-            (opCode, result)= _messagefactory.GetServerOpCode(message);
+            opCode = _messagefactory.GetServerOpCode(message);
             // No point in continuing if no opcodes were found.
-            if (!result)
+            if (opCode == 0)
                 return null;
             using (var memoryStream = new MemoryStream())
             {

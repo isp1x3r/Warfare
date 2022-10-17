@@ -84,24 +84,31 @@ namespace Mercenaries.Core
         {
             Type handler;
             if (!_handlers.TryGetValue(opCode, out handler))
+            {
                 _logger.Error($"Couldn't find any handlers for message with opCode : {opCode}");
+                return null;
+            }
             return handler;
         }
-        public (Type, bool) GetClientMessage(ushort opCode)
+        public Type GetClientMessage(ushort opCode)
         {
             Type message;
             if (!_clientmessages.TryGetValue(opCode, out message))
+            {
                 _logger.Error($"Couldn't find any client messages for opCode : {opCode}");
-                return (null, false);
-            return (message, true);
+                return null;
+            }              
+            return message;
         }
-        public (ushort, bool) GetServerOpCode(Type message)
+        public ushort GetServerOpCode(Type message)
         {
             ushort opCode;
             if (!_servermessages.TryGetValue(message, out opCode))
+            {
                 _logger.Error($"Couldn't find any server opcodes for type : {message.Name}");
-                return (0, false);
-            return (opCode, true);
+                return 0;
+            }              
+            return opCode;
         }
         
     }
