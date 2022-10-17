@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using System.Reflection;
 using log4net;
 using ProtoBuf;
@@ -75,7 +76,7 @@ namespace Mercenaries.Core
         public Type? DeSerializeMessage(byte[] packet, Type tmessage)
         {
             /* This has to do with the fact that NetCoreServer returns a large buffer of 8192 bytes 
-               which is why we try to replace it with one that contains only the packet bytes for them to be deserialized */
+               which is why we try to replace it with one that has the correct length while also getting the payload message only for it to be deserialized */
             var payload = Extensions.GetMessageBuffer(packet);
             if (payload == null)
                 return null;
@@ -84,13 +85,14 @@ namespace Mercenaries.Core
             {
                 try
                 {
-                    // Deserialize the message
-                    return (Type)Serializer.Deserialize(tmessage,stream);
+                    // Deserialize the message        
+                    Serializer.Deserialize(tmessage, stream);
                 }
                 catch (Exception ex)
                 {
                     _logger.Error($"Error occured deserializing message : {tmessage.Name}\n {ex.Message}");
-                }          
+
+                }
             }
             return null;
 
