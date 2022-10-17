@@ -129,7 +129,7 @@ namespace Mercenaries.Server.Auth.Messages
         public string ClanName { get; set; }
 
         [ProtoMember(17)]
-        public string ClanMark { get; set; }
+        public uint ClanMark { get; set; }
 
         [ProtoMember(18)]
         public short SkinColor { get; set; }
