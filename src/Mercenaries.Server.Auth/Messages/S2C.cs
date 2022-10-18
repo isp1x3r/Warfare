@@ -1,39 +1,39 @@
 ﻿using Mercenaries.Core;
 using Mercenaries.Server.Auth.Data;
-using ProtoBuf;
+using BlubLib.Serialization;
 
 namespace Mercenaries.Server.Auth.Messages
 {
     [ServerMessage(4)]
-    [ProtoContract]
+    [BlubContract]
     public class AuthenticationAckMessage
     {
 
-        [ProtoMember(1)]
+        [BlubMember(1)]
         public ushort ErrorCode { get; set; }
 
-        [ProtoMember(2)]
+        [BlubMember(2)]
         public uint AuthErrorCode { get; set; }
 
-        [ProtoMember(3)]
+        [BlubMember(3)]
         public byte[] Padding { get; set; }
 
-        [ProtoMember(4)]
+        [BlubMember(4)]
         public uint CharacterSlots { get; set; }
 
-        [ProtoMember(5)]                      // Was used back in the day when garena was organizing LAN tournaments in internet coffee shops 
+        [BlubMember(5)]                      // Was used back in the day when garena was organizing LAN tournaments in internet coffee shops 
         public uint IsPCRoom { get; set; }    // Client actually expects 1 byte only since it's a boolean but them ape devs forgot to correctly cast it on their end *sigh*
 
-        [ProtoMember(6)]
+        [BlubMember(6)]
         public uint AccountNumber { get; set; }
 
-        [ProtoMember(7)]
+        [BlubMember(7)]
         public string Country { get; set; }
 
-        [ProtoMember(8)]
+        [BlubMember(8)]
         public byte Unk1 { get; set; }
 
-        [ProtoMember(10)]
+        [BlubMember(10)]
         public string TimeStamp { get; set; }
 
         public AuthenticationAckMessage()
@@ -51,19 +51,19 @@ namespace Mercenaries.Server.Auth.Messages
     }
 
     [ServerMessage(260)]
-    [ProtoContract]
+    [BlubContract]
     public class CharacterListAckMessage
     {
-        [ProtoMember(1)]
+        [BlubMember(1)]
         public RetrieveCharacterInfoError ErrorCode { get; set; }
 
-        [ProtoMember(2)]
+        [BlubMember(2)]
         public uint CharacterCount { get; set; }
 
-        [ProtoMember(3)]
+        [BlubMember(3)]
         public byte[] Padding { get; set; }
 
-        [ProtoMember(4)]
+        [BlubMember(4)]
         public string Username { get; set; }
 
         public CharacterListAckMessage()
@@ -77,67 +77,67 @@ namespace Mercenaries.Server.Auth.Messages
     }
 
     [ServerMessage(516)]
-    [ProtoContract]
+    [BlubContract]
     public class CharacterInfoAckMessage
     {
-        [ProtoMember(1)]
+        [BlubMember(1)]
         public CharacterInfoError ErrorCode { get; set; }
 
-        [ProtoMember(2)]
+        [BlubMember(2)]
         public uint Unk1 { get; set; }
 
-        [ProtoMember(3)]
+        [BlubMember(3)]
         public string Nickname { get; set; }
 
-        [ProtoMember(4)]
+        [BlubMember(4)]
         public ushort Level { get; set; }
 
-        [ProtoMember(5)]
+        [BlubMember(5)]
         public CharacterHero Hero { get; set; }
 
-        [ProtoMember(6)]
+        [BlubMember(6)]
         public uint Experience { get; set; }
 
-        [ProtoMember(7)]
+        [BlubMember(7)]
         public uint BountyPoints { get; set; }
 
-        [ProtoMember(8)]
+        [BlubMember(8)]
         public uint Unk2 { get; set; }
 
-        [ProtoMember(9)]
+        [BlubMember(9)]
         public uint Kills { get; set; }
 
-        [ProtoMember(10)]
+        [BlubMember(10)]
         public uint Deaths { get; set; }
 
-        [ProtoMember(11)]
+        [BlubMember(11)]
         public uint Wins { get; set; }
 
-        [ProtoMember(12)]
+        [BlubMember(12)]
         public int Losses { get; set; }
 
-        [ProtoMember(13)]
+        [BlubMember(13)]
         public byte[] Padding { get; set; } // either a string or ape devs
 
-        [ProtoMember(14)]
+        [BlubMember(14)]
         public uint Unk3 { get; set; }
 
-        [ProtoMember(15)]
+        [BlubMember(15)]
         public uint Unk4 { get; set; }
 
-        [ProtoMember(16)]
+        [BlubMember(16)]
         public string ClanName { get; set; }
 
-        [ProtoMember(17)]
+        [BlubMember(17)]
         public uint ClanMark { get; set; }
 
-        [ProtoMember(18)]
+        [BlubMember(18)]
         public short SkinColor { get; set; }
 
-        [ProtoMember(19)]
+        [BlubMember(19)]
         public byte ItemCount { get; set; }
 
-        [ProtoMember(20)]
+        [BlubMember(20)]
         public CharacterItemDto[] Items { get; set; }
 
         public CharacterInfoAckMessage()
@@ -151,13 +151,13 @@ namespace Mercenaries.Server.Auth.Messages
     }
 
     [ServerMessage(772)]
-    [ProtoContract]
+    [BlubContract]
     public class CharacterCreateAckMessage
     {
-        [ProtoMember(1)]
+        [BlubMember(1)]
         public CharacterCreationError ErrorCode { get; set; }
 
-        [ProtoMember(2)]
+        [BlubMember(2)]
         public uint Unk1 { get; set; } // Slot?
 
         public CharacterCreateAckMessage(CharacterCreationError error)
@@ -171,13 +171,13 @@ namespace Mercenaries.Server.Auth.Messages
     }
 
     [ServerMessage(1028)]
-    [ProtoContract]
+    [BlubContract]
     public class CharacterDeleteAckMessage
     {
-        [ProtoMember(1)]
+        [BlubMember(1)]
         public CharacterScreenResult ScreenResult { get; set; }
 
-        [ProtoMember(2)]
+        [BlubMember(2)]
         public uint Unk1 { get; set; }
 
         public CharacterDeleteAckMessage(CharacterScreenResult result)
@@ -191,14 +191,14 @@ namespace Mercenaries.Server.Auth.Messages
     }
 
     [ServerMessage(1284)]
-    [ProtoContract]
+    [BlubContract]
     public class ServiceConnectAckMessage
     {
-        [ProtoMember(1)]
+        [BlubMember(1)]
         public CharacterScreenResult ScreenResult { get; set; }
 
-        [ProtoMember(2, IsPacked = true)]
-        public byte[] Unk1 { get; set; } // This is sent right back from the client on server join (Check Network.Message.Lobby => LoginReqMessage.Unk1)
+        [BlubMember(2)]
+        public byte[] Unk1 { get; set; } // This is sent right back from the client on server join (Check Mercenary.Server.Lobby.Messages => LoginReqMessage.Unk1)
 
         public ServiceConnectAckMessage()
         {
@@ -211,16 +211,16 @@ namespace Mercenaries.Server.Auth.Messages
     }
 
     [ServerMessage(1540)]
-    [ProtoContract]
+    [BlubContract]
     public class ServerListAckMessage
     {
-        [ProtoMember(1)]
+        [BlubMember(1)]
         public ushort Padding { get; set; } // Message starts after 6 bytes of the payload so this is useless
 
-        [ProtoMember(2)]
+        [BlubMember(2)]
         public byte ServerEntries { get; set; }
 
-        [ProtoMember(3)]
+        [BlubMember(3)]
         public ServerInfoDto[] Servers { get; set; }
 
         public ServerListAckMessage()
@@ -230,7 +230,7 @@ namespace Mercenaries.Server.Auth.Messages
     }
 
     [ServerMessage(1796)]
-    [ProtoContract]
+    [BlubContract]
     public class ChannelListAckMessage
     {        
 
@@ -241,13 +241,13 @@ namespace Mercenaries.Server.Auth.Messages
     }
 
     [ServerMessage(2820)]
-    [ProtoContract]
+    [BlubContract]
     public class PlayerCashMessage
     {
-        [ProtoMember(1)]
+        [BlubMember(1)]
         public uint Unk1 { get; set; }
 
-        [ProtoMember(2)]
+        [BlubMember(2)]
         public uint PlayerCash { get; set; }
 
         public PlayerCashMessage(uint playercash)
@@ -258,10 +258,10 @@ namespace Mercenaries.Server.Auth.Messages
     }
 
     [ServerMessage(65284)]
-    [ProtoContract]
+    [BlubContract]
     public class NoticeMessage
     {
-        [ProtoMember(1)]
+        [BlubMember(1)]
         public string Message { get; set; }
 
         public NoticeMessage(string message)
@@ -271,23 +271,23 @@ namespace Mercenaries.Server.Auth.Messages
     }
 
     [ServerMessage(4612)]
-    [ProtoContract]
+    [BlubContract]
     public class ErrorDetectedMessage
     {
 
     }
 
     [ServerMessage(3588)]
-    [ProtoContract]
+    [BlubContract]
     public class UserBanMessage
     {
-        [ProtoMember(1)]
+        [BlubMember(1)]
         public uint Unk1 { get; set; }
 
-        [ProtoMember(2)]
+        [BlubMember(2)]
         public byte[] Padding { get; set; }
 
-        [ProtoMember(3)]
+        [BlubMember(3)]
         public string BanReason { get; set; }
 
         public UserBanMessage(string banreason)
@@ -299,13 +299,13 @@ namespace Mercenaries.Server.Auth.Messages
     }
 
     [ServerMessage(39172)]
-    [ProtoContract]
+    [BlubContract]
     public class LoadBannerMessage
     {
-        [ProtoMember(1)]
+        [BlubMember(1)]
         public string Unk1 { get; set; }
 
-        [ProtoMember(2)]
+        [BlubMember(2)]
         public string Unk2 { get; set; } // This is most likely the filename of the banner inside of Scene\Interface 
     }
 

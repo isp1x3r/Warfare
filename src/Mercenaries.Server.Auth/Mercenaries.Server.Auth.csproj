@@ -10,12 +10,32 @@
   <ItemGroup>
     <PackageReference Include="log4net" Version="2.0.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.9" />
-    <PackageReference Include="protobuf-net" Version="3.1.17" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Mercenaries.Core\Mercenaries.Core.csproj" />
     <ProjectReference Include="..\Mercenaries.Database\Mercenaries.Database.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="BlubLib">
+      <HintPath>..\..\libs\BlubLib.dll</HintPath>
+    </Reference>
+    <Reference Include="BlubLib.DotNetty">
+      <HintPath>..\..\libs\BlubLib.DotNetty.dll</HintPath>
+    </Reference>
+    <Reference Include="BlubLib.DotNetty.SimpleRmi">
+      <HintPath>..\..\libs\BlubLib.DotNetty.SimpleRmi.dll</HintPath>
+    </Reference>
+    <Reference Include="BlubLib.GUI">
+      <HintPath>..\..\libs\BlubLib.GUI.dll</HintPath>
+    </Reference>
+    <Reference Include="BlubLib.Serialization">
+      <HintPath>..\..\libs\BlubLib.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="BlubLib.WinAPI">
+      <HintPath>..\..\libs\BlubLib.WinAPI.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

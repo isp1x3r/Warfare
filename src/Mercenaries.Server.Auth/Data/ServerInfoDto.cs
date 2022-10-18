@@ -1,35 +1,35 @@
-﻿using ProtoBuf;
+﻿using BlubLib.Serialization;
 
 namespace Mercenaries.Server.Auth.Data
 {
-    [ProtoContract]
+    [BlubContract]
     public class ServerInfoDto
     {
-        [ProtoMember(1)]
+        [BlubMember(1)]
         public byte Unk1 { get; set; } // Sorting ID?
 
-        [ProtoMember(2)]
+        [BlubMember(2)]
         public byte Id { get; set; } // gotta check to make sure x')
 
-        [ProtoMember(3)]
+        [BlubMember(3)]
         public ushort Unk2 { get; set; }
 
-        [ProtoMember(4)]
+        [BlubMember(4)]
         public ushort Unk3 { get; set; }
 
-        [ProtoMember(5)]
+        [BlubMember(5)]
         public ushort ServerPort { get; set; }
 
-        [ProtoMember(6)]
+        [BlubMember(6)]
         public uint ServerIP { get; set; }
 
-        [ProtoMember(7, IsPacked = true)]
+        [BlubMember(7)]
         public byte[] Unk4 { get; set; }
 
-        [ProtoMember(8, IsPacked = true)]
+        [BlubMember(8)]
         public byte[] Unk5 { get; set; }
 
-        [ProtoMember(9, IsPacked = true)]
+        [BlubMember(9)]
         public byte[] Unk6 { get; set; }
 
         public ServerInfoDto()

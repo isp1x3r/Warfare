@@ -1,74 +1,74 @@
 ﻿using Mercenaries.Core;
-using ProtoBuf;
+using BlubLib.Serialization;
 
 namespace Mercenaries.Server.Auth.Messages
 {
     [ClientMessage(4)]
-    [ProtoContract]
+    [BlubContract]
     public class AuthenticationReqMessage
     {
-        [ProtoMember(1)]
-        public uint AccountNumber { get; set; }
+        [BlubMember(1)]
+        public uint Zbr { get; set; }
 
-        [ProtoMember(2)]
-        public string Username { get; set; }
+        /*[BlubMember(2)]
+        public string Username { get; set; }*/
     }
 
     [ClientMessage(260)]
-    [ProtoContract]
+    [BlubContract]
     public class CharacterListReqMessage
     {
        
     }
 
     [ClientMessage(516)]
-    [ProtoContract]
+    [BlubContract]
     public class CharacterInfoReqMessage
     {
-        [ProtoMember(1)]
+        [BlubMember(1)]
         public uint CharacterId { get; set; }
     }
 
     [ClientMessage(772)]
-    [ProtoContract]
+    [BlubContract]
     public class CharacterCreateReqMessage
     {
-        [ProtoMember(1)]
+        [BlubMember(1)]
         public string Nickname { get; set; }
 
-        [ProtoMember(2)]
+        [BlubMember(2)]
         public CharacterHero Hero { get; set; }
 
-        [ProtoMember(3)]
+        [BlubMember(3)]
         public byte SkinColor { get; set; }
     }
 
     [ClientMessage(1028)]
-    [ProtoContract]
+    [BlubContract]
     public class CharacterDeleteReqMessage
     {
         /* Available only in JP version which is included in the client,
            so might as well add it here
          */
-        [ProtoMember(1)]
+        [BlubMember(1)]
         public uint Unk1 { get; set; }
 
-        [ProtoMember(2)]
+        [BlubMember(2)]
         public uint Unk2 { get; set; }
 
-        [ProtoMember(3)]
+        [BlubMember(3)]
         public uint Slot { get; set; }
 
     }
 
     [ClientMessage(1284)]
-    [ProtoContract]
+    [BlubContract]
     public class ServiceConnectReqMessage
     {
-        [ProtoMember(1)]
+        [BlubMember(1)]
         public uint CharacterId { get; set; }
 
-        [ProtoMember(2)]
+        [BlubMember(2)]
         public byte[] Unk1 { get; set; }
     }
 }

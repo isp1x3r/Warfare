@@ -15,10 +15,11 @@ namespace Mercenaries.Server.Auth.Handlers
         {
              
         }
-        public async Task<bool> Handle(Session session, AuthenticationReqMessage message)
+        public static bool Handle(Session session, AuthenticationReqMessage message)
         {
-            Console.WriteLine(message.AccountNumber);
-            Console.WriteLine(message.Username);
+            _logger.Debug("Zbr af");
+            //Console.WriteLine(message.AccountNumber);
+            //Console.WriteLine(message.Username);
             return true;
         }
     }

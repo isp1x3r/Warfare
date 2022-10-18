@@ -4,13 +4,35 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>disable</Nullable>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DotNetty.Buffers" Version="0.7.5" />
     <PackageReference Include="log4net" Version="2.0.15" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.9" />
     <PackageReference Include="NetCoreServer" Version="6.6.0" />
-    <PackageReference Include="protobuf-net" Version="3.1.17" />
+    <PackageReference Include="Sigil" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="BlubLib">
+      <HintPath>..\..\libs\BlubLib.dll</HintPath>
+    </Reference>
+    <Reference Include="BlubLib.DotNetty">
+      <HintPath>..\..\libs\BlubLib.DotNetty.dll</HintPath>
+    </Reference>
+    <Reference Include="BlubLib.DotNetty.SimpleRmi">
+      <HintPath>..\..\libs\BlubLib.DotNetty.SimpleRmi.dll</HintPath>
+    </Reference>
+    <Reference Include="BlubLib.GUI">
+      <HintPath>..\..\libs\BlubLib.GUI.dll</HintPath>
+    </Reference>
+    <Reference Include="BlubLib.Serialization">
+      <HintPath>..\..\libs\BlubLib.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="BlubLib.WinAPI">
+      <HintPath>..\..\libs\BlubLib.WinAPI.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

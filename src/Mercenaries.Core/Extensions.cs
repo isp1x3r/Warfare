@@ -17,12 +17,28 @@ namespace Mercenaries.Core
         /// </summary>
         /// <param name="packet">The entire packet</param>
         /// <returns>The packet message</returns>
-        public static byte[]? GetMessageBuffer(byte[] packet)
+        public static byte[]? GetMessageBuffer(byte[] packet, ServerType servertype)
         {
             using (var _r = new BinaryReader(new MemoryStream(packet)))
             {
-                ushort length = _r.ReadUInt16();
-                return new byte[length - 4].Skip(4).ToArray();
+                int length;
+                byte[] messagebuffer;
+                switch (servertype)
+                {
+                    case ServerType.AuthServer:
+                        length = _r.ReadUInt16() - 4;
+                        _r.BaseStream.Position += 2;
+                        break;
+                    case ServerType.LobbyServer:
+                        length = _r.ReadUInt16() - 10;
+                        _r.BaseStream.Position += 8;
+                        break;
+                        default:
+                        return null;
+
+                }
+                messagebuffer = _r.ReadBytes(length);
+                return messagebuffer;
             }
             return null;
         }

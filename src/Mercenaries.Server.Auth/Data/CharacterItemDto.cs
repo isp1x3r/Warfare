@@ -1,32 +1,32 @@
-﻿using ProtoBuf;
+﻿using BlubLib.Serialization;
 
 namespace Mercenaries.Server.Auth.Data
 {
-    [ProtoContract]
+    [BlubContract]
     public class CharacterItemDto
     {
-        [ProtoMember(1)]
+        [BlubMember(1)]
         public uint ItemCode { get; set; }
 
-        [ProtoMember(2)]
+        [BlubMember(2)]
         public byte Type { get; set; }
 
-        [ProtoMember(3)]
+        [BlubMember(3)]
         public ushort ItemNumber { get; set; }
 
-        [ProtoMember(4)]
+        [BlubMember(4)]
         public uint Unk1 { get; set; }
 
-        [ProtoMember(5)]
+        [BlubMember(5)]
         public byte Unk2 { get; set; }
 
-        [ProtoMember(6)]
+        [BlubMember(6)]
         public byte Unk3 { get; set; }
 
-        [ProtoMember(7)]
+        [BlubMember(7)]
         public uint MinutesLeft { get; set; }
 
-        [ProtoMember(8)]
+        [BlubMember(8)]
         public ushort SecondsLeft { get; set; }
 
 

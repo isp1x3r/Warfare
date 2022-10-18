@@ -3,10 +3,14 @@ using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Reflection;
+using System.Text;
 using log4net;
-using ProtoBuf;
-
-
+using BlubLib.IO;
+using BlubLib.Serialization;
+using BlubLib;
+using Sigil;
+using System.Data;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Mercenaries.Core
 {
@@ -24,15 +28,15 @@ namespace Mercenaries.Core
             // Get the message opcode depending on the server (Auth, Lobby, Match etc..)
             ushort opCode = Extensions.ReadOpCodeFromPacket(packet, session._server._servertype);
             // Find a message type with the corresponding opCode
-            Type cmessage = _messagefactory.GetClientMessage(opCode);
-            if (cmessage == null)
+            Type Cmessage = _messagefactory.GetClientMessage(opCode);
+            if (Cmessage == null)
                 return;
             // Find a handler for the corresponding opCode
             Type handler = _messagefactory.GetHandler(opCode);
             if (handler == null)
                 return;
             // Deserialize message
-            Type msg = DeSerializeMessage(packet, cmessage);
+            Type msg = DeSerializeMessage(packet, Cmessage, session._server._servertype);
             // We shall not continue if there is no message
             if (msg == null)
                 return;
@@ -48,23 +52,24 @@ namespace Mercenaries.Core
         /// <param name="message">Client message</param>
         public void ExecuteHandler(Type handler, Session session, Type message)
         {
-            if (handler != null)
+            if (handler == null || message == null)
+                return;
+            _logger.Debug(BitConverter.ToString(SerializeMessage(message)));
+            MethodInfo methodInfo = handler.GetMethod("Handle");
+            _logger.Debug("Executing handler ...");
+            if (methodInfo != null)
             {
-                MethodInfo? methodInfo = handler.GetMethod("Handle");
-
-                if (methodInfo != null)
+                object? result = null;
+                ParameterInfo[] parameters = MethodBase.GetCurrentMethod().GetParameters();
+                object? classInstance = Activator.CreateInstance(handler, null);
+                var parlength = parameters.Length - 1;
+                if (parlength == 2)
                 {
-                    object? result = null;
-                    ParameterInfo[] parameters = MethodBase.GetCurrentMethod().GetParameters();
-                    object? classInstance = Activator.CreateInstance(handler, null);
-                    var parlength = parameters.Length - 1;
-                    if (parlength == 2)
-                    {
-                        result = methodInfo.Invoke(classInstance, (object?[]?)parameters.Skip(1)); // Here we skip the handler parameter
-                        if(!(bool)result)
-                            _logger.Error($"Failed to execute handler for : {handler.Name}");
-                    }
+                    result = methodInfo.Invoke(classInstance, (object?[]?)parameters.Skip(1)); // Here we skip the handler parameter
+                    if (!(bool)result)
+                        _logger.Error($"Failed to execute handler for : {handler.Name}");
                 }
+
             }
         }
         /// <summary>
@@ -73,24 +78,27 @@ namespace Mercenaries.Core
         /// <param name="message">Message to be deserialized</param>
         /// <param name="tmessage">Type to be deserialized into</param>
         /// <returns>The deserialized message as an object</returns>
-        public Type? DeSerializeMessage(byte[] packet, Type tmessage)
+        public Type DeSerializeMessage(byte[] packet, Type Cmessage, ServerType servertype)
         {
             /* This has to do with the fact that NetCoreServer returns a large buffer of 8192 bytes 
                which is why we try to replace it with one that has the correct length while also getting the payload message only for it to be deserialized */
-            var payload = Extensions.GetMessageBuffer(packet);
+            var payload = Extensions.GetMessageBuffer(packet, servertype);
             if (payload == null)
                 return null;
+
             // Get buffer as stream
-            using (var stream = new MemoryStream(payload))
+            using (var _r = new BinaryReader(new MemoryStream(payload)))
             {
                 try
                 {
-                    // Deserialize the message        
-                    Serializer.Deserialize(tmessage, stream);
+                    // Deserialize the message
+                    _logger.Debug("Received Data : " + BitConverter.ToString(payload));
+                    var ret = Serializer.Deserialize(_r, Cmessage);
+                    return ret.GetType();
                 }
                 catch (Exception ex)
                 {
-                    _logger.Error($"Error occured deserializing message : {tmessage.Name}\n {ex.Message}");
+                    _logger.Error("Error occured deserializing message : " + ex.Message);
 
                 }
             }
@@ -117,7 +125,8 @@ namespace Mercenaries.Core
                 try
                 {
                     Serializer.Serialize(memoryStream, message);
-                }catch(Exception ex)
+                }
+                catch (Exception ex)
                 {
                     _logger.Error($"Error occured serializing message with opCode : {opCode}\n {ex.Message}");
 
