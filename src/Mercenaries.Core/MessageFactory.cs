@@ -14,7 +14,7 @@ namespace Mercenaries.Core
         private readonly ConcurrentDictionary<Type, ushort> _servermessages = new ConcurrentDictionary<Type, ushort>();
         private Assembly _assembly { get; set; }
         private static readonly ILog _logger = LogManager.GetLogger(typeof(MessageFactory));
-   
+
         public MessageFactory()
         {
             _assembly = Assembly.GetCallingAssembly();
@@ -34,7 +34,7 @@ namespace Mercenaries.Core
                     if (attr.GetType() == typeof(HandlerAttribute))
                     {
                         var result = atype.GetCustomAttribute<HandlerAttribute>();
-                        if (!_handlers.TryAdd(result._opCode, atype.GetType()))
+                        if (!_handlers.TryAdd(result._opCode, atype))
                         {
                             _logger.Error($"Couldn't add handler for type : {atype.Name}");
                         }
@@ -97,7 +97,7 @@ namespace Mercenaries.Core
             {
                 _logger.Error($"Couldn't find any client messages for opCode : {opCode}");
                 return null;
-            }              
+            }
             return message;
         }
         public ushort GetServerOpCode(Type message)
@@ -107,10 +107,10 @@ namespace Mercenaries.Core
             {
                 _logger.Error($"Couldn't find any server opcodes for type : {message.Name}");
                 return 0;
-            }              
+            }
             return opCode;
         }
-        
+
     }
-    
+
 }

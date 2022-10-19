@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Mercenaries.Core;
 
-namespace Mercenaries.Server.Auth.Handlers
+namespace Mercenaries.Core
 {
-    internal class ChannelListHandler
+    public interface IHandle<T> where T : class
     {
     }
 }

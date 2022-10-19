@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using log4net;
 using Mercenaries.Core;
 using Mercenaries.Server.Auth.Messages;
@@ -17,9 +16,7 @@ namespace Mercenaries.Server.Auth.Handlers
         }
         public static bool Handle(Session session, AuthenticationReqMessage message)
         {
-            _logger.Debug("Zbr af");
-            //Console.WriteLine(message.AccountNumber);
-            //Console.WriteLine(message.Username);
+            _logger.Debug("Account number : " + message.AccountNumber);
             return true;
         }
     }

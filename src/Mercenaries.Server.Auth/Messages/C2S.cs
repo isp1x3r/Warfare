@@ -8,7 +8,7 @@ namespace Mercenaries.Server.Auth.Messages
     public class AuthenticationReqMessage
     {
         [BlubMember(1)]
-        public uint Zbr { get; set; }
+        public uint AccountNumber { get; set; }
 
         /*[BlubMember(2)]
         public string Username { get; set; }*/

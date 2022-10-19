@@ -3,6 +3,7 @@ using Mercenaries.Core;
 using log4net;
 using System.Net;
 using log4net.Config;
+using Mercenaries.Server.Auth.Handlers;
 using System.IO;
 
 namespace Mercenaries.Server.Auth

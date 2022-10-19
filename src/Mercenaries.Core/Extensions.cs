@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Reflection.Metadata.Ecma335;
+using System.Reflection;
+using System.CodeDom.Compiler;
 
 namespace Mercenaries.Core
 {
@@ -88,6 +90,7 @@ namespace Mercenaries.Core
                 return _builder.ToString();
             }
             return @string;
-        }      
+        }
     }
+    
 }

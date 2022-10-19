@@ -1,16 +1,11 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Numerics;
 using System.Reflection;
-using System.Text;
 using log4net;
 using BlubLib.IO;
 using BlubLib.Serialization;
 using BlubLib;
-using Sigil;
-using System.Data;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Mercenaries.Core
 {
@@ -36,7 +31,7 @@ namespace Mercenaries.Core
             if (handler == null)
                 return;
             // Deserialize message
-            Type msg = DeSerializeMessage(packet, Cmessage, session._server._servertype);
+            object msg = DeSerializeMessage(packet, Cmessage, session._server._servertype);
             // We shall not continue if there is no message
             if (msg == null)
                 return;
@@ -50,26 +45,19 @@ namespace Mercenaries.Core
         /// <param name="handler">Handler for client message</param>
         /// <param name="session">Client session</param>
         /// <param name="message">Client message</param>
-        public void ExecuteHandler(Type handler, Session session, Type message)
+        public void ExecuteHandler(Type handler, Session session, object message)
         {
             if (handler == null || message == null)
                 return;
-            _logger.Debug(BitConverter.ToString(SerializeMessage(message)));
             MethodInfo methodInfo = handler.GetMethod("Handle");
-            _logger.Debug("Executing handler ...");
             if (methodInfo != null)
             {
-                object? result = null;
-                ParameterInfo[] parameters = MethodBase.GetCurrentMethod().GetParameters();
-                object? classInstance = Activator.CreateInstance(handler, null);
-                var parlength = parameters.Length - 1;
-                if (parlength == 2)
-                {
-                    result = methodInfo.Invoke(classInstance, (object?[]?)parameters.Skip(1)); // Here we skip the handler parameter
-                    if (!(bool)result)
-                        _logger.Error($"Failed to execute handler for : {handler.Name}");
-                }
-
+                object result = null;
+                object[] parameters = { session, message };
+                object classInstance = Activator.CreateInstance(handler, null);            
+                result = methodInfo.Invoke(classInstance, parameters);                  
+                if (result == null)
+                   _logger.Error($"Failed to execute handler for : {handler.Name}");
             }
         }
         /// <summary>
@@ -78,7 +66,7 @@ namespace Mercenaries.Core
         /// <param name="message">Message to be deserialized</param>
         /// <param name="tmessage">Type to be deserialized into</param>
         /// <returns>The deserialized message as an object</returns>
-        public Type DeSerializeMessage(byte[] packet, Type Cmessage, ServerType servertype)
+        public object DeSerializeMessage(byte[] packet, Type Cmessage, ServerType servertype)
         {
             /* This has to do with the fact that NetCoreServer returns a large buffer of 8192 bytes 
                which is why we try to replace it with one that has the correct length while also getting the payload message only for it to be deserialized */
@@ -92,9 +80,7 @@ namespace Mercenaries.Core
                 try
                 {
                     // Deserialize the message
-                    _logger.Debug("Received Data : " + BitConverter.ToString(payload));
-                    var ret = Serializer.Deserialize(_r, Cmessage);
-                    return ret.GetType();
+                    return Serializer.Deserialize(_r, Cmessage);
                 }
                 catch (Exception ex)
                 {
@@ -119,7 +105,8 @@ namespace Mercenaries.Core
             // No point in continuing if no opcodes were found.
             if (opCode == 0)
                 return null;
-            using (var memoryStream = new MemoryStream())
+            byte[] buffer = new byte[1024];
+            using (var memoryStream = new MemoryStream(buffer))
             {
 
                 try
@@ -135,9 +122,9 @@ namespace Mercenaries.Core
 
                 // Allocate new buffer for message
                 ushort newsize = Convert.ToUInt16(byteArray.Length + 4);
-                byte[] buffer = new byte[newsize];
+                byte[] msg = new byte[newsize];
 
-                BinaryWriter _w = new BinaryWriter(new MemoryStream(buffer));
+                BinaryWriter _w = new BinaryWriter(new MemoryStream(msg));
 
                 // Write the new message length
                 _w.Write(newsize);
