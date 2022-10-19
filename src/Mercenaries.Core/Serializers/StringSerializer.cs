@@ -1,45 +1,42 @@
 ﻿using System;
+using System.Diagnostics.Metrics;
 using System.IO;
+using BlubLib.IO;
 using BlubLib.Reflection;
 using BlubLib.Serialization;
+using Microsoft.VisualBasic;
 using Sigil;
+using Sigil.NonGeneric;
+
 
 namespace Mercenaries.Core.Serializers
 {
     public class StringSerializer : ISerializerCompiler
     {
-        public bool CanHandle(Type type)
-        {
+       private readonly int _size;
+
+       public StringSerializer(int size)
+       {
+            _size = size;
+       }
+       public bool CanHandle(Type type)
+       {
             return type == typeof(string);
+       }
+       public void EmitSerialize(Emit emiter, Local value)
+       {
+            emiter.LoadArgument(1);
+            emiter.LoadLocal(value);
+            emiter.LoadConstant(_size);
+            emiter.Call(typeof(Extensions).GetMethod(nameof(Extensions.WriteCString),
+                new[] { typeof(BinaryWriter), typeof(string), typeof(int) }));
         }
-
-        public void EmitDeserialize(BlubLib.Serialization.CompilerContext context, Local value)
-        {
-            context.Emit.LoadReaderOrWriterParam();
-            context.Emit.Call(ReflectionHelper.GetMethod((BinaryReader _) => _.ReadCString()));
-            context.Emit.StoreLocal(value);
-        }
-
-        public void EmitSerialize(CompilerContext context, Local value)
-        {
-            var writeLabel = context.Emit.DefineLabel();
-
-            // if (value != null) goto write
-            context.Emit.LoadLocal(value);
-            context.Emit.LoadNull();
-            context.Emit.CompareEqual();
-            context.Emit.BranchIfFalse(writeLabel);
-
-            // value = string.Empty
-            context.Emit.LoadField(typeof(string).GetField(nameof(string.Empty)));
-            context.Emit.StoreLocal(value);
-
-            // ProudNetBinaryWriterExtensions.WriteProudString(writer, value, false)
-            context.Emit.MarkLabel(writeLabel);
-            context.Emit.LoadReaderOrWriterParam();
-            context.Emit.LoadLocal(value);
-            context.Emit.LoadConstant(false);
-            context.Emit.Call(ReflectionHelper.GetMethod((BinaryWriter _) => _.WriteProudString(default(string), default(bool))));
+       public void EmitDeserialize(Emit emiter, Local value)
+       {
+            emiter.LoadArgument(1);
+            emiter.LoadConstant(_size);
+            emiter.Call(typeof(Extensions).GetMethod(nameof(Extensions.ReadCString)));
+            emiter.StoreLocal(value);
         }
     }
 }

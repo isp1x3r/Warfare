@@ -1,6 +1,7 @@
 ﻿using Mercenaries.Core;
 using BlubLib.Serialization;
 using BlubLib.Serialization.Serializers;
+using Mercenaries.Core.Serializers;
 
 namespace Mercenaries.Server.Auth.Messages
 {
@@ -11,9 +12,10 @@ namespace Mercenaries.Server.Auth.Messages
         [BlubMember(1)]
         public uint AccountNumber { get; set; }
 
-        [BlubMember(2, typeof(CStringSerializer))]
+        [BlubMember(2, typeof(StringSerializer), 17)]
         public string Username { get; set; }
     }
+
 
     [ClientMessage(260)]
     [BlubContract]

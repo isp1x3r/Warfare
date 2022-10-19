@@ -78,24 +78,17 @@ namespace Mercenaries.Core
         {
 
         }*/
-        public static string ReadCString(this BinaryReader @this)
+        public static string ReadCString(this BinaryReader @this, int length)
         {
-            byte[] buffer = @this.ReadBytes(17);
+            byte[] buffer = new byte[length];
+            buffer = @this.ReadBytes(length);
             return Encoding.ASCII.GetString(buffer);
         }
 
-        public static string WriteCString2(string @string, int length)
+        public static void WriteCString(this BinaryWriter w, string value, int length)
         {
-            // Do we need to fill the remaining bytes?
-            int remaining = length - @string.Length;
-            if (remaining > 0)
-            {
-                StringBuilder _builder = new StringBuilder(@string, length);
-                byte[] padding = new byte[remaining];
-                _builder.Append(Encoding.ASCII.GetString(padding));
-                return _builder.ToString();
-            }
-            return @string;
+            byte[] buffer = new byte[length];
+            w.Write(Encoding.ASCII.GetBytes(value),0 , length);
         }
     }
     
