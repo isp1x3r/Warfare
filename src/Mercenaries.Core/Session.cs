@@ -39,12 +39,12 @@ namespace Mercenaries.Core
         {
             _logger.Error($"Session with id {this.Id} caught an error with code {error}");
         }
-        public long Send(Type message)
+        public long Send(object message)
         {
             return base.Send(_server._messagehandler.SerializeMessage(message));
 
         }
-        public bool SendAsync(Type message)
+        public bool SendAsync(object message)
         {
             return base.SendAsync(_server._messagehandler.SerializeMessage(message));
         }

@@ -6,6 +6,8 @@ using log4net;
 using BlubLib.IO;
 using BlubLib.Serialization;
 using BlubLib;
+using BlubLib.DotNetty;
+using DotNetty.Buffers;
 
 namespace Mercenaries.Core
 {
@@ -97,16 +99,17 @@ namespace Mercenaries.Core
         /// </summary>
         /// <param name="message">Message to be serialized</param>
         /// <returns>The serialized message</returns>
-        public byte[]? SerializeMessage(Type message)
+        public byte[]? SerializeMessage(object message)
         {
             ushort opCode;
             // Find opcode for server message
-            opCode = _messagefactory.GetServerOpCode(message);
+            opCode = _messagefactory.GetServerOpCode(message.GetType());
             // No point in continuing if no opcodes were found.
             if (opCode == 0)
                 return null;
-            byte[] buffer = new byte[1024];
-            using (var memoryStream = new MemoryStream(buffer))
+            var msgsize = Extensions.GetManagedSize(message.GetType());
+            byte[] msgbuffer = new byte[msgsize];
+            using (var memoryStream = new MemoryStream(msgbuffer))
             {
 
                 try
@@ -115,15 +118,12 @@ namespace Mercenaries.Core
                 }
                 catch (Exception ex)
                 {
-                    _logger.Error($"Error occured serializing message with opCode : {opCode}\n {ex.Message}");
+                    _logger.Error($"Error occured serializing message : {message.GetType().FullName}\n {ex.Message}");
 
                 }
-                var byteArray = memoryStream.ToArray();
-
                 // Allocate new buffer for message
-                ushort newsize = Convert.ToUInt16(byteArray.Length + 4);
+                ushort newsize = Convert.ToUInt16(memoryStream.ToArray().Length + 4);
                 byte[] msg = new byte[newsize];
-
                 BinaryWriter _w = new BinaryWriter(new MemoryStream(msg));
 
                 // Write the new message length
@@ -132,10 +132,13 @@ namespace Mercenaries.Core
                 // Write the opcode of the message
                 _w.Write(opCode);
 
+                // Write the message itself
+                _w.Write(msgbuffer);
+
                 // Wrap it up
                 _w.Dispose();
 
-                return buffer;
+                return msg;
 
             }
 

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Reflection.Metadata.Ecma335;
 using System.Reflection;
 using System.CodeDom.Compiler;
+using System.Reflection.Emit;
 
 namespace Mercenaries.Core
 {
@@ -89,6 +90,19 @@ namespace Mercenaries.Core
         {
             byte[] buffer = new byte[length];
             w.Write(Encoding.ASCII.GetBytes(value),0 , length);
+        }
+        public static int GetManagedSize(Type type)
+        {
+            // all this just to invoke one opcode with no arguments!
+            var method = new DynamicMethod("GetManagedSizeImpl", typeof(uint), new Type[0], typeof(TypeExtensions), false);
+
+            ILGenerator gen = method.GetILGenerator();
+
+            gen.Emit(OpCodes.Sizeof, type);
+            gen.Emit(OpCodes.Ret);
+
+            var func = (Func<uint>)method.CreateDelegate(typeof(Func<uint>));
+            return checked((int)func());
         }
     }
     

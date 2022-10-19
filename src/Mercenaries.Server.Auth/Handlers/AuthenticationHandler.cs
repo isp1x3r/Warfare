@@ -18,6 +18,7 @@ namespace Mercenaries.Server.Auth.Handlers
         {
             _logger.Debug("Account number : " + message.AccountNumber);
             _logger.Debug("Username : " + message.Username);
+            session.Send(new AuthenticationAckMessage(250, 3500));
             return true;
         }
     }
