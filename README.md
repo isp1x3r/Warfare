@@ -1,4 +1,4 @@
-# BlackShot Server Emulator
+# Warfare - BlackShot Server Emulator
 
 A Work-In-Progress server emulator for BlackShot, An MMOFPS developed by VertigoGames. Inc
 
