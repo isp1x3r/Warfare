@@ -17,6 +17,7 @@ namespace Mercenaries.Server.Auth.Handlers
         public static bool Handle(Session session, AuthenticationReqMessage message)
         {
             _logger.Debug("Account number : " + message.AccountNumber);
+            _logger.Debug("Username : " + message.Username);
             return true;
         }
     }

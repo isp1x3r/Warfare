@@ -104,6 +104,23 @@ namespace Mercenaries.Core
             FullCapacity2 = 23,
             Kicked = 24
     }
+    public enum RoomGameMode : byte
+    {
+        PVE = 3,
+        UBA = 6,
+    }
+    public enum RoomWeaponMode : byte
+    {
+        Normal = 0,
+        Rifle = 1,
+        SMG = 2,
+        Sniper = 3,
+        Pistol = 4,
+        Melee = 5,
+        Taken = 6, // Huh?
+        Shotgun = 7,
+        ALL = 8
+    }
     #endregion
 
     #region Core
