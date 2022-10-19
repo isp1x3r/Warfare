@@ -6,7 +6,7 @@ namespace Mercenaries.Server.Auth.Messages
 {
     [ServerMessage(4)]
     [BlubContract]
-    public class AuthenticationAckMessage : IMessage
+    public class AuthenticationAckMessage
     {
 
         [BlubMember(1)]
@@ -15,7 +15,7 @@ namespace Mercenaries.Server.Auth.Messages
         [BlubMember(2)]
         public uint AuthErrorCode { get; set; }
 
-       /* [BlubMember(3)]
+        [BlubMember(3)]
         public byte[] Padding { get; set; }
 
         [BlubMember(4)]
@@ -34,7 +34,7 @@ namespace Mercenaries.Server.Auth.Messages
         public byte Unk1 { get; set; }
 
         [BlubMember(10)]
-        public string TimeStamp { get; set; }*/
+        public string TimeStamp { get; set; }
 
         public AuthenticationAckMessage()
         {
