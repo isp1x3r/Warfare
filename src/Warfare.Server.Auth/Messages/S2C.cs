@@ -1,6 +1,7 @@
 ﻿using Warfare.Core;
 using Warfare.Server.Auth.Data;
 using BlubLib.Serialization;
+using Warfare.Core.Serializers;
 
 namespace Warfare.Server.Auth.Messages
 {
@@ -15,7 +16,7 @@ namespace Warfare.Server.Auth.Messages
         [BlubMember(2)]
         public uint AuthErrorCode { get; set; }
 
-        [BlubMember(3)]
+        [BlubMember(3, typeof(PaddingSerializer), 10)]
         public byte[] Padding { get; set; }
 
         [BlubMember(4)]
@@ -40,7 +41,7 @@ namespace Warfare.Server.Auth.Messages
         {
             ErrorCode = 0;
             AuthErrorCode = 0;
-            //Padding = new byte[10];
+            Unk1 = 0;
         }
         public AuthenticationAckMessage(ushort errorcode, ushort autherrorcode)
         {
@@ -60,15 +61,15 @@ namespace Warfare.Server.Auth.Messages
         [BlubMember(2)]
         public uint CharacterCount { get; set; }
 
-        [BlubMember(3)]
+        [BlubMember(3, typeof(PaddingSerializer), 16)]
         public byte[] Padding { get; set; }
 
-        [BlubMember(4)]
-        public string Username { get; set; }
+        [BlubMember(4, typeof(StringSerializer), 17)]
+        public string Nickname { get; set; }
 
         public CharacterListAckMessage()
         {
-            Padding = new byte[16];
+
         }
         public CharacterListAckMessage(RetrieveCharacterInfoError error)
         {
@@ -86,7 +87,7 @@ namespace Warfare.Server.Auth.Messages
         [BlubMember(2)]
         public uint Unk1 { get; set; }
 
-        [BlubMember(3)]
+        [BlubMember(3, typeof(StringSerializer), 17)]
         public string Nickname { get; set; }
 
         [BlubMember(4)]
@@ -116,7 +117,7 @@ namespace Warfare.Server.Auth.Messages
         [BlubMember(12)]
         public int Losses { get; set; }
 
-        [BlubMember(13)]
+        [BlubMember(13, typeof(PaddingSerializer), 16)]
         public byte[] Padding { get; set; } // either a string or ape devs
 
         [BlubMember(14)]
@@ -142,7 +143,10 @@ namespace Warfare.Server.Auth.Messages
 
         public CharacterInfoAckMessage()
         {
-            Padding = new byte[16];
+            Unk1 = 0;
+            Unk2 = 0;
+            Unk3 = 0;
+            Unk4 = 0;
         }
         public CharacterInfoAckMessage(CharacterInfoError error)
         {
@@ -284,7 +288,7 @@ namespace Warfare.Server.Auth.Messages
         [BlubMember(1)]
         public uint Unk1 { get; set; }
 
-        [BlubMember(2)]
+        [BlubMember(2, typeof(PaddingSerializer), 51)]
         public byte[] Padding { get; set; }
 
         [BlubMember(3)]
@@ -293,7 +297,6 @@ namespace Warfare.Server.Auth.Messages
         public UserBanMessage(string banreason)
         {
             Unk1 = 0;
-            Padding = new byte[51];
             BanReason = banreason;
         }
     }

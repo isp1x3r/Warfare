@@ -104,6 +104,17 @@ namespace Warfare.Core
             var func = (Func<uint>)method.CreateDelegate(typeof(Func<uint>));
             return checked((int)func());
         }
+        public static byte[] GetPadding(this BinaryReader @this, int length)
+        {
+            return @this.ReadBytes(length);
+        }
+        public static void SetPadding(this BinaryWriter w, byte[] arr, int length)
+        {
+            using(var _r = new BinaryReader(new MemoryStream(arr)))
+            {
+                w.Write(_r.ReadBytes(length));
+            }
+        }
     }
     
 }

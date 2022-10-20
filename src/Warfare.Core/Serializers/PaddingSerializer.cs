@@ -11,31 +11,31 @@ using Sigil.NonGeneric;
 
 namespace Warfare.Core.Serializers
 {
-    public class StringSerializer : ISerializerCompiler
+    public class PaddingSerializer : ISerializerCompiler
     {
-        private readonly int _size;
+        private readonly int _length;
 
-        public StringSerializer(int size)
+        public PaddingSerializer(int length)
         {
-            _size = size;
+            _length = length;
         }
         public bool CanHandle(Type type)
         {
-            return type == typeof(string);
+            return false;
         }
         public void EmitSerialize(Emit emiter, Local value)
         {
             emiter.LoadArgument(1);
             emiter.LoadLocal(value);
-            emiter.LoadConstant(_size);
-            emiter.Call(typeof(Extensions).GetMethod(nameof(Extensions.WriteCString),
-                new[] { typeof(BinaryWriter), typeof(string), typeof(int) }));
+            emiter.LoadConstant(_length);
+            emiter.Call(typeof(Extensions).GetMethod(nameof(Extensions.SetPadding),
+                new[] { typeof(BinaryWriter), typeof(byte[]), typeof(int) }));
         }
         public void EmitDeserialize(Emit emiter, Local value)
         {
             emiter.LoadArgument(1);
-            emiter.LoadConstant(_size);
-            emiter.Call(typeof(Extensions).GetMethod(nameof(Extensions.ReadCString)));
+            emiter.LoadConstant(_length);
+            emiter.Call(typeof(Extensions).GetMethod(nameof(Extensions.GetPadding)));
             emiter.StoreLocal(value);
         }
     }

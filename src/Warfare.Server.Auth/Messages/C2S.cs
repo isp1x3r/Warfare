@@ -21,7 +21,7 @@ namespace Warfare.Server.Auth.Messages
     [BlubContract]
     public class CharacterListReqMessage
     {
-       
+          
     }
 
     [ClientMessage(516)]
@@ -73,5 +73,30 @@ namespace Warfare.Server.Auth.Messages
 
         [BlubMember(2)]
         public byte[] Unk1 { get; set; }
+    }
+
+    [ClientMessage(1540)]
+    [BlubContract]
+    public class ServerListReqMessage
+    {
+        
+    }
+
+    [ClientMessage(1796)]
+    [BlubContract]
+    public class ChannelListReqMessage
+    {
+
+    }
+
+    [ClientMessage(39684)]
+    [BlubContract]
+    public class ChecksumMessage
+    {
+        [BlubMember(1)]
+        public byte Unk1 { get; set; }
+
+        [BlubMember(2)]
+        public string Checksum { get; set; }
     }
 }
