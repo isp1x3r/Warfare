@@ -1,9 +1,9 @@
-# BlackShot Server Emulator
+# Warfare - BlackShot Server Emulator
 
 A Work-In-Progress server emulator for BlackShot, An MMOFPS developed by VertigoGames. Inc
 
 ### BackStory
-Out of both curiosity and nostalgia for this game and mainly the old client since the devs ruined it and made it the Pay2Win meme it is from 2015 until now, I've decided to bring those days back through this project which is essentially a server emulator to be able to login and play like the good old days.
+Out of both curiosity and the sheer nostalgia i have for this game and since the devs ruined it by making it the Pay2Win meme it is from 2015 until now, I've decided to bring those days back through this project which is essentially a server emulator to be able to login and play like the good old days.
 
 ### How Can I Help
 This project is open for both curious people that want to see how things are ran behind the scenes of the official server(to a very close degree) but also for people that know how to reverse engineer and are willing to help improve the project through code improvements and unvailing packet structures etc.. so if you're interested feel free to make pull requests for me to revise or dm me for contribution privileges and i'll be more than happy to grant you access to this repository.
