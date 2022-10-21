@@ -117,7 +117,6 @@ namespace Warfare.Core
                 }
                 // Allocate new buffer for message
                 ushort newsize = Convert.ToUInt16(ms.Length + 4);
-                _logger.Debug("Message length is : " + newsize);
                 byte[] msg = new byte[newsize];
                 BinaryWriter _w = new BinaryWriter(new MemoryStream(msg));
 

@@ -27,7 +27,6 @@ namespace Warfare.Server.Auth.Handlers
                 Country = "USA",
                 IsBanned = false,
                 TimeStamp = "12345678",
-
         });
             _logger.Debug("Got log in with username : " + message.Username);
             return true;
