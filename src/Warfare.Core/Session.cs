@@ -4,7 +4,7 @@ using System.Net.Sockets;
 using System.Text;
 using NetCoreServer;
 using log4net;
-
+using System.IO;
 
 namespace Warfare.Core
 {
@@ -32,7 +32,12 @@ namespace Warfare.Core
 
         protected override void OnReceived(byte[] buffer, long offset, long size)
         {
-            _server._messagehandler.HandleMessage(this, buffer);
+            byte[] payload = new byte[size];
+            using(var _br = new BinaryReader(new MemoryStream(buffer)))
+            {
+                payload = _br.ReadBytes((int)size);
+            }
+            _server._messagehandler.HandleMessage(this, payload);
         }
 
         protected override void OnError(SocketError error)

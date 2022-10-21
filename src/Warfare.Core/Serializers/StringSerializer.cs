@@ -1,42 +1,43 @@
-﻿using System;
-using System.Diagnostics.Metrics;
-using System.IO;
-using BlubLib.IO;
-using BlubLib.Reflection;
-using BlubLib.Serialization;
-using Microsoft.VisualBasic;
+﻿using BlubLib.Serialization;
 using Sigil;
 using Sigil.NonGeneric;
-
+using System;
+using System.IO;
+using Warfare.Core;
 
 namespace Warfare.Core.Serializers
 {
     public class StringSerializer : ISerializerCompiler
     {
         private readonly int _size;
-
-        public StringSerializer(int size)
+        public StringSerializer(int Size)
         {
-            _size = size;
+            _size = Size;
         }
+
         public bool CanHandle(Type type)
         {
-            return type == typeof(string);
+            //throw new NotImplementedException();
+            if (type == typeof(string))
+                return true;
+            return false;
         }
+
+        public void EmitDeserialize(Emit emiter, Local value)
+        {
+            emiter.LoadArgument(1);
+            emiter.LoadConstant(_size);
+            emiter.Call(typeof(Extensions).GetMethod(nameof(Extensions.ReadString)));
+            emiter.StoreLocal(value);
+        }
+
         public void EmitSerialize(Emit emiter, Local value)
         {
             emiter.LoadArgument(1);
             emiter.LoadLocal(value);
             emiter.LoadConstant(_size);
-            emiter.Call(typeof(Extensions).GetMethod(nameof(Extensions.WriteCString),
+            emiter.Call(typeof(Extensions).GetMethod(nameof(Extensions.WriteString),
                 new[] { typeof(BinaryWriter), typeof(string), typeof(int) }));
-        }
-        public void EmitDeserialize(Emit emiter, Local value)
-        {
-            emiter.LoadArgument(1);
-            emiter.LoadConstant(_size);
-            emiter.Call(typeof(Extensions).GetMethod(nameof(Extensions.ReadCString)));
-            emiter.StoreLocal(value);
         }
     }
 }

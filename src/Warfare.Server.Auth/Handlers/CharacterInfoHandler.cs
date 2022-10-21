@@ -11,7 +11,7 @@ namespace Warfare.Server.Auth.Handlers
 
         }
 
-        public static bool Handle(Session session, CharacterInfoReqMessage message)
+        public bool Handle(Session session, CharacterInfoReqMessage message)
         {
             session.SendAsync(new CharacterInfoAckMessage()
             {

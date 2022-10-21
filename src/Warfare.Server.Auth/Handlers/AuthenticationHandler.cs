@@ -14,20 +14,11 @@ namespace Warfare.Server.Auth.Handlers
         {
              
         }
-        public static bool Handle(Session session, AuthenticationReqMessage message)
+        public bool Handle(Session session, AuthenticationReqMessage message)
         {
             uint Accountnum = message.AccountNumber;
+            session.SendAsync(new AuthenticationAckMessage(5000, 69000));
             _logger.Debug("Got log in with username : " + message.Username);
-            session.SendAsync(new AuthenticationAckMessage()
-            {
-                CharacterSlots = 2002279,
-                IsPCRoom = 1,
-                AccountNumber = Accountnum,
-                Country = "US",
-                TimeStamp = "12345678"
-
-            });
-            ;
             return true;
         }
     }

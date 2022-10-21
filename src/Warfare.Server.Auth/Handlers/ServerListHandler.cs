@@ -15,7 +15,7 @@ namespace Warfare.Server.Auth.Handlers
         {
 
         }
-        public static bool Handle(Session session, ServerListReqMessage message)
+        public bool Handle(Session session, ServerListReqMessage message)
         {
             return true;
         }

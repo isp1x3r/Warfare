@@ -1,6 +1,5 @@
 ﻿using Warfare.Core;
 using BlubLib.Serialization;
-using BlubLib.Serialization.Serializers;
 using Warfare.Core.Serializers;
 
 namespace Warfare.Server.Auth.Messages
@@ -96,7 +95,7 @@ namespace Warfare.Server.Auth.Messages
         [BlubMember(1)]
         public byte Unk1 { get; set; }
 
-        [BlubMember(2)]
+        [BlubMember(2, typeof(StringSerializer), 90)]
         public string Checksum { get; set; }
     }
 }

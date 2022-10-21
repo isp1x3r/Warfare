@@ -10,7 +10,7 @@ namespace Warfare.Server.Auth.Handlers
         {
 
         }
-        public static bool Handle(Session session, CharacterListReqMessage message)
+        public bool Handle(Session session, CharacterListReqMessage message)
         {
             session.SendAsync(new CharacterListAckMessage()
             {

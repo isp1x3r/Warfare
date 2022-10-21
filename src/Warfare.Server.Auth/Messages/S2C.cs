@@ -2,6 +2,7 @@
 using Warfare.Server.Auth.Data;
 using BlubLib.Serialization;
 using Warfare.Core.Serializers;
+using BlubLib.Serialization.Serializers;
 
 namespace Warfare.Server.Auth.Messages
 {
@@ -16,8 +17,8 @@ namespace Warfare.Server.Auth.Messages
         [BlubMember(2)]
         public uint AuthErrorCode { get; set; }
 
-        [BlubMember(3, typeof(PaddingSerializer), 10)]
-        public byte[] Padding { get; set; }
+        [BlubMember(3, typeof(StringSerializer), 10)]
+        public string Padding { get; set; }
 
         [BlubMember(4)]
         public uint CharacterSlots { get; set; }
@@ -28,25 +29,28 @@ namespace Warfare.Server.Auth.Messages
         [BlubMember(6)]
         public uint AccountNumber { get; set; }
 
-        [BlubMember(7)]
+        [BlubMember(7, typeof(StringSerializer), 4)]
         public string Country { get; set; }
 
         [BlubMember(8)]
-        public byte Unk1 { get; set; }
+        public bool IsBanned { get; set; }
 
         [BlubMember(10)]
         public string TimeStamp { get; set; }
 
-        public AuthenticationAckMessage()
+        public AuthenticationAckMessage() : this(0, 0)
         {
-            ErrorCode = 0;
-            AuthErrorCode = 0;
-            Unk1 = 0;
+            CharacterSlots = 3;
+            IsPCRoom = 1;
+            AccountNumber = 9849898;
+            Country = "US";
+            IsBanned = false;
+            TimeStamp = "12345678";
         }
-        public AuthenticationAckMessage(ushort errorcode, ushort autherrorcode)
+        public AuthenticationAckMessage(int errorcode, int autherrorcode)
         {
-            ErrorCode = errorcode;
-            AuthErrorCode = autherrorcode;
+            ErrorCode = (ushort)errorcode;
+            AuthErrorCode = (ushort)autherrorcode;
         }
 
     }
@@ -61,7 +65,7 @@ namespace Warfare.Server.Auth.Messages
         [BlubMember(2)]
         public uint CharacterCount { get; set; }
 
-        [BlubMember(3, typeof(PaddingSerializer), 16)]
+        [BlubMember(3, typeof(ByteArraySerializer), 16)]
         public byte[] Padding { get; set; }
 
         [BlubMember(4, typeof(StringSerializer), 17)]
@@ -117,7 +121,7 @@ namespace Warfare.Server.Auth.Messages
         [BlubMember(12)]
         public int Losses { get; set; }
 
-        [BlubMember(13, typeof(PaddingSerializer), 16)]
+        [BlubMember(13, typeof(ByteArraySerializer), 16)]
         public byte[] Padding { get; set; } // either a string or ape devs
 
         [BlubMember(14)]
@@ -254,6 +258,10 @@ namespace Warfare.Server.Auth.Messages
         [BlubMember(2)]
         public uint PlayerCash { get; set; }
 
+        public PlayerCashMessage()
+        {
+
+        }
         public PlayerCashMessage(uint playercash)
         {
             Unk1 = 0;
@@ -288,7 +296,7 @@ namespace Warfare.Server.Auth.Messages
         [BlubMember(1)]
         public uint Unk1 { get; set; }
 
-        [BlubMember(2, typeof(PaddingSerializer), 51)]
+        [BlubMember(2, typeof(ByteArraySerializer), 51)]
         public byte[] Padding { get; set; }
 
         [BlubMember(3)]

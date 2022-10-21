@@ -8,6 +8,7 @@ using BlubLib.Serialization;
 using BlubLib;
 using BlubLib.DotNetty;
 using DotNetty.Buffers;
+using System.ComponentModel;
 
 namespace Warfare.Core
 {
@@ -56,10 +57,10 @@ namespace Warfare.Core
             {
                 object result = null;
                 object[] parameters = { session, message };
-                object classInstance = Activator.CreateInstance(handler, null);            
-                result = methodInfo.Invoke(classInstance, parameters);                  
+                object classInstance = Activator.CreateInstance(handler, null);
+                result = methodInfo.Invoke(classInstance, parameters);
                 if (result == null)
-                   _logger.Error($"Failed to execute handler for : {handler.Name}");
+                    _logger.Error($"Failed to execute handler for : {handler.Name}");
             }
         }
         /// <summary>
@@ -70,14 +71,9 @@ namespace Warfare.Core
         /// <returns>The deserialized message as an object</returns>
         public object DeSerializeMessage(byte[] packet, Type Cmessage, ServerType servertype)
         {
-            /* This has to do with the fact that NetCoreServer returns a large buffer of 8192 bytes 
-               which is why we try to replace it with one that has the correct length while also getting the payload message only for it to be deserialized */
-            var payload = Extensions.GetMessageBuffer(packet, servertype);
-            if (payload == null)
-                return null;
-
+          
             // Get buffer as stream
-            using (var _r = new BinaryReader(new MemoryStream(payload)))
+            using (var _r = new BinaryReader(new MemoryStream(packet)))
             {
                 try
                 {
@@ -107,14 +103,13 @@ namespace Warfare.Core
             // No point in continuing if no opcodes were found.
             if (opCode == 0)
                 return null;
-            var msgsize = Extensions.GetManagedSize(message.GetType());
-            byte[] msgbuffer = new byte[msgsize];
-            using (var memoryStream = new MemoryStream(msgbuffer))
+            //var msgsize = Extensions.GetManagedSize(message.GetType());
+            using (var ms = new MemoryStream())
             {
 
                 try
                 {
-                    Serializer.Serialize(memoryStream, message);
+                    Serializer.Serialize(ms, message);
                 }
                 catch (Exception ex)
                 {
@@ -122,7 +117,8 @@ namespace Warfare.Core
 
                 }
                 // Allocate new buffer for message
-                ushort newsize = Convert.ToUInt16(memoryStream.ToArray().Length + 4);
+                ushort newsize = Convert.ToUInt16(ms.Length + 4);
+                _logger.Debug("Message length is : " + newsize);
                 byte[] msg = new byte[newsize];
                 BinaryWriter _w = new BinaryWriter(new MemoryStream(msg));
 
@@ -133,15 +129,17 @@ namespace Warfare.Core
                 _w.Write(opCode);
 
                 // Write the message itself
-                _w.Write(msgbuffer);
+                _w.Write(ms.ToArray());
 
                 // Wrap it up
                 _w.Dispose();
 
                 return msg;
-
             }
+               
 
         }
+
     }
 }
+

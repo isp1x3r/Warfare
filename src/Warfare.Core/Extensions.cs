@@ -8,43 +8,13 @@ using System.Reflection.Metadata.Ecma335;
 using System.Reflection;
 using System.CodeDom.Compiler;
 using System.Reflection.Emit;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Warfare.Core
 {
     public static class Extensions
     {
-        /// <summary>
-        /// Gets the packet message by removing the first 4 bytes that are : 
-        /// [-] ushort packetLength
-        /// [-] ushort packetID
-        /// </summary>
-        /// <param name="packet">The entire packet</param>
-        /// <returns>The packet message</returns>
-        public static byte[]? GetMessageBuffer(byte[] packet, ServerType servertype)
-        {
-            using (var _r = new BinaryReader(new MemoryStream(packet)))
-            {
-                int length;
-                byte[] messagebuffer;
-                switch (servertype)
-                {
-                    case ServerType.AuthServer:
-                        length = _r.ReadUInt16() - 4;
-                        _r.BaseStream.Position += 2;
-                        break;
-                    case ServerType.LobbyServer:
-                        length = _r.ReadUInt16() - 10;
-                        _r.BaseStream.Position += 8;
-                        break;
-                        default:
-                        return null;
-
-                }
-                messagebuffer = _r.ReadBytes(length);
-                return messagebuffer;
-            }
-            return null;
-        }
+  
 
         public static ushort ReadOpCodeFromPacket(byte[] packet, ServerType servertype)
         {
@@ -79,17 +49,15 @@ namespace Warfare.Core
         {
 
         }*/
-        public static string ReadCString(this BinaryReader @this, int length)
+
+        public static void WriteString(this BinaryWriter w, string value, int length)
         {
-            byte[] buffer = new byte[length];
-            buffer = @this.ReadBytes(length);
-            return Encoding.ASCII.GetString(buffer);
+            w.Write(Encoding.ASCII.GetBytes(value, 0, length));         
         }
 
-        public static void WriteCString(this BinaryWriter w, string value, int length)
+        public static string ReadString(this BinaryReader w, int length)
         {
-            byte[] buffer = new byte[length];
-            w.Write(Encoding.ASCII.GetBytes(value),0 , length);
+            return Encoding.ASCII.GetString(w.ReadBytes(length));
         }
         public static int GetManagedSize(Type type)
         {
@@ -103,17 +71,6 @@ namespace Warfare.Core
 
             var func = (Func<uint>)method.CreateDelegate(typeof(Func<uint>));
             return checked((int)func());
-        }
-        public static byte[] GetPadding(this BinaryReader @this, int length)
-        {
-            return @this.ReadBytes(length);
-        }
-        public static void SetPadding(this BinaryWriter w, byte[] arr, int length)
-        {
-            using(var _r = new BinaryReader(new MemoryStream(arr)))
-            {
-                w.Write(_r.ReadBytes(length));
-            }
         }
     }
     
