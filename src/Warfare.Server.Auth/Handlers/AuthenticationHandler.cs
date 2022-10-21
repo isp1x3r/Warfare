@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics.Metrics;
+using System.Runtime.CompilerServices;
 using log4net;
 using Warfare.Core;
 using Warfare.Server.Auth.Messages;
@@ -17,7 +19,16 @@ namespace Warfare.Server.Auth.Handlers
         public bool Handle(Session session, AuthenticationReqMessage message)
         {
             uint Accountnum = message.AccountNumber;
-            session.SendAsync(new AuthenticationAckMessage(5000, 69000));
+            session.SendAsync(new AuthenticationAckMessage()
+            {
+                CharacterSlots = 3,
+                IsPCRoom = 1,
+                AccountNumber = 9849898,
+                Country = "USA",
+                IsBanned = false,
+                TimeStamp = "12345678",
+
+        });
             _logger.Debug("Got log in with username : " + message.Username);
             return true;
         }

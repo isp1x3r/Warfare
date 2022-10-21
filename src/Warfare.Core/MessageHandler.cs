@@ -106,7 +106,6 @@ namespace Warfare.Core
             //var msgsize = Extensions.GetManagedSize(message.GetType());
             using (var ms = new MemoryStream())
             {
-
                 try
                 {
                     Serializer.Serialize(ms, message);

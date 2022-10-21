@@ -52,7 +52,9 @@ namespace Warfare.Core
 
         public static void WriteString(this BinaryWriter w, string value, int length)
         {
-            w.Write(Encoding.ASCII.GetBytes(value, 0, length));         
+            byte[] a = new byte[length];
+            a = Encoding.ASCII.GetBytes(value);
+            w.Write(a);
         }
 
         public static string ReadString(this BinaryReader w, int length)
