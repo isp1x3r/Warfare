@@ -35,7 +35,7 @@ namespace Warfare.Server.Auth.Messages
     [BlubContract]
     public class CharacterCreateReqMessage
     {
-        [BlubMember(1)]
+        [BlubMember(1, typeof(StringSerializer), 17)]
         public string Nickname { get; set; }
 
         [BlubMember(2)]
@@ -70,7 +70,7 @@ namespace Warfare.Server.Auth.Messages
         [BlubMember(1)]
         public uint CharacterId { get; set; }
 
-        [BlubMember(2, typeof(ArraySerializer), 125)]
+        [BlubMember(2, typeof(BinarySerializer), 125)]
         public byte[] Unk1 { get; set; }
     }
 
@@ -92,7 +92,9 @@ namespace Warfare.Server.Auth.Messages
     [BlubContract]
     public class ChecksumMessage
     {
-        [BlubMember(1, typeof(ChecksumStringSerializer))]
+        [BlubMember(1)]
+        public byte Unk1 { get; set; }
+        [BlubMember(2, typeof(StringSerializer), 99)]
         public string Checksum { get; set; }
     }
 }

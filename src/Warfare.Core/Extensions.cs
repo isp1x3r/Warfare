@@ -69,12 +69,9 @@ namespace Warfare.Core
 
         public static void WriteString(this BinaryWriter w, string value, int length)
         {
-            var a = new byte[length];
-
-            if (value != null)
-                Array.Copy(value.GetBytes(), a, Math.Min(length, value.Length));
-
-            w.Write(a, 0, length);
+            byte[] arr = new byte[length];
+            arr = Encoding.ASCII.GetBytes(value);
+            w.Write(arr);
         }
 
         public static string ReadString(this BinaryReader w, int length)
@@ -82,15 +79,6 @@ namespace Warfare.Core
             return w.ReadBytes(length).MakeString();
         }
 
-        public static string ReadChecksum(this BinaryReader r)
-        {
-            byte[] checksum = r.ReadBytes(99);
-            return Encoding.ASCII.GetString(checksum);
-        }
-        public static void WriteChecksum(this BinaryWriter w, string value)
-        {
-            w.Write(Encoding.ASCII.GetBytes(value),0 , 99);
-        }
     }
     
 }

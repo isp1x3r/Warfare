@@ -2,7 +2,6 @@
 using Warfare.Server.Auth.Data;
 using BlubLib.Serialization;
 using Warfare.Core.Serializers;
-using BlubLib.Serialization.Serializers;
 using System;
 
 namespace Warfare.Server.Auth.Messages
@@ -18,8 +17,8 @@ namespace Warfare.Server.Auth.Messages
         [BlubMember(2)]
         public uint AuthErrorCode { get; set; }
 
-        [BlubMember(3, typeof(ArraySerializer))]
-        public byte[] Padding { get; set; }
+        [BlubMember(3, typeof(BinarySerializer), 10)]
+        public byte[] Padding { get; set; } = Array.Empty<byte>();
 
         [BlubMember(4)]
         public uint CharacterSlots { get; set; }
@@ -36,12 +35,12 @@ namespace Warfare.Server.Auth.Messages
         [BlubMember(8)]
         public bool IsBanned { get; set; }
 
-        [BlubMember(10, typeof(StringSerializer), 7)]
+        [BlubMember(10, typeof(StringSerializer), 16)]
         public string TimeStamp { get; set; }
 
-        public AuthenticationAckMessage() : this(0, 0)
+        public AuthenticationAckMessage() : this(0,0)
         {
-            Padding = Array.Empty<byte>();
+
         }
         public AuthenticationAckMessage(int errorcode, int autherrorcode)
         {
@@ -68,11 +67,11 @@ namespace Warfare.Server.Auth.Messages
         [BlubMember(4, typeof(StringSerializer), 17)]
         public string Nickname { get; set; }
 
-        public CharacterListAckMessage()
+        public CharacterListAckMessage() : this(0)
         {
             Padding = Array.Empty<byte>();
         }
-        public CharacterListAckMessage(RetrieveCharacterInfoError error) : this()
+        public CharacterListAckMessage(RetrieveCharacterInfoError error)
         {
             ErrorCode = error;
         }

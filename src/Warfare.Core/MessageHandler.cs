@@ -97,7 +97,7 @@ namespace Warfare.Core
         /// </summary>
         /// <param name="message">Message to be serialized</param>
         /// <returns>The serialized message</returns>
-        public byte[]? SerializeMessage(object message)
+        public byte[] SerializeMessage(object message)
         {
             ushort opCode;
             // Find opcode for server message
@@ -117,7 +117,7 @@ namespace Warfare.Core
 
                 }
                 // Allocate new buffer for message
-                ushort newsize = Convert.ToUInt16(ms.Length + 4);
+                ushort newsize = Convert.ToUInt16(ms.ToArray().Length + 4);
                 byte[] msg = new byte[newsize];
                 BinaryWriter _w = new BinaryWriter(new MemoryStream(msg));
 
@@ -128,7 +128,7 @@ namespace Warfare.Core
                 _w.Write(opCode);
 
                 // Write the message itself
-                _w.Write(ms.ReadToEnd());
+                _w.Write(ms.ToBinaryReader(false).ReadToEnd());
 
                 // Wrap it up
                 _w.Dispose();
