@@ -70,7 +70,7 @@ namespace Warfare.Server.Auth.Messages
         [BlubMember(1)]
         public uint CharacterId { get; set; }
 
-        [BlubMember(2)]
+        [BlubMember(2, typeof(ArraySerializer), 125)]
         public byte[] Unk1 { get; set; }
     }
 
@@ -92,10 +92,7 @@ namespace Warfare.Server.Auth.Messages
     [BlubContract]
     public class ChecksumMessage
     {
-        [BlubMember(1)]
-        public byte Unk1 { get; set; }
-
-        [BlubMember(2, typeof(StringSerializer), 90)]
+        [BlubMember(1, typeof(ChecksumStringSerializer))]
         public string Checksum { get; set; }
     }
 }

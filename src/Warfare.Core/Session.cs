@@ -33,9 +33,9 @@ namespace Warfare.Core
         protected override void OnReceived(byte[] buffer, long offset, long size)
         {
             byte[] payload = new byte[size];
-            using(var _br = new BinaryReader(new MemoryStream(buffer)))
+            using(var br = new BinaryReader(new MemoryStream(buffer)))
             {
-                payload = _br.ReadBytes((int)size);
+                payload = br.ReadBytes((int)size);
             }
             _server._messagehandler.HandleMessage(this, payload);
         }

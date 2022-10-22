@@ -7,12 +7,12 @@ using System.IO;
 
 namespace Warfare.Core.Serializers
 {
-    public class ByteArraySerializer : ISerializerCompiler
+    public class BinarySerializer : ISerializerCompiler
     {
-        private readonly int _length;
-        public ByteArraySerializer(int length)
+        private readonly int _size;
+        public BinarySerializer(int Size)
         {
-            _length = length;
+            _size = Size;
         }
 
         public bool CanHandle(Type type)
@@ -28,11 +28,11 @@ namespace Warfare.Core.Serializers
             // value = BinaryReaderExtensions.ReadIPEndPoint(reader)
             var elementType = value.LocalType.GetElementType();
             // value = new [length]
-            emiter.LoadConstant(_length);
+            emiter.LoadConstant(_size);
             emiter.NewArray(elementType);
             emiter.StoreLocal(value);
             emiter.LoadArgument(1);
-            emiter.LoadConstant(_length);
+            emiter.LoadConstant(_size);
             emiter.Call(ReflectionHelper.GetMethod((BinaryReader x) => x.ReadBytes(default(int))));
             emiter.StoreLocal(value);
         }
@@ -94,7 +94,7 @@ namespace Warfare.Core.Serializers
 
                     emiter.MarkLabel(loopFillCheck);
                     emiter.LoadLocal(i);
-                    emiter.LoadConstant(_length);
+                    emiter.LoadConstant(_size);
                     emiter.BranchIfLess(loopFill);
                 }
             }

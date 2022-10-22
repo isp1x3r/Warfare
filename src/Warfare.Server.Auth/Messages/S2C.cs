@@ -18,7 +18,7 @@ namespace Warfare.Server.Auth.Messages
         [BlubMember(2)]
         public uint AuthErrorCode { get; set; }
 
-        [BlubMember(3, typeof(ByteArraySerializer), 10)]
+        [BlubMember(3, typeof(ArraySerializer))]
         public byte[] Padding { get; set; }
 
         [BlubMember(4)]
@@ -42,7 +42,6 @@ namespace Warfare.Server.Auth.Messages
         public AuthenticationAckMessage() : this(0, 0)
         {
             Padding = Array.Empty<byte>();
-
         }
         public AuthenticationAckMessage(int errorcode, int autherrorcode)
         {
@@ -63,7 +62,7 @@ namespace Warfare.Server.Auth.Messages
         [BlubMember(2)]
         public uint CharacterCount { get; set; }
 
-        [BlubMember(3, typeof(ByteArraySerializer), 16)]
+        [BlubMember(3, typeof(BinarySerializer), 16)]
         public byte[] Padding { get; set; }
 
         [BlubMember(4, typeof(StringSerializer), 17)]
@@ -119,7 +118,7 @@ namespace Warfare.Server.Auth.Messages
         [BlubMember(12)]
         public int Losses { get; set; }
 
-        [BlubMember(13, typeof(ByteArraySerializer), 16)]
+        [BlubMember(13, typeof(BinarySerializer), 16)]
         public byte[] Padding { get; set; } // either a string or ape devs
 
         [BlubMember(14)]
@@ -294,7 +293,7 @@ namespace Warfare.Server.Auth.Messages
         [BlubMember(1)]
         public uint Unk1 { get; set; }
 
-        [BlubMember(2, typeof(ByteArraySerializer), 51)]
+        [BlubMember(2, typeof(BinarySerializer), 51)]
         public byte[] Padding { get; set; }
 
         [BlubMember(3)]

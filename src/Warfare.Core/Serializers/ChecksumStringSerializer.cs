@@ -9,10 +9,9 @@ namespace Warfare.Core.Serializers
 {
     public class ChecksumStringSerializer : ISerializerCompiler
     {
-        private readonly int _size;
-        public ChecksumStringSerializer(int Size)
+        public ChecksumStringSerializer()
         {
-            _size = Size;
+            
         }
 
         public bool CanHandle(Type type)
@@ -26,8 +25,7 @@ namespace Warfare.Core.Serializers
         public void EmitDeserialize(Emit emiter, Local value)
         {
             emiter.LoadArgument(1);
-            emiter.LoadConstant(_size);
-            emiter.Call(typeof(Extensions).GetMethod(nameof(Extensions.ReadString)));
+            emiter.Call(typeof(Extensions).GetMethod(nameof(Extensions.ReadChecksum)));
             emiter.StoreLocal(value);
         }
 
@@ -35,9 +33,8 @@ namespace Warfare.Core.Serializers
         {
             emiter.LoadArgument(1);
             emiter.LoadLocal(value);
-            emiter.LoadConstant(_size);
-            emiter.Call(typeof(Extensions).GetMethod(nameof(Extensions.WriteString),
-                new[] { typeof(BinaryWriter), typeof(string), typeof(int) }));
+            emiter.Call(typeof(Extensions).GetMethod(nameof(Extensions.WriteChecksum),
+                new[] { typeof(BinaryWriter), typeof(string) }));
         }
     }
 }

@@ -71,9 +71,11 @@ namespace Warfare.Core
         /// <returns>The deserialized message as an object</returns>
         public object DeSerializeMessage(byte[] packet, Type Cmessage, ServerType servertype)
         {
+            // Get the raw message
+            byte[] buffer = packet.Skip(4).ToArray();
           
             // Get buffer as stream
-            using (var _r = new BinaryReader(new MemoryStream(packet)))
+            using (var _r = new BinaryReader(new MemoryStream(buffer)))
             {
                 try
                 {
@@ -103,7 +105,6 @@ namespace Warfare.Core
             // No point in continuing if no opcodes were found.
             if (opCode == 0)
                 return null;
-            //var msgsize = Extensions.GetManagedSize(message.GetType());
             using (var ms = new MemoryStream())
             {
                 try
@@ -127,7 +128,7 @@ namespace Warfare.Core
                 _w.Write(opCode);
 
                 // Write the message itself
-                _w.Write(ms.ToArray());
+                _w.Write(ms.ReadToEnd());
 
                 // Wrap it up
                 _w.Dispose();
