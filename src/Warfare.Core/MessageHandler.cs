@@ -97,7 +97,7 @@ namespace Warfare.Core
         /// </summary>
         /// <param name="message">Message to be serialized</param>
         /// <returns>The serialized message</returns>
-        public byte[] SerializeMessage(object message)
+        public byte[]? SerializeMessage(object message)
         {
             ushort opCode;
             // Find opcode for server message
@@ -110,30 +110,31 @@ namespace Warfare.Core
                 try
                 {
                     Serializer.Serialize(ms, message);
+                    // Allocate new buffer for message
+                    ushort newsize = Convert.ToUInt16(ms.ToArray().Length + 4);
+                    byte[] msg = new byte[newsize];
+                    BinaryWriter _w = new BinaryWriter(new MemoryStream(msg));
+
+                    // Write the new message length
+                    _w.Write(newsize);
+
+                    // Write the opcode of the message
+                    _w.Write(opCode);
+
+                    // Write the message itself
+                    _w.Write(ms.ToArray());
+
+                    // Wrap it up
+                    _w.Dispose();
+
+                    return msg;
                 }
                 catch (Exception ex)
                 {
                     _logger.Error($"Error occured serializing message : {message.GetType().FullName}\n {ex.Message}");
 
                 }
-                // Allocate new buffer for message
-                ushort newsize = Convert.ToUInt16(ms.ToArray().Length + 4);
-                byte[] msg = new byte[newsize];
-                BinaryWriter _w = new BinaryWriter(new MemoryStream(msg));
-
-                // Write the new message length
-                _w.Write(newsize);
-
-                // Write the opcode of the message
-                _w.Write(opCode);
-
-                // Write the message itself
-                _w.Write(ms.ToBinaryReader(false).ReadToEnd());
-
-                // Wrap it up
-                _w.Dispose();
-
-                return msg;
+                return null;
             }
                
 

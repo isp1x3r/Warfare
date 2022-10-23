@@ -20,17 +20,15 @@ namespace Warfare.Server.Auth.Handlers
         {
             _logger.Debug("Player account number : " + message.AccountNumber);
             _logger.Debug("Got log in with username : " + message.Username);
-            //session.SendAsync(new AuthenticationAckMessage(100050, 30500));
             session.SendAsync(new AuthenticationAckMessage()
             {
                 CharacterSlots = 3,
                 IsPCRoom = 1,
                 AccountNumber = message.AccountNumber,
-                Country = "USAP",
+                Country = "US",
                 IsBanned = false,
                 TimeStamp = "12345678",
             });
-            session.Send(new PlayerCashMessage(5000));
             return true;
         }
     }

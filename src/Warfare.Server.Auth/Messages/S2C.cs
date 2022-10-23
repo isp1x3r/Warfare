@@ -3,6 +3,7 @@ using Warfare.Server.Auth.Data;
 using BlubLib.Serialization;
 using Warfare.Core.Serializers;
 using System;
+using BlubLib.Serialization.Serializers;
 
 namespace Warfare.Server.Auth.Messages
 {
@@ -18,7 +19,7 @@ namespace Warfare.Server.Auth.Messages
         public uint AuthErrorCode { get; set; }
 
         [BlubMember(3, typeof(BinarySerializer), 10)]
-        public byte[] Padding { get; set; } = Array.Empty<byte>();
+        public byte[] Padding { get; set; }
 
         [BlubMember(4)]
         public uint CharacterSlots { get; set; }
@@ -27,20 +28,26 @@ namespace Warfare.Server.Auth.Messages
         public uint IsPCRoom { get; set; }    // Client actually expects 1 byte only since it's a boolean but them ape devs forgot to correctly cast it on their end *sigh*
 
         [BlubMember(6)]
+        public byte Padding2 { get; set; }
+
+        [BlubMember(7)]
         public uint AccountNumber { get; set; }
 
-        [BlubMember(7, typeof(StringSerializer), 4)]
+        [BlubMember(8, typeof(StringSerializer), 4)]
         public string Country { get; set; }
 
-        [BlubMember(8)]
+        [BlubMember(9)]
         public bool IsBanned { get; set; }
 
-        [BlubMember(10, typeof(StringSerializer), 16)]
+        [BlubMember(10)]
+        public byte Unk1 { get; set; }
+
+        [BlubMember(11, typeof(StringSerializer), 16)]
         public string TimeStamp { get; set; }
 
-        public AuthenticationAckMessage() : this(0,0)
+        public AuthenticationAckMessage()
         {
-
+            Padding = Array.Empty<byte>();
         }
         public AuthenticationAckMessage(int errorcode, int autherrorcode)
         {
@@ -61,13 +68,15 @@ namespace Warfare.Server.Auth.Messages
         [BlubMember(2)]
         public uint CharacterCount { get; set; }
 
-        [BlubMember(3, typeof(BinarySerializer), 16)]
+        [BlubMember(3, typeof(BinarySerializer), 12)]
         public byte[] Padding { get; set; }
 
-        [BlubMember(4, typeof(StringSerializer), 17)]
-        public string Nickname { get; set; }
+        [BlubMember(4, typeof(StringSerializer), 68)]
+        public string CharacterNames { get; set; }
 
-        public CharacterListAckMessage() : this(0)
+        [BlubMember(5)]
+        public byte Flag { get; set; }
+        public CharacterListAckMessage()
         {
             Padding = Array.Empty<byte>();
         }
@@ -126,7 +135,7 @@ namespace Warfare.Server.Auth.Messages
         [BlubMember(15)]
         public uint Unk4 { get; set; }
 
-        [BlubMember(16)]
+        [BlubMember(16, typeof(StringSerializer), 17)]
         public string ClanName { get; set; }
 
         [BlubMember(17)]
@@ -138,15 +147,17 @@ namespace Warfare.Server.Auth.Messages
         [BlubMember(19)]
         public byte ItemCount { get; set; }
 
-        [BlubMember(20)]
-        public CharacterItemDto[] Items { get; set; }
+       // [BlubMember(20, typeof(ArraySerializer))]
+        //public CharacterItemDto[] Items { get; set; }
 
         public CharacterInfoAckMessage()
         {
+            Padding = Array.Empty<byte>();
             Unk1 = 0;
             Unk2 = 0;
             Unk3 = 0;
             Unk4 = 0;
+            //Items = Array.Empty<CharacterItemDto>();
         }
         public CharacterInfoAckMessage(CharacterInfoError error)
         {
@@ -201,12 +212,12 @@ namespace Warfare.Server.Auth.Messages
         [BlubMember(1)]
         public CharacterScreenResult ScreenResult { get; set; }
 
-        [BlubMember(2)]
+        [BlubMember(2, typeof(BinarySerializer), 125)]
         public byte[] Unk1 { get; set; } // This is sent right back from the client on server join (Check Mercenary.Server.Lobby.Messages => LoginReqMessage.Unk1)
 
         public ServiceConnectAckMessage()
         {
-            Unk1 = new byte[125];
+            Unk1 = Array.Empty<byte>();
         }
         public ServiceConnectAckMessage(CharacterScreenResult result)
         {
@@ -260,7 +271,6 @@ namespace Warfare.Server.Auth.Messages
         }
         public PlayerCashMessage(uint playercash)
         {
-            Unk1 = 0;
             PlayerCash = playercash;
         }
     }

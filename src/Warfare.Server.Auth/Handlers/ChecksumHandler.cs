@@ -16,7 +16,7 @@ namespace Warfare.Server.Auth.Handlers
 
         public static bool Handle(Session session, ChecksumMessage message)
         {
-            _logger.Info("Got player checksum : " + message.Checksum);
+            //_logger.Info("Got player checksum : " + message.Checksum);
             return true;
         }
     }

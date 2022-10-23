@@ -17,6 +17,7 @@ namespace Warfare.Server.Auth.Handlers
         }
         public bool Handle(Session session, ServiceConnectReqMessage message)
         {
+            session.SendAsync(new ServiceConnectAckMessage());
             return true;
         }
     }

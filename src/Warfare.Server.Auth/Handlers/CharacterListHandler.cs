@@ -15,7 +15,12 @@ namespace Warfare.Server.Auth.Handlers
         }
         public bool Handle(Session session, CharacterListReqMessage message)
         {
-            session.SendAsync(new CharacterListAckMessage(RetrieveCharacterInfoError.Failed));
+            session.SendAsync(new CharacterListAckMessage()
+            {
+                CharacterCount = 3,
+                CharacterNames = "[GM]-Monster",
+                Flag = 10,
+            });
             return true;
         }
     }

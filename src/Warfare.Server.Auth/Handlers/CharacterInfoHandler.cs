@@ -16,16 +16,16 @@ namespace Warfare.Server.Auth.Handlers
             session.SendAsync(new CharacterInfoAckMessage()
             {
                 Nickname = "[GM]-Monster",
-                Level = 69,
-                Hero = CharacterHero.Vanessa,
-                Experience = 40000,
+                Level = 68,
+                Hero = CharacterHero.Travis,
+                Experience = 100000000,
                 BountyPoints = 90000,
                 Kills = 50000,
                 Deaths = 46000,
                 Wins = 6000,
                 Losses = 97,
                 ClanName = "GameMasters",
-                ClanMark = 0,
+                ClanMark = 30,
                 SkinColor = 6,
                 ItemCount = 0
 
