@@ -31,9 +31,11 @@ namespace Warfare.Server.Auth.Handlers
                         Id = 75,
                         ServerPort = 30003,
                         ServerIP = (uint)(addr.Address),
-                        
+                        MlayerLimit = 10,
+                        PlayerCount = 5
+
                     }
-                }
+    }
             });
             ;
             return true;

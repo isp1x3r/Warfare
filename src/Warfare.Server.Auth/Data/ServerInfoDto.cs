@@ -14,10 +14,10 @@ namespace Warfare.Server.Auth.Data
         public byte Id { get; set; } // gotta check to make sure x')
 
         [BlubMember(3)]
-        public ushort Unk2 { get; set; }
+        public ushort MlayerLimit { get; set; }
 
         [BlubMember(4)]
-        public ushort Unk3 { get; set; }
+        public ushort PlayerCount { get; set; }
 
         [BlubMember(5)]
         public ushort ServerPort { get; set; }
@@ -36,7 +36,6 @@ namespace Warfare.Server.Auth.Data
 
         public ServerInfoDto()
         {
-            Unk2 = 0;
             Unk4 = Array.Empty<byte>();
             Unk5 = Array.Empty<byte>();
             Unk6 = Array.Empty<byte>();
