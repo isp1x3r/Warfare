@@ -1,12 +1,9 @@
 ﻿using Warfare.Core;
-using Warfare.Server.Auth.Data;
+using Warfare.Network.Data.Auth;
 using BlubLib.Serialization;
-using Warfare.Core.Serializers;
-using System;
-using BlubLib.Serialization.Serializers;
-using log4net.Core;
+using Warfare.Network.Serializers;
 
-namespace Warfare.Server.Auth.Messages
+namespace Warfare.Network.Message.Auth
 {
     [ServerMessage(4)]
     [BlubContract]

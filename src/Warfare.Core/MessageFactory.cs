@@ -15,9 +15,9 @@ namespace Warfare.Core
         private Assembly _assembly { get; set; }
         private static readonly ILog _logger = LogManager.GetLogger(typeof(MessageFactory));
 
-        public MessageFactory()
+        public MessageFactory(Assembly assembly)
         {
-            _assembly = Assembly.GetCallingAssembly();
+            _assembly = assembly;
             LoadMessageHandlers();
             LoadClientMessages();
             LoadServerMessages();

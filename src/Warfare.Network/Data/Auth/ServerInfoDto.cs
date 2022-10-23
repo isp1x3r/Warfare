@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Warfare.Network.Serializers;
 using BlubLib.Serialization;
-using Warfare.Core.Serializers;
 
-namespace Warfare.Server.Auth.Data
+
+namespace Warfare.Network.Data.Auth
 {
     [BlubContract]
     public class ServerInfoDto
@@ -11,7 +11,7 @@ namespace Warfare.Server.Auth.Data
         public byte Unk1 { get; set; } // Sorting ID?
 
         [BlubMember(2)]
-        public byte Id { get; set; } // gotta check to make sure x')
+        public ServerType ServerType { get; set; } // gotta check to make sure x')
 
         [BlubMember(3)]
         public ushort PlayerLimit { get; set; }

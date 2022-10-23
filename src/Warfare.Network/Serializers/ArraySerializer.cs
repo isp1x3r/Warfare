@@ -3,7 +3,7 @@ using Sigil;
 using Sigil.NonGeneric;
 using System;
 
-namespace Warfare.Core.Serializers
+namespace Warfare.Network.Serializers
 {
     public class ArraySerializer : ISerializerCompiler
     {

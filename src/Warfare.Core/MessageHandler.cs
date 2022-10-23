@@ -5,10 +5,7 @@ using System.Reflection;
 using log4net;
 using BlubLib.IO;
 using BlubLib.Serialization;
-using BlubLib;
-using BlubLib.DotNetty;
-using DotNetty.Buffers;
-using System.ComponentModel;
+
 
 namespace Warfare.Core
 {
@@ -24,7 +21,7 @@ namespace Warfare.Core
         public void HandleMessage(Session session, byte[] packet)
         {
             // Get the message opcode depending on the server (Auth, Lobby, Match etc..)
-            ushort opCode = Extensions.ReadOpCodeFromPacket(packet, session._server._servertype);
+            ushort opCode = Extensions.ReadOpCodeFromPacket(packet);
             // Find a message type with the corresponding opCode
             Type Cmessage = _messagefactory.GetClientMessage(opCode);
             if (Cmessage == null)
@@ -34,7 +31,7 @@ namespace Warfare.Core
             if (handler == null)
                 return;
             // Deserialize message
-            object msg = DeSerializeMessage(packet, Cmessage, session._server._servertype);
+            object msg = DeSerializeMessage(packet, Cmessage);
             // We shall not continue if there is no message
             if (msg == null)
                 return;
@@ -69,7 +66,7 @@ namespace Warfare.Core
         /// <param name="message">Message to be deserialized</param>
         /// <param name="tmessage">Type to be deserialized into</param>
         /// <returns>The deserialized message as an object</returns>
-        public object DeSerializeMessage(byte[] packet, Type Cmessage, ServerType servertype)
+        public object DeSerializeMessage(byte[] packet, Type Cmessage)
         {
             // Get the raw message
             byte[] buffer = packet.Skip(4).ToArray();

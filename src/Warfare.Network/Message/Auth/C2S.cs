@@ -1,8 +1,8 @@
 ﻿using Warfare.Core;
 using BlubLib.Serialization;
-using Warfare.Core.Serializers;
+using Warfare.Network.Serializers;
 
-namespace Warfare.Server.Auth.Messages
+namespace Warfare.Network.Message.Auth
 {
     [ClientMessage(4)]
     [BlubContract]

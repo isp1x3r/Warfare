@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warfare.Server.Relay", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warfare.Database", "src\Warfare.Database\Warfare.Database.csproj", "{58BA6B6F-D483-4592-9E93-D2D63588F56C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warfare.Network", "src\Warfare.Network\Warfare.Network.csproj", "{AF6A3166-BDF3-40EE-9E1A-F2C3DDD11419}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{58BA6B6F-D483-4592-9E93-D2D63588F56C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58BA6B6F-D483-4592-9E93-D2D63588F56C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58BA6B6F-D483-4592-9E93-D2D63588F56C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF6A3166-BDF3-40EE-9E1A-F2C3DDD11419}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF6A3166-BDF3-40EE-9E1A-F2C3DDD11419}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF6A3166-BDF3-40EE-9E1A-F2C3DDD11419}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF6A3166-BDF3-40EE-9E1A-F2C3DDD11419}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

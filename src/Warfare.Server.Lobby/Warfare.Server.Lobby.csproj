@@ -19,7 +19,6 @@
 
   <ItemGroup>
     <Folder Include="Handlers\" />
-    <Folder Include="Messages\" />
   </ItemGroup>
 
   <ItemGroup>
