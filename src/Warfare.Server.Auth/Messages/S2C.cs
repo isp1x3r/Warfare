@@ -72,9 +72,18 @@ namespace Warfare.Server.Auth.Messages
         public byte[] Padding { get; set; }
 
         [BlubMember(4, typeof(StringSerializer), 68)]
-        public string CharacterNames { get; set; }
+        public string Nickname1 { get; set; }
 
-        [BlubMember(5)]
+        [BlubMember(5, typeof(StringSerializer), 68)]
+        public string Nickname2 { get; set; }
+
+        [BlubMember(6, typeof(StringSerializer), 68)]
+        public string Nickname3 { get; set; }
+
+        [BlubMember(7, typeof(StringSerializer), 68)]
+        public string Nickname4 { get; set; }
+
+        [BlubMember(8)]
         public byte Flag { get; set; }
         public CharacterListAckMessage()
         {
@@ -94,7 +103,7 @@ namespace Warfare.Server.Auth.Messages
         public CharacterInfoError ErrorCode { get; set; }
 
         [BlubMember(2)]
-        public uint Unk1 { get; set; }
+        public uint CharacterID { get; set; }
 
         [BlubMember(3, typeof(StringSerializer), 17)]
         public string Nickname { get; set; }
@@ -112,7 +121,7 @@ namespace Warfare.Server.Auth.Messages
         public uint BountyPoints { get; set; }
 
         [BlubMember(8)]
-        public uint Unk2 { get; set; }
+        public uint Unk1 { get; set; }
 
         [BlubMember(9)]
         public uint Kills { get; set; }
@@ -130,10 +139,10 @@ namespace Warfare.Server.Auth.Messages
         public byte[] Padding { get; set; } // either a string or ape devs
 
         [BlubMember(14)]
-        public uint Unk3 { get; set; }
+        public uint Unk2 { get; set; }
 
         [BlubMember(15)]
-        public uint Unk4 { get; set; }
+        public uint Unk3 { get; set; }
 
         [BlubMember(16, typeof(StringSerializer), 17)]
         public string ClanName { get; set; }
@@ -156,7 +165,6 @@ namespace Warfare.Server.Auth.Messages
             Unk1 = 0;
             Unk2 = 0;
             Unk3 = 0;
-            Unk4 = 0;
             //Items = Array.Empty<CharacterItemDto>();
         }
         public CharacterInfoAckMessage(CharacterInfoError error)

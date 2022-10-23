@@ -18,7 +18,10 @@ namespace Warfare.Server.Auth.Handlers
             session.SendAsync(new CharacterListAckMessage()
             {
                 CharacterCount = 3,
-                CharacterNames = "[GM]-Monster",
+                Nickname1 = "[GM]-Monster",
+                Nickname2 = "[GM]-MonsterA",
+                Nickname3 = "[GM]-MonsterB",
+                Nickname4 = "[GM]-MonsterC",
                 Flag = 10,
             });
             return true;
