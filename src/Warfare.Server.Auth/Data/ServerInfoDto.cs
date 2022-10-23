@@ -14,7 +14,7 @@ namespace Warfare.Server.Auth.Data
         public byte Id { get; set; } // gotta check to make sure x')
 
         [BlubMember(3)]
-        public ushort MlayerLimit { get; set; }
+        public ushort PlayerLimit { get; set; }
 
         [BlubMember(4)]
         public ushort PlayerCount { get; set; }
