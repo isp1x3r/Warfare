@@ -31,61 +31,6 @@ namespace Warfare.Server.Auth.Handlers
                 ItemCount = 0
 
             });
-            session.SendAsync(new CharacterInfoAckMessage()
-            {
-                CharacterID = 2,
-                Nickname = "[GM]-MonsterA",
-                Level = 68,
-                Hero = CharacterHero.Vanessa,
-                Experience = 100000000,
-                BountyPoints = 90000,
-                Kills = 50000,
-                Deaths = 46000,
-                Wins = 6000,
-                Losses = 97,
-                ClanName = "GameMasters",
-                ClanMark = 30,
-                SkinColor = 6,
-                ItemCount = 0
-
-            });
-            session.SendAsync(new CharacterInfoAckMessage()
-            {
-                CharacterID = 3,
-                Nickname = "[GM]-MonsterB",
-                Level = 68,
-                Hero = CharacterHero.Adam,
-                Experience = 100000000,
-                BountyPoints = 90000,
-                Kills = 50000,
-                Deaths = 46000,
-                Wins = 6000,
-                Losses = 97,
-                ClanName = "GameMasters",
-                ClanMark = 30,
-                SkinColor = 6,
-                ItemCount = 0
-
-            });
-            session.Send(new CharacterInfoAckMessage()
-            {
-                CharacterID = 4,
-                Nickname = "[GM]-MonsterC",
-                Level = 68,
-                Hero = CharacterHero.Cathy,
-                Experience = 100000000,
-                BountyPoints = 90000,
-                Kills = 50000,
-                Deaths = 46000,
-                Wins = 6000,
-                Losses = 97,
-                ClanName = "GameMasters",
-                ClanMark = 30,
-                SkinColor = 6,
-                ItemCount = 0
-
-            });
-
             session.SendAsync(new PlayerCashMessage(690490));
             return true;
         }

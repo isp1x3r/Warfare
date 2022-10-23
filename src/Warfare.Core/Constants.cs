@@ -3,7 +3,7 @@
 namespace Warfare.Core
 {
     #region Authentication
-    public enum RetrieveCharacterInfoError : ushort
+    public enum CharacterListError : ushort
     {
         Success = 0,
         Failed = 65405
