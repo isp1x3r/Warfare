@@ -293,12 +293,12 @@ namespace Warfare.Server.Auth.Messages
         [BlubMember(2)]
         public byte ServerEntries { get; set; }
 
-        [BlubMember(3)]
+        [BlubMember(3, typeof(ArraySerializer))]
         public ServerInfoDto[] Servers { get; set; }
 
         public ServerListAckMessage()
         {
-            Padding = 0;
+            
         }
     }
 

@@ -1,4 +1,6 @@
-﻿using BlubLib.Serialization;
+﻿using System;
+using BlubLib.Serialization;
+using Warfare.Core.Serializers;
 
 namespace Warfare.Server.Auth.Data
 {
@@ -23,21 +25,21 @@ namespace Warfare.Server.Auth.Data
         [BlubMember(6)]
         public uint ServerIP { get; set; }
 
-        [BlubMember(7)]
+        [BlubMember(7, typeof(BinarySerializer), 241)]
         public byte[] Unk4 { get; set; }
 
-        [BlubMember(8)]
+        [BlubMember(8, typeof(BinarySerializer), 241)]
         public byte[] Unk5 { get; set; }
 
-        [BlubMember(9)]
+        [BlubMember(9, typeof(BinarySerializer), 33)]
         public byte[] Unk6 { get; set; }
 
         public ServerInfoDto()
         {
             Unk2 = 0;
-            Unk4 = new byte[241];
-            Unk5 = new byte[241];
-            Unk6 = new byte[33];
+            Unk4 = Array.Empty<byte>();
+            Unk5 = Array.Empty<byte>();
+            Unk6 = Array.Empty<byte>();
         }
     }
 }
