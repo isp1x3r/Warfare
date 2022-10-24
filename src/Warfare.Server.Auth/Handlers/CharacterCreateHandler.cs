@@ -20,7 +20,8 @@ namespace Warfare.Server.Auth.Handlers
         }
         public bool Handle(Session session, CharacterCreateReqMessage message)
         {
-            _logger.Debug("Character creation with nickname : " + message.Nickname);
+            _logger.Debug("Character creation request : ");
+            _logger.Debug("Nickname : " + message.Nickname);
             _logger.Debug("Character hero : " + message.Hero);
             _logger.Debug("Skin color : " + message.SkinColor);
             return true;
