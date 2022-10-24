@@ -1,5 +1,6 @@
 ﻿using Warfare.Core;
-using Warfare.Server.Auth.Messages;
+using Warfare.Network;
+using Warfare.Network.Message.Auth;
 
 namespace Warfare.Server.Auth.Handlers
 {

@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Warfare.Core;
-using Warfare.Server.Auth.Messages;
+using Warfare.Network.Message.Auth;
+using Warfare.Network.Data.Auth;
 
 namespace Warfare.Server.Auth.Handlers
 {
@@ -15,9 +16,9 @@ namespace Warfare.Server.Auth.Handlers
         {
 
         }
-        public bool Handle(Session session, ServiceConnectReqMessage message)
+        public bool Handle(Session session, ConnectReqMessage message)
         {
-            session.SendAsync(new ServiceConnectAckMessage());
+            session.SendAsync(new ConnectAckMessage());
             return true;
         }
     }

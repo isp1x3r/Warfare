@@ -15,26 +15,15 @@
   <ItemGroup>
     <ProjectReference Include="..\Warfare.Core\Warfare.Core.csproj" />
     <ProjectReference Include="..\Warfare.Database\Warfare.Database.csproj" />
+    <ProjectReference Include="..\Warfare.Network\Warfare.Network.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="BlubLib">
       <HintPath>..\..\libs\BlubLib.dll</HintPath>
     </Reference>
-    <Reference Include="BlubLib.DotNetty">
-      <HintPath>..\..\libs\BlubLib.DotNetty.dll</HintPath>
-    </Reference>
-    <Reference Include="BlubLib.DotNetty.SimpleRmi">
-      <HintPath>..\..\libs\BlubLib.DotNetty.SimpleRmi.dll</HintPath>
-    </Reference>
-    <Reference Include="BlubLib.GUI">
-      <HintPath>..\..\libs\BlubLib.GUI.dll</HintPath>
-    </Reference>
     <Reference Include="BlubLib.Serialization">
       <HintPath>..\..\libs\BlubLib.Serialization.dll</HintPath>
-    </Reference>
-    <Reference Include="BlubLib.WinAPI">
-      <HintPath>..\..\libs\BlubLib.WinAPI.dll</HintPath>
     </Reference>
   </ItemGroup>
 

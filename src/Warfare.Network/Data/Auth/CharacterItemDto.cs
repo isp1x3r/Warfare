@@ -1,6 +1,6 @@
 ﻿using BlubLib.Serialization;
 
-namespace Warfare.Server.Auth.Data
+namespace Warfare.Network.Data.Auth
 {
     [BlubContract]
     public class CharacterItemDto

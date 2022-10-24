@@ -3,8 +3,9 @@ using Sigil;
 using Sigil.NonGeneric;
 using System;
 using System.IO;
+using Warfare.Core;
 
-namespace Warfare.Core.Serializers
+namespace Warfare.Network.Serializers
 {
     public class StringSerializer : ISerializerCompiler
     {

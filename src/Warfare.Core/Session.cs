@@ -32,6 +32,7 @@ namespace Warfare.Core
 
         protected override void OnReceived(byte[] buffer, long offset, long size)
         {
+            // This has to do with the fact that NetCoreServer returns a large buffer so we try to get the correct size by reading the first bytes of the payload that represent it's real size
             byte[] payload = new byte[size];
             using(var br = new BinaryReader(new MemoryStream(buffer)))
             {

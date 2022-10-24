@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\Game\" />
+    <Folder Include="Data\Lobby\" />
+    <Folder Include="Data\Relay\" />
+    <Folder Include="Message\Lobby\" />
+    <Folder Include="Message\Game\" />
+    <Folder Include="Message\Relay\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Sigil" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Warfare.Core\Warfare.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="BlubLib">
+      <HintPath>..\..\libs\BlubLib.dll</HintPath>
+    </Reference>
+    <Reference Include="BlubLib.Serialization">
+      <HintPath>..\..\libs\BlubLib.Serialization.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

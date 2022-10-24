@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
+using BlubLib.DotNetty.Handlers.MessageHandling;
 using log4net;
 using NetCoreServer;
 
@@ -11,17 +12,16 @@ namespace Warfare.Core
         private static readonly ILog _logger = LogManager.GetLogger(typeof(ServerInstance));
         public string _serveraddr { get; set; }
         public short _port { get; set; }
-        public ServerType _servertype { get; set; }
         internal SessionManager _sessionMgr { get; set; }
         internal MessageHandler _messagehandler { get; set; }
+        internal Action _handler { get; set; }
 
-        public ServerInstance(string address, short port, ServerType type, MessageFactory messagefactory) : base(address, port) 
+        public ServerInstance(string address, short port, MessageHandler messagehandler) : base(address, port) 
         { 
             _serveraddr = address;
             _port = port;
-            _servertype = type;
             _sessionMgr = new SessionManager();
-            _messagehandler = new MessageHandler(messagefactory);
+            _messagehandler = messagehandler;
         }
 
         protected override TcpSession CreateSession() 

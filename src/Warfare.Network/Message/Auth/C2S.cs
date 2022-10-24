@@ -1,12 +1,11 @@
 ﻿using Warfare.Core;
 using BlubLib.Serialization;
-using Warfare.Core.Serializers;
+using Warfare.Network.Serializers;
 
-namespace Warfare.Server.Auth.Messages
+namespace Warfare.Network.Message.Auth
 {
-    [ClientMessage(4)]
     [BlubContract]
-    public class AuthenticationReqMessage
+    public class AuthenticationReqMessage : IAuthMessage
     {
         [BlubMember(1)]
         public uint AccountNumber { get; set; }
@@ -16,24 +15,21 @@ namespace Warfare.Server.Auth.Messages
     }
 
 
-    [ClientMessage(260)]
     [BlubContract]
-    public class CharacterListReqMessage
+    public class CharacterListReqMessage : IAuthMessage
     {
-          
+
     }
 
-    [ClientMessage(516)]
     [BlubContract]
-    public class CharacterInfoReqMessage
+    public class CharacterInfoReqMessage : IAuthMessage
     {
         [BlubMember(1)]
         public uint CharacterId { get; set; }
     }
 
-    [ClientMessage(772)]
     [BlubContract]
-    public class CharacterCreateReqMessage
+    public class CharacterCreateReqMessage : IAuthMessage
     {
         [BlubMember(1, typeof(StringSerializer), 17)]
         public string Nickname { get; set; }
@@ -45,9 +41,8 @@ namespace Warfare.Server.Auth.Messages
         public byte SkinColor { get; set; }
     }
 
-    [ClientMessage(1028)]
     [BlubContract]
-    public class CharacterDeleteReqMessage
+    public class CharacterDeleteReqMessage : IAuthMessage
     {
         /* Available only in JP version which is included in the client,
            so might as well add it here
@@ -63,9 +58,8 @@ namespace Warfare.Server.Auth.Messages
 
     }
 
-    [ClientMessage(1284)]
     [BlubContract]
-    public class ServiceConnectReqMessage
+    public class ConnectReqMessage : IAuthMessage
     {
         [BlubMember(1)]
         public uint CharacterId { get; set; }
@@ -74,23 +68,20 @@ namespace Warfare.Server.Auth.Messages
         public byte[] Unk1 { get; set; }
     }
 
-    [ClientMessage(1540)]
     [BlubContract]
-    public class ServerListReqMessage
-    {
-        
-    }
-
-    [ClientMessage(1796)]
-    [BlubContract]
-    public class ChannelListReqMessage
+    public class ServerListReqMessage : IAuthMessage
     {
 
     }
 
-    [ClientMessage(39684)]
     [BlubContract]
-    public class ChecksumMessage
+    public class ChannelListReqMessage : IAuthMessage
+    {
+
+    }
+
+    [BlubContract]
+    public class ChecksumMessage : IAuthMessage
     {
         [BlubMember(1)]
         public byte Unk1 { get; set; }

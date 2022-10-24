@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Warfare.Core;
-using Warfare.Server.Auth.Messages;
+using Warfare.Network.Message.Auth;
 
 namespace Warfare.Server.Auth.Handlers
 {

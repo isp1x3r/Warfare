@@ -1,16 +1,12 @@
 ﻿using Warfare.Core;
-using Warfare.Server.Auth.Data;
+using Warfare.Network.Data.Auth;
 using BlubLib.Serialization;
-using Warfare.Core.Serializers;
-using System;
-using BlubLib.Serialization.Serializers;
-using log4net.Core;
+using Warfare.Network.Serializers;
 
-namespace Warfare.Server.Auth.Messages
+namespace Warfare.Network.Message.Auth
 {
-    [ServerMessage(4)]
     [BlubContract]
-    public class AuthenticationErrorMessage
+    public class AuthenticationErrorMessage : IAuthMessage
     {
         [BlubMember(1)]
         public ushort ErrorCode { get; set; }
@@ -27,7 +23,6 @@ namespace Warfare.Server.Auth.Messages
         }
     }
 
-    [ServerMessage(4)]
     [BlubContract]
     public class AuthenticationAckMessage : AuthenticationErrorMessage
     {
@@ -67,9 +62,8 @@ namespace Warfare.Server.Auth.Messages
 
     }
 
-    [ServerMessage(260)]
     [BlubContract]
-    public class CharacterListErrorMessage
+    public class CharacterListErrorMessage : IAuthMessage
     {
         [BlubMember(1)]
         public CharacterInfoError ErrorCode { get; set; }
@@ -82,8 +76,6 @@ namespace Warfare.Server.Auth.Messages
         }
     }
 
-
-    [ServerMessage(260)]
     [BlubContract]
     public class CharacterListAckMessage : CharacterListErrorMessage
     {
@@ -115,9 +107,8 @@ namespace Warfare.Server.Auth.Messages
  
     }
 
-    [ServerMessage(516)]
     [BlubContract]
-    public class CharacterInfoErrorMessage
+    public class CharacterInfoErrorMessage : IAuthMessage
     {
         [BlubMember(1)]
         public CharacterInfoError ErrorCode { get; set; }
@@ -129,7 +120,7 @@ namespace Warfare.Server.Auth.Messages
             ErrorCode = error;
         }
     }
-    [ServerMessage(516)]
+
     [BlubContract]
     public class CharacterInfoAckMessage : CharacterInfoErrorMessage
     {   
@@ -200,9 +191,8 @@ namespace Warfare.Server.Auth.Messages
         }
     }
 
-    [ServerMessage(772)]
     [BlubContract]
-    public class CharacterCreationErrorMessage
+    public class CharacterCreationErrorMessage : IAuthMessage
     {
         [BlubMember(1)]
         public CharacterCreationError ErrorCode { get; set; }
@@ -215,7 +205,6 @@ namespace Warfare.Server.Auth.Messages
         }
     }
 
-    [ServerMessage(772)]
     [BlubContract]
     public class CharacterCreateAckMessage : CharacterCreationErrorMessage
     {      
@@ -228,9 +217,8 @@ namespace Warfare.Server.Auth.Messages
         }
     }
 
-    [ServerMessage(1028)]
     [BlubContract]
-    public class CharacterDeleteErrorMessage
+    public class CharacterDeleteErrorMessage : IAuthMessage
     {
         [BlubMember(1)]
         public CharacterScreenResult ScreenResult { get; set; }
@@ -242,7 +230,6 @@ namespace Warfare.Server.Auth.Messages
             ScreenResult = result;
         }
     }
-    [ServerMessage(1028)]
     [BlubContract]
     public class CharacterDeleteAckMessage : CharacterDeleteErrorMessage
     {
@@ -255,37 +242,35 @@ namespace Warfare.Server.Auth.Messages
         }
     }
 
-    [ServerMessage(1284)]
     [BlubContract]
-    public class ServiceConnectErrorMessage
+    public class ConnectErrorMessage : IAuthMessage
     {
         [BlubMember(1)]
         public CharacterScreenResult ScreenResult { get; set; }
 
-        public ServiceConnectErrorMessage()
+        public ConnectErrorMessage()
         { }
-        public ServiceConnectErrorMessage(CharacterScreenResult result)
+        public ConnectErrorMessage(CharacterScreenResult result)
         {
             ScreenResult = result;
         }
     }
-    [ServerMessage(1284)]
+
     [BlubContract]
-    public class ServiceConnectAckMessage : ServiceConnectErrorMessage
+    public class ConnectAckMessage : ConnectErrorMessage
     {     
         [BlubMember(1, typeof(BinarySerializer), 125)]
         public byte[] Unk1 { get; set; } // This is sent right back from the client on server join (Check Mercenary.Server.Lobby.Messages => LoginReqMessage.Unk1)
 
-        public ServiceConnectAckMessage() : base()
+        public ConnectAckMessage() : base()
         {
             Unk1 = Array.Empty<byte>();
         }
 
     }
 
-    [ServerMessage(1540)]
     [BlubContract]
-    public class ServerListAckMessage
+    public class ServerListAckMessage : IAuthMessage
     {
         [BlubMember(1)]
         public ushort Padding { get; set; } // Message starts after 6 bytes of the payload so this is useless
@@ -302,9 +287,8 @@ namespace Warfare.Server.Auth.Messages
         }
     }
 
-    [ServerMessage(1796)]
     [BlubContract]
-    public class ChannelListAckMessage
+    public class ChannelListAckMessage : IAuthMessage
     {        
 
         public ChannelListAckMessage()
@@ -313,9 +297,8 @@ namespace Warfare.Server.Auth.Messages
         }
     }
 
-    [ServerMessage(2820)]
     [BlubContract]
-    public class PlayerCashMessage
+    public class PlayerCashMessage : IAuthMessage
     {
         [BlubMember(1)]
         public uint Unk1 { get; set; }
@@ -333,12 +316,16 @@ namespace Warfare.Server.Auth.Messages
         }
     }
 
-    [ServerMessage(65284)]
     [BlubContract]
-    public class NoticeMessage
+    public class NoticeMessage : IAuthMessage
     {
         [BlubMember(1)]
         public string Message { get; set; }
+
+        public NoticeMessage()
+        {
+
+        }
 
         public NoticeMessage(string message)
         {
@@ -346,16 +333,14 @@ namespace Warfare.Server.Auth.Messages
         }
     }
 
-    [ServerMessage(4612)]
     [BlubContract]
-    public class ErrorDetectedMessage
+    public class ErrorDetectedMessage : IAuthMessage
     {
 
     }
 
-    [ServerMessage(3588)]
     [BlubContract]
-    public class UserBanMessage
+    public class UserBanMessage : IAuthMessage
     {
         [BlubMember(1)]
         public uint Unk1 { get; set; }
@@ -366,6 +351,11 @@ namespace Warfare.Server.Auth.Messages
         [BlubMember(3)]
         public string BanReason { get; set; }
 
+        public UserBanMessage()
+        {
+
+        }
+
         public UserBanMessage(string banreason)
         {
             Unk1 = 0;
@@ -373,9 +363,8 @@ namespace Warfare.Server.Auth.Messages
         }
     }
 
-    [ServerMessage(39172)]
     [BlubContract]
-    public class LoadBannerMessage
+    public class LoadBannerMessage : IAuthMessage
     {
         [BlubMember(1)]
         public string Unk1 { get; set; }

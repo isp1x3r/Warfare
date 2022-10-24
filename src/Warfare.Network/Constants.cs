@@ -1,6 +1,6 @@
 ﻿
 
-namespace Warfare.Core
+namespace Warfare.Network
 {
     #region Authentication
     public enum CharacterListError : ushort
@@ -20,6 +20,14 @@ namespace Warfare.Core
         ERR_CHARINFO = 65403,
         NameAlreadyExists = 65404,
         NotEnoughSlots = 65405
+    }
+    public enum ServerType : byte
+    {
+        Beginners = 0,
+        Veteran = 1,
+        Clan = 2,
+        CafeServer = 3,
+        OpenServer = 4
     }
     #endregion
 
@@ -120,17 +128,6 @@ namespace Warfare.Core
         Taken = 6, // Huh?
         Shotgun = 7,
         ALL = 8
-    }
-    #endregion
-
-    #region Core
-
-    public enum ServerType : byte
-    {
-        AuthServer = 1,
-        LobbyServer = 2,
-        GameServer = 3,
-        RelayServer = 4
     }
     #endregion
 

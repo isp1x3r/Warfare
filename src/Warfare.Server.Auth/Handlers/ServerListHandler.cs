@@ -1,8 +1,9 @@
 ﻿
 using log4net;
 using Warfare.Core;
-using Warfare.Server.Auth.Messages;
-using Warfare.Server.Auth.Data;
+using Warfare.Network;
+using Warfare.Network.Message.Auth;
+using Warfare.Network.Data.Auth;
 using System.Net;
 
 namespace Warfare.Server.Auth.Handlers
@@ -28,7 +29,7 @@ namespace Warfare.Server.Auth.Handlers
                 {
                     new ServerInfoDto
                     {
-                        Id = 75,
+                        ServerType = ServerType.Beginners,
                         ServerPort = 30003,
                         ServerIP = (uint)(addr.Address),
                         PlayerLimit = 10,

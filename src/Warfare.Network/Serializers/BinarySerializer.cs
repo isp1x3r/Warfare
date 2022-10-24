@@ -5,7 +5,7 @@ using Sigil.NonGeneric;
 using System;
 using System.IO;
 
-namespace Warfare.Core.Serializers
+namespace Warfare.Network.Serializers
 {
     public class BinarySerializer : ISerializerCompiler
     {

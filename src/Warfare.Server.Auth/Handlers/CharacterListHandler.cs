@@ -1,6 +1,6 @@
 ﻿using log4net;
 using Warfare.Core;
-using Warfare.Server.Auth.Messages;
+using Warfare.Network.Message.Auth;
 
 namespace Warfare.Server.Auth.Handlers
 {
