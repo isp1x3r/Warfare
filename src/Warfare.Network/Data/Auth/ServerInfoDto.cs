@@ -26,18 +26,18 @@ namespace Warfare.Network.Data.Auth
         public uint ServerIP { get; set; }
 
         [BlubMember(7, typeof(BinarySerializer), 241)]
-        public byte[] Unk4 { get; set; }
+        public byte[] AllowedAreas { get; set; }
 
         [BlubMember(8, typeof(BinarySerializer), 241)]
-        public byte[] Unk5 { get; set; }
+        public byte[] BlockedAreas { get; set; }
 
         [BlubMember(9, typeof(StringSerializer), 33)]
         public string ServerName { get; set; }
 
         public ServerInfoDto()
         {
-            Unk4 = Array.Empty<byte>();
-            Unk5 = Array.Empty<byte>();
+            AllowedAreas = Array.Empty<byte>();
+            BlockedAreas = Array.Empty<byte>();
         }
     }
 }

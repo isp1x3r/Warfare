@@ -29,11 +29,12 @@ namespace Warfare.Server.Auth.Handlers
                 {
                     new ServerInfoDto
                     {
-                        ServerType = ServerType.Clan,
+                        ServerType = ServerType.OpenServer,
                         ServerPort = 30003,
                         ServerIP = (uint)(addr.Address),
                         PlayerLimit = 10,
-                        PlayerCount = 5
+                        PlayerCount = 5,
+                        ServerName = ""
 
                     }
     }
