@@ -30,4 +30,9 @@
         LoadBanner = 39172,
         Notice = 65284,
     }
+    public enum LobbyOpCode : ushort
+    {
+
+    }
+    
 }
