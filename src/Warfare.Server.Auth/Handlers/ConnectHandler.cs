@@ -10,9 +10,9 @@ using Warfare.Network.Data.Auth;
 namespace Warfare.Server.Auth.Handlers
 {
     [Handler(1284)]
-    internal class ServiceConnectHandler
+    internal class ConnectHandler
     {
-        public ServiceConnectHandler()
+        public ConnectHandler()
         {
 
         }
