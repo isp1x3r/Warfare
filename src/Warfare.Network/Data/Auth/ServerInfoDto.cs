@@ -31,14 +31,13 @@ namespace Warfare.Network.Data.Auth
         [BlubMember(8, typeof(BinarySerializer), 241)]
         public byte[] Unk5 { get; set; }
 
-        [BlubMember(9, typeof(BinarySerializer), 33)]
-        public byte[] Unk6 { get; set; }
+        [BlubMember(9, typeof(StringSerializer), 33)]
+        public string ServerName { get; set; }
 
         public ServerInfoDto()
         {
             Unk4 = Array.Empty<byte>();
             Unk5 = Array.Empty<byte>();
-            Unk6 = Array.Empty<byte>();
         }
     }
 }
