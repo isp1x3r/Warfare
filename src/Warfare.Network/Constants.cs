@@ -131,17 +131,6 @@ namespace Warfare.Network
     }
     #endregion
 
-    #region Core
-
-    public enum CoreType : byte
-    {
-        AuthServer = 1,
-        LobbyServer = 2,
-        GameServer = 3,
-        RelayServer = 4
-    }
-    #endregion
-
     public static class Constants
     {
         public const short Lobbyackheader = 255;

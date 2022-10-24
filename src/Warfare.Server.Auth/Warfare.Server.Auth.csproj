@@ -19,6 +19,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="BlubLib">
+      <HintPath>..\..\libs\BlubLib.dll</HintPath>
+    </Reference>
+    <Reference Include="BlubLib.Serialization">
+      <HintPath>..\..\libs\BlubLib.Serialization.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="log4net.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>

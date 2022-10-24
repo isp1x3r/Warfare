@@ -18,7 +18,7 @@ namespace Warfare.Server.Auth
        {
             BasicConfigurator.Configure();
             _logger.Info("Initializing Server...");
-            ServerInstance server = new ServerInstance("127.0.0.1", 14000, new MessageFactory();
+            ServerInstance server = new ServerInstance("127.0.0.1", 14000, new AuthMessageHandler());
             server.Start();
             _logger.Info("Successfully started the server");
             for (; ; )
