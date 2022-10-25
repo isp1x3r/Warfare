@@ -34,7 +34,7 @@
     {
             // C2S
 
-        LoginReq = 164,
+        LoginReq = 2,
 
            // S2C
 

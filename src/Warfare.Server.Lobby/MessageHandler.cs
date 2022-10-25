@@ -98,7 +98,7 @@ namespace Warfare.Server.Auth
                 {
                     Serializer.Serialize(ms, message);
                     // Allocate new buffer for message
-                    ushort newsize = Convert.ToUInt16(ms.ToArray().Length + 8);
+                    ushort newsize = Convert.ToUInt16(ms.ToArray().Length + 10);
                     byte[] msg = new byte[newsize];
                     BinaryWriter _w = new BinaryWriter(new MemoryStream(msg));
 

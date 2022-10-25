@@ -13,7 +13,7 @@ namespace Warfare.Network.Message.Lobby
         [BlubMember(2)]
         public uint ServerVersion { get; set; }
 
-        [BlubMember(3)]
+        [BlubMember(3, typeof(BinarySerializer), 125)]
         public byte[] Checksum { get; set; }
 
         [BlubMember(4)]
@@ -22,7 +22,7 @@ namespace Warfare.Network.Message.Lobby
         [BlubMember(5)]
         public byte Unk2 { get; set; }
 
-        [BlubMember(5)]
+        [BlubMember(6)]
         public byte Unk3 { get; set; }
     }
 }
