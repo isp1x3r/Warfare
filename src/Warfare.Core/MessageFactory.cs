@@ -7,10 +7,7 @@ using log4net;
 
 namespace Warfare.Core
 {
-    public interface IMessage
-    {
 
-    }
     public class MessageFactory
     {
         private readonly Dictionary<ushort, Type> _handlers = new Dictionary<ushort, Type>();

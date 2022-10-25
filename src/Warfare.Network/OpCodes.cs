@@ -32,6 +32,13 @@
     }
     public enum LobbyOpCode : ushort
     {
+            // C2S
+
+        LoginReq = 2,
+
+           // S2C
+
+        LoginAck = 2,
 
     }
     

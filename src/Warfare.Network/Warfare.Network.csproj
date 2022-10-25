@@ -10,7 +10,6 @@
     <Folder Include="Data\Game\" />
     <Folder Include="Data\Lobby\" />
     <Folder Include="Data\Relay\" />
-    <Folder Include="Message\Lobby\" />
     <Folder Include="Message\Game\" />
     <Folder Include="Message\Relay\" />
   </ItemGroup>
