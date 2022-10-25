@@ -12,11 +12,11 @@ namespace Warfare.Server.Auth
     internal class LobbyMessageHandler : MessageHandler
     {
         private static readonly ILog _logger = LogManager.GetLogger(typeof(LobbyMessageHandler));
-        public MessageFactory _messagefactory { get; set; }
+        public MessageFactory Messagefactory { get; set; }
 
         public LobbyMessageHandler()
         {
-            _messagefactory = new LobbyMessageFactory();
+            Messagefactory = new LobbyMessageFactory();
         }
 
         public override void HandleMessage(Session session, byte[] packet)
@@ -28,14 +28,14 @@ namespace Warfare.Server.Auth
                 opCode = _br.ReadUInt16();
             }
             // Does the opcode exist?
-            if (!_messagefactory.ContainsClientOpCode(opCode))
+            if (!Messagefactory.ContainsClientOpCode(opCode))
                 return;
             // Find a message type with the corresponding opCode
-            Type Cmessage = _messagefactory.GetClientMessage(opCode);
+            Type Cmessage = Messagefactory.GetClientMessage(opCode);
             if (Cmessage == null)
                 return;
             // Find a handler for the corresponding opCode
-            Type handler = _messagefactory.GetHandler(opCode);
+            Type handler = Messagefactory.GetHandler(opCode);
             if (handler == null)
                 return;
             // Deserialize message
@@ -88,10 +88,10 @@ namespace Warfare.Server.Auth
         {
             ushort opCode;
             // Does it exist?
-            if (!_messagefactory.ContainsServerType(message.GetType()))
+            if (!Messagefactory.ContainsServerType(message.GetType()))
                 return null;
             // Find opcode for server message
-            opCode = _messagefactory.GetServerOpCode(message.GetType());
+            opCode = Messagefactory.GetServerOpCode(message.GetType());
             using (var ms = new MemoryStream())
             {
                 try
