@@ -20,7 +20,7 @@ namespace Warfare.Network.Message.Lobby
         public byte Unk1 { get; set; }
 
         [BlubMember(5)]
-        public byte Unk2 { get; set; }
+        public bool IsPCRoom { get; set; }
 
         [BlubMember(6)]
         public byte Unk3 { get; set; }

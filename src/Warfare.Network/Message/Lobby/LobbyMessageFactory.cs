@@ -13,6 +13,9 @@ namespace Warfare.Network.Message.Lobby
             // C2S
             RegisterClientMessage<LoginReqMessage>(LobbyOpCode.LoginReq);
 
+            // S2C
+            RegisterServerMessage<LoginAckMessage>(LobbyOpCode.LoginAck);
+
        }
     }
 }

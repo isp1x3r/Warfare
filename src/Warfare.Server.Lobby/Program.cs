@@ -1,14 +1,8 @@
-﻿using System;
-using Warfare.Core;
+﻿using Warfare.Core;
 using log4net;
-using System.Net;
 using log4net.Config;
-using Warfare.Core;
-using Warfare.Server.Lobby.Handlers;
-using System.IO;
-using System.Reflection;
 
-namespace Warfare.Server.Auth
+namespace Warfare.Server.Lobby
 {
     class Program
     {

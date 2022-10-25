@@ -7,9 +7,9 @@ using log4net;
 using Warfare.Core;
 using Warfare.Network;
 using Warfare.Network.Message.Lobby;
-namespace Warfare.Server.Auth
+namespace Warfare.Server.Lobby
 {
-    internal class LobbyMessageHandler : MessageHandler
+    public class LobbyMessageHandler : MessageHandler
     {
         private static readonly ILog _logger = LogManager.GetLogger(typeof(LobbyMessageHandler));
         public MessageFactory Messagefactory { get; set; }
