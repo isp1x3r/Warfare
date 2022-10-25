@@ -289,11 +289,13 @@ namespace Warfare.Network.Message.Auth
 
     [BlubContract]
     public class ChannelListAckMessage : IAuthMessage
-    {        
+    {
+        [BlubMember(1, typeof(ArraySerializer))]
+        public ChannelDto[] Channels { get; set; }
 
         public ChannelListAckMessage()
         {
-
+            
         }
     }
 

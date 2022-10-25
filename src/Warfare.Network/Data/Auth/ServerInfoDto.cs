@@ -11,7 +11,7 @@ namespace Warfare.Network.Data.Auth
         public byte Unk1 { get; set; } // Sorting ID?
 
         [BlubMember(2)]
-        public ServerType ServerType { get; set; } // gotta check to make sure x')
+        public ServerType ServerType { get; set; }
 
         [BlubMember(3)]
         public ushort PlayerLimit { get; set; }

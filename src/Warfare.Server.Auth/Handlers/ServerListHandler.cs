@@ -34,7 +34,7 @@ namespace Warfare.Server.Auth.Handlers
                         ServerIP = (uint)(addr.Address),
                         PlayerLimit = 10,
                         PlayerCount = 5,
-                        ServerName = ""
+                        ServerName = "Warfare Server"
 
                     }
     }
