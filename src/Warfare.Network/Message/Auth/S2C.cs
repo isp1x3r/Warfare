@@ -260,11 +260,11 @@ namespace Warfare.Network.Message.Auth
     public class ConnectAckMessage : ConnectErrorMessage
     {     
         [BlubMember(1, typeof(BinarySerializer), 125)]
-        public byte[] Unk1 { get; set; } // This is sent right back from the client on server join (Check Mercenary.Server.Lobby.Messages => LoginReqMessage.Unk1)
+        public byte[] Checksum { get; set; } // This is sent right back from the client on server join (Check Mercenary.Server.Lobby.Messages => LoginReqMessage.Unk1)
 
         public ConnectAckMessage() : base()
         {
-            Unk1 = Array.Empty<byte>();
+            Checksum = Array.Empty<byte>();
         }
 
     }

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using BlubLib;
 
@@ -21,11 +22,6 @@ namespace Warfare.Core
 
         
         }
-        // TODO
-        /*public static byte ReadLobbyServerOpCode(byte[] packet)
-        {
-
-        }*/
 
         public static void WriteString(this BinaryWriter w, string value, int length)
         {
@@ -42,21 +38,20 @@ namespace Warfare.Core
         public static string ReadString(this BinaryReader r, int length)
         {
             return Encoding.ASCII.GetString(r.ReadBytes(length));
+
         }
-        public static void WriteBSString(this BinaryWriter w, string value)
+        public static void CWriteString(this BinaryWriter w, string value, int length)
         {
-            byte[] bs = new byte[value.Length + 1];
-            bs = Encoding.ASCII.GetBytes(value);
-            w.Write(bs);
+            byte[] a = new byte[length + 2];
+            ushort size = Convert.ToUInt16(value.Length);
+            a = Encoding.ASCII.GetBytes(value);
+            w.Write(size);
+            w.Write(a);
         }
-        public static string ReadBSString(this BinaryReader r)
+        public static string CReadString(this BinaryReader r)
         {
-            return r.ReadString();
-        }
-        static Assembly GetAssemblyByName(string name)
-        {
-            return AppDomain.CurrentDomain.GetAssemblies().
-                   SingleOrDefault(assembly => assembly.GetName().Name == name);
+            ushort size = r.ReadUInt16();
+            return Encoding.ASCII.GetString(r.ReadBytes(size));
         }
     }
     
