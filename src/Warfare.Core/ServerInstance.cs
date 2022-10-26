@@ -14,7 +14,6 @@ namespace Warfare.Core
         public short _port { get; set; }
         internal SessionManager _sessionMgr { get; set; }
         internal MessageHandler _messagehandler { get; set; }
-        internal Action _handler { get; set; }
 
         public ServerInstance(string address, short port, MessageHandler messagehandler) : base(address, port) 
         { 
