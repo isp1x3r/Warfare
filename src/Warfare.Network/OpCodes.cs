@@ -33,13 +33,23 @@
     public enum LobbyOpCode : ushort
     {
             // C2S
-
+        ChatRoomCreateReq = 1,
         LoginReq = 2,
+        LobbyChatReq = 16,
+        RoomCreateReq = 37,
+        ShopInventoryReq = 39,
+        QuickStartReq = 41,
+        PlayerLookUpReq = 54,
+        PlayerInfoReq = 57,
+        ItemPurchaseReq = 68,
+        ClanScreenReq = 74,
+        PartnerScreenReq = 162,
+        WeaponPurchaseReq = 210,
+        GachaponScreenReq = 228,
 
-           // S2C
+            // S2C
 
         LoginAck = 2,
 
     }
-    
 }

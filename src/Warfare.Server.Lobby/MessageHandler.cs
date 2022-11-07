@@ -26,6 +26,12 @@ namespace Warfare.Server.Lobby
             {
                 _br.BaseStream.Position = 8;
                 opCode = _br.ReadUInt16();
+                // If it's a misc message
+                if (opCode == 0x60)
+                {
+                    _br.ReadUInt16(); // Skip 2 bytes
+                    opCode = _br.ReadByte();
+                }                 
             }
             // Does the opcode exist?
             if (!Messagefactory.ContainsClientOpCode(opCode))

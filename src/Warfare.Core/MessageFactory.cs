@@ -29,7 +29,6 @@ namespace Warfare.Core
             _servertypelookup.Add(opCode, type);
         }
         protected void RegisterClientMessage<T>(ushort opCode)
-           where T : new()
         {
             var type = typeof(T);
             _clientopCodelookup.Add(type, opCode);
@@ -133,7 +132,7 @@ namespace Warfare.Core
             RegisterServerMessage<T>(DynamicCast<ushort>.From(opCode));
         }
         protected void RegisterClientMessage<T>(TOpCode opCode)
-           where T : TMessage, new()
+           where T : TMessage
         {
             RegisterClientMessage<T>(DynamicCast<ushort>.From(opCode));
         }

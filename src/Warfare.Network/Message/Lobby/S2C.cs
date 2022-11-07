@@ -19,4 +19,19 @@ namespace Warfare.Network.Message.Lobby
             LoginResult = loginResult;
         }
     }
+
+    [BlubContract]
+    public class MiscAckMessage : ILobbyMessage
+    {
+
+
+    }
+
+    [BlubContract]
+    public class RoomCreateAckMessage : ILobbyMessage
+    {
+        
+
+    }
+   
 }
