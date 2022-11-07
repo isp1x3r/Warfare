@@ -12,6 +12,7 @@ namespace Warfare.Network.Message.Auth
 
         [BlubMember(2, typeof(StringSerializer), 17)]
         public string Username { get; set; }
+
     }
 
 

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using BlubLib;
@@ -22,7 +23,6 @@ namespace Warfare.Core
 
         
         }
-
         public static void WriteString(this BinaryWriter w, string value, int length)
         {
             if (value == null)
@@ -51,7 +51,9 @@ namespace Warfare.Core
         public static string CReadString(this BinaryReader r)
         {
             ushort size = r.ReadUInt16();
-            return Encoding.ASCII.GetString(r.ReadBytes(size));
+            byte[] test = r.ReadBytes(size);
+            Console.WriteLine(BitConverter.ToString(test));
+            return Encoding.ASCII.GetString(test);
         }
     }
     

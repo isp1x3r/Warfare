@@ -10,6 +10,10 @@ namespace Warfare.Network.Serializers
     public class StringWithPrefixSerializer : ISerializerCompiler
     {
         private readonly int _size;
+        public StringWithPrefixSerializer()
+        {
+
+        }
         public StringWithPrefixSerializer(int size)
         {
             _size = size;
@@ -26,7 +30,6 @@ namespace Warfare.Network.Serializers
         public void EmitDeserialize(Emit emiter, Local value)
         {
             emiter.LoadArgument(1);
-            emiter.LoadConstant(_size);
             emiter.Call(typeof(Extensions).GetMethod(nameof(Extensions.CReadString)));
             emiter.StoreLocal(value);
         }
