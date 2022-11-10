@@ -2,6 +2,8 @@
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Security.Policy;
+using System.Xml.Serialization;
 using BlubLib.Serialization;
 using log4net;
 using Warfare.Core;
@@ -92,19 +94,33 @@ namespace Warfare.Server.Lobby
         }
         public override byte[] SerializeMessage(object message)
         {
+            bool isMisc = false;
+            // If it's a misc message
+            if (message.GetType().IsSubclassOf(typeof(MiscAckMessage)))
+            {
+                isMisc = true;
+            }
             ushort opCode;
             // Does it exist?
             if (!Messagefactory.ContainsServerType(message.GetType()))
                 return null;
             // Find opcode for server message
             opCode = Messagefactory.GetServerOpCode(message.GetType());
+            ushort newsize;
             using (var ms = new MemoryStream())
             {
                 try
                 {
                     Serializer.Serialize(ms, message);
                     // Allocate new buffer for message
-                    ushort newsize = Convert.ToUInt16(ms.ToArray().Length + 10);
+                    if(isMisc)
+                    {
+                        newsize = Convert.ToUInt16(ms.ToArray().Length + 13);
+                    }
+                    else
+                    {
+                        newsize = Convert.ToUInt16(ms.ToArray().Length + 10);
+                    }
                     byte[] msg = new byte[newsize];
                     BinaryWriter _w = new BinaryWriter(new MemoryStream(msg));
 
@@ -118,8 +134,15 @@ namespace Warfare.Server.Lobby
                     _w.Write(Constants.MagicHeader);
 
                     // Write the opcode of the message
-                    _w.Write(opCode);
-
+                    if (isMisc)
+                    {
+                        _w.Write((ushort)0x60);
+                        _w.Write((ushort)0x00);
+                        _w.Write((byte)opCode);
+                    }else
+                    {
+                        _w.Write(opCode);
+                    }
                     // Write the message itself
                     _w.Write(ms.ToArray());
 

@@ -2,6 +2,8 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Reflection.Emit;
+using System.Reflection.Metadata;
 using BlubLib;
 using log4net;
 
@@ -127,9 +129,9 @@ namespace Warfare.Core
     public class MessageFactory<TOpCode, TMessage> : MessageFactory
     {
         protected void RegisterServerMessage<T>(TOpCode opCode)
-            where T : TMessage, new()
-        {
-            RegisterServerMessage<T>(DynamicCast<ushort>.From(opCode));
+           where T : TMessage, new()
+        {           
+            RegisterServerMessage<T>(DynamicCast<ushort>.From(opCode));          
         }
         protected void RegisterClientMessage<T>(TOpCode opCode)
            where T : TMessage

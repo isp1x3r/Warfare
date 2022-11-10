@@ -15,7 +15,7 @@ namespace Warfare.Network.Message.Lobby
             RegisterClientMessage<LoginReqMessage>(LobbyOpCode.LoginReq);
             RegisterClientMessage<LobbyChatReq>(LobbyOpCode.LobbyChatReq);
             RegisterClientMessage<RoomCreateReqMessage>(LobbyOpCode.RoomCreateReq);
-            RegisterClientMessage<RoomCreateReqMessage>(LobbyOpCode.ShopInventoryReq);
+           /*RegisterClientMessage<RoomCreateReqMessage>(LobbyOpCode.ShopInventoryReq);
             RegisterClientMessage<QuickStartReqMessage>(LobbyOpCode.QuickStartReq);
             RegisterClientMessage<QuickStartReqMessage>(LobbyOpCode.PlayerLookUpReq);
             RegisterClientMessage<QuickStartReqMessage>(LobbyOpCode.PlayerInfoReq);
@@ -23,11 +23,13 @@ namespace Warfare.Network.Message.Lobby
             RegisterClientMessage<QuickStartReqMessage>(LobbyOpCode.ClanScreenReq);
             RegisterClientMessage<QuickStartReqMessage>(LobbyOpCode.PartnerScreenReq);
             RegisterClientMessage<QuickStartReqMessage>(LobbyOpCode.WeaponPurchaseReq);
-            RegisterClientMessage<QuickStartReqMessage>(LobbyOpCode.GachaponScreenReq);
+            RegisterClientMessage<QuickStartReqMessage>(LobbyOpCode.GachaponScreenReq);*/
 
             // S2C
             RegisterServerMessage<LoginAckMessage>(LobbyOpCode.LoginAck);
+            RegisterServerMessage<LobbyPlayer>(LobbyOpCode.LobbyPlayer);
 
-       }
+
+        }
     }
 }

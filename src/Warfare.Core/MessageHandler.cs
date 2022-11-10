@@ -29,7 +29,6 @@ namespace Warfare.Core
         /// <summary>
         /// Serializes a given type to a byte array
         /// </summary>
-        /// <param name="logger">Logger instance</param>
         /// <param name="message">Message to be serialized</param>
         /// <returns>The serialized message</returns>
         public abstract byte[] SerializeMessage(object message);

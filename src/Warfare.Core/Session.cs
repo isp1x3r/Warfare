@@ -50,6 +50,10 @@ namespace Warfare.Core
             return base.Send(_server._messagehandler.SerializeMessage(message));
 
         }
+        public long Send(byte[] buffer, bool test)
+        {
+            return base.Send(buffer);
+        }
         public bool SendAsync(object message)
         {
             return base.SendAsync(_server._messagehandler.SerializeMessage(message));

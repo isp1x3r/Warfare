@@ -33,8 +33,8 @@ namespace Warfare.Network.Message.Auth
         [BlubMember(2)]
         public uint CharacterSlots { get; set; }
 
-        [BlubMember(3)]                      // Was used back in the day when garena was organizing LAN tournaments in internet coffee shops 
-        public uint IsPCRoom { get; set; }    // Client actually expects 1 byte only since it's a boolean but them ape devs forgot to correctly cast it on their end *sigh*
+        [BlubMember(3)]                     // Client actually expects 1 byte only since it's a boolean but them ape devs forgot to correctly cast it on their end *sigh*
+        public int IsPCRoom { get; set; }   // Was used back in the day when garena was organizing LAN tournaments in internet coffee shops  
 
         [BlubMember(4)]
         public byte Padding2 { get; set; }

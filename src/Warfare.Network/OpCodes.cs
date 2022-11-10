@@ -50,6 +50,6 @@
             // S2C
 
         LoginAck = 2,
-
+        LobbyPlayer = 3,
     }
 }
