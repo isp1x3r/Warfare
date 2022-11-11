@@ -91,4 +91,23 @@ namespace Warfare.Network.Message.Lobby
         [BlubMember(5)]
         public uint Unk4 { get; set; }
     }
+
+    [BlubContract]
+    public class ClanBoardReqMessage : ILobbyMessage
+    {
+
+    }
+
+    [BlubContract]
+    public class ClanLeaveReqMessage : ILobbyMessage
+    {
+
+    }
+
+    [BlubContract]
+    public class ClanLookUpReqMessage : ILobbyMessage
+    {
+        [BlubMember(0, typeof(StringWithPrefixSerializer))]
+        public string ClanName { get; set; }
+    }
 }

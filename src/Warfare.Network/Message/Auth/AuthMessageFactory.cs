@@ -11,6 +11,7 @@ namespace Warfare.Network.Message.Auth
         public AuthMessageFactory()
         {
             // C2S
+            RegisterClientMessage<ReLoginReqMessage>(AuthOpCode.ReLoginReq);
             RegisterClientMessage<AuthenticationReqMessage>(AuthOpCode.AuthenticationReq);
             RegisterClientMessage<CharacterListReqMessage>(AuthOpCode.CharacterListReq);
             RegisterClientMessage<CharacterInfoReqMessage>(AuthOpCode.CharacterInfoReq);
@@ -22,6 +23,7 @@ namespace Warfare.Network.Message.Auth
             RegisterClientMessage<ChecksumMessage>(AuthOpCode.Checksum);
 
             // S2C
+            RegisterServerMessage<ReLoginAckMessage>(AuthOpCode.ReLoginAck);
             RegisterServerMessage<AuthenticationAckMessage>(AuthOpCode.AuthenticationAck);
             RegisterServerMessage<CharacterListAckMessage>(AuthOpCode.CharacterListAck);
             RegisterServerMessage<CharacterInfoAckMessage>(AuthOpCode.CharacterInfoAck);

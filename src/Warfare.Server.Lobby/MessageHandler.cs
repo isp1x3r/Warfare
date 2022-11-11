@@ -2,8 +2,6 @@
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Security.Policy;
-using System.Xml.Serialization;
 using BlubLib.Serialization;
 using log4net;
 using Warfare.Core;
@@ -24,6 +22,7 @@ namespace Warfare.Server.Lobby
         public override void HandleMessage(Session session, byte[] packet)
         {
             ushort opCode;
+            bool isMisc = false;
             using (var _br = new BinaryReader(new MemoryStream(packet)))
             {
                 _br.BaseStream.Position = 8;
@@ -33,12 +32,13 @@ namespace Warfare.Server.Lobby
                 {
                     _br.ReadUInt16(); // Skip 2 bytes
                     opCode = _br.ReadByte();
+                    isMisc = true;
                 }                 
             }
             // Does the opcode exist?
             if (!Messagefactory.ContainsClientOpCode(opCode))
                 return;
-            // Find a message type with the corresponding opCode
+            // Find a message type for the corresponding opCode
             Type Cmessage = Messagefactory.GetClientMessage(opCode);
             if (Cmessage == null)
                 return;
@@ -46,11 +46,16 @@ namespace Warfare.Server.Lobby
             Type handler = Messagefactory.GetHandler(opCode);
             if (handler == null)
                 return;
-            // Deserialize message
+            // We should only pass the raw message
+            if(isMisc)
+            {
+                packet = packet.Skip(13).ToArray();
+            }else
+            {
+                packet = packet.Skip(10).ToArray();
+            }
             object msg = DeSerializeMessage(packet, Cmessage);
-            // We shall not continue if no message was deserialized
-            if (msg == null)
-                return;
+
             // Call the handler
             ExecuteHandler(handler, session, msg);
 
@@ -58,7 +63,7 @@ namespace Warfare.Server.Lobby
 
         public override void ExecuteHandler(Type handler, Session session, object message)
         {
-            if (handler == null || message == null)
+            if (handler == null)
                 return;
             MethodInfo methodInfo = handler.GetMethod("Handle");
             if (methodInfo != null)
@@ -73,22 +78,25 @@ namespace Warfare.Server.Lobby
         }
         public override object DeSerializeMessage(byte[] packet, Type cmessage)
         {
-            // Get the raw message
-            byte[] buffer = packet.Skip(10).ToArray();
 
             // Get buffer as stream
-            using (var _r = new BinaryReader(new MemoryStream(buffer)))
+            using (var _r = new BinaryReader(new MemoryStream(packet)))
             {
                 try
                 {
                     // Deserialize the message
                     return Serializer.Deserialize(_r, cmessage);
                 }
+                catch (EndOfStreamException ex)
+                {
+                    return null;
+                }
                 catch (Exception ex)
                 {
                     _logger.Error("Error occured deserializing message : " + ex.Message);
 
                 }
+                
             }
             return null;
         }
@@ -134,7 +142,7 @@ namespace Warfare.Server.Lobby
                     _w.Write(Constants.MagicHeader);
 
                     // Write the opcode of the message
-                    if (isMisc)
+                    if (isMisc) // In case it's a misc message
                     {
                         _w.Write((ushort)0x60);
                         _w.Write((ushort)0x00);

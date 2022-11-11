@@ -21,7 +21,7 @@ namespace Warfare.Server.Lobby.Handlers
 
         public bool Handle(Session session, RoomCreateReqMessage message)
         {
-
+            session.SendAsync(new RoomInfoMessage());
             return true;
         }
     }

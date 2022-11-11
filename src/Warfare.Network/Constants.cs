@@ -3,6 +3,11 @@
 namespace Warfare.Network
 {
     #region Authentication
+    public enum ReLoginResult : ushort
+    {
+        Success = 0,
+        Failed = 1
+    }
     public enum CharacterListError : ushort
     {
         Success = 0,
@@ -84,7 +89,12 @@ namespace Warfare.Network
         AssistantMaster = 2,
         Elite = 3,
         Normal = 4
-}
+    }
+    public enum ClanMemberLeaveReason : byte
+    {
+        ByDecision = 0,
+        Dismissed = 1
+    }
     public enum ClanCreateResult : byte
     {
         Success = 0,
