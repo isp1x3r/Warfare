@@ -110,6 +110,11 @@ namespace Warfare.Network
         NotFound = 10,
         UserNotFound = 11,
     }
+    public enum RoomCreateResult : byte
+    {
+        Success = 0,
+        Failed = 1
+    }
     public enum RoomEnterResult : byte
     {
         Success = 0,

@@ -21,9 +21,43 @@ namespace Warfare.Network.Message.Lobby
     }
 
     [BlubContract]
-    public class RoomCreateAckMessage : ILobbyMessage
+    public class RoomCreateErrorMessage : ILobbyMessage
     {
+        [BlubMember(0)]
+        public RoomCreateResult Result { get; set; }
 
+        public RoomCreateErrorMessage(RoomCreateResult result)
+        {
+            Result = result;
+        }
+    }
+
+    [BlubContract]
+    public class RoomCreateAckMessage : RoomCreateErrorMessage
+    {
+        [BlubMember(0)]
+        public uint Unk1 { get; set; }
+
+        [BlubMember(1)]
+        public uint Unk2 { get; set; }
+
+        [BlubMember(2)]
+        public ushort Unk3 { get; set; }
+
+        [BlubMember(3)]
+        public uint Unk4 { get; set; }
+
+        [BlubMember(4)]
+        public byte GameMode { get; set; }
+
+        public RoomCreateAckMessage() : base(RoomCreateResult.Success)
+        {
+            Unk1 = 2;
+            Unk2 = 7;
+            Unk3 = 60;
+            Unk4 = 12;
+            GameMode = 3;
+        }
     }
     [BlubContract]
     public class RoomInfoMessage : ILobbyMessage

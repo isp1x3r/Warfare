@@ -21,7 +21,12 @@ namespace Warfare.Server.Lobby.Handlers
 
         public bool Handle(Session session, RoomCreateReqMessage message)
         {
+            session.SendAsync(new RoomCreateAckMessage());
             session.SendAsync(new RoomInfoMessage());
+            session.SendAsync(new LobbyPlayer("[GM]-Monster", 76)
+            {
+
+            });
             return true;
         }
     }
