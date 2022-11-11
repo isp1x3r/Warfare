@@ -20,4 +20,5 @@ This project is open for both curious people that want to see how things are ran
 ![Character Selection](https://i.ibb.co/sRgqXfj/Screen-Shot0805164540.jpg)
 ![Partner](https://cdn.discordapp.com/attachments/942414761105178634/957243551815704616/unknown.png)
 ![Shop](https://cdn.discordapp.com/attachments/889253697664741428/939891320779051028/ScreenShot1224125357.png)
+![Rooms(Testing)](https://i.imgur.com/xX630gq.png)
 ![Rooms(Testing)](https://cdn.discordapp.com/attachments/889253697664741428/939891192013922335/ScreenShot1226135329.png)
