@@ -14,7 +14,8 @@ namespace Warfare.Network.Message.Lobby
             RegisterClientMessage<ChatRoomCreateReq>(LobbyOpCode.ChatRoomCreateReq);
             RegisterClientMessage<LoginReqMessage>(LobbyOpCode.LoginReq);
             RegisterClientMessage<LobbyChatReq>(LobbyOpCode.LobbyChatReq);
-            RegisterClientMessage<RoomCreateReqMessage>(LobbyOpCode.RoomCreateReq);
+            RegisterClientMessage<RoomCreateReqMessage>(LobbyOpCode.CreateRoomReq);
+            RegisterClientMessage<PlayerReadyReqMessage>(LobbyOpCode.PlayerReadyReq);
             RegisterClientMessage<QuickStartReqMessage>(LobbyOpCode.ClanScreenReq);
             RegisterClientMessage<ClanLookUpReqMessage>(LobbyOpCode.ClanLookUpReq);
 
@@ -30,7 +31,6 @@ namespace Warfare.Network.Message.Lobby
             // S2C
             RegisterServerMessage<LoginAckMessage>(LobbyOpCode.LoginAck);
             RegisterServerMessage<LobbyPlayer>(LobbyOpCode.LobbyPlayer);
-            RegisterServerMessage<RoomInfoMessage>(LobbyOpCode.RoomInfo);
             RegisterServerMessage<ClanJoinDenial>(LobbyOpCode.ClanJoinDenial);
             RegisterServerMessage<ClanMemberJoinNotify>(LobbyOpCode.ClanMemberJoin);
             RegisterServerMessage<ClanRightChangeNotify>(LobbyOpCode.ClanRightChange);
@@ -38,7 +38,11 @@ namespace Warfare.Network.Message.Lobby
             RegisterServerMessage<ClanMemberLeave>(LobbyOpCode.ClanMemberLeave);
             RegisterServerMessage<UnkClanMessage>(LobbyOpCode.Unk3);
             RegisterServerMessage<ClanCreateResultMessage>(LobbyOpCode.ClanCreate);
-            RegisterServerMessage<RoomCreateAckMessage>(LobbyOpCode.RoomCreateReq);
+            RegisterServerMessage<RoomCreateAckMessage>(LobbyOpCode.CreateRoomAck);
+            RegisterServerMessage<SetupRoomInfo>(LobbyOpCode.SetupRoomInfo);
+            RegisterServerMessage<RoomInfoMessage>(LobbyOpCode.GameRoomInfo);
+            RegisterServerMessage<PlayerReadyAckMessage>(LobbyOpCode.PlayerReadyAck);
+
 
 
         }

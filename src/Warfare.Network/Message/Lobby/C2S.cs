@@ -110,4 +110,14 @@ namespace Warfare.Network.Message.Lobby
         [BlubMember(0, typeof(StringWithPrefixSerializer))]
         public string ClanName { get; set; }
     }
+
+    [BlubContract]
+    public class PlayerReadyReqMessage : ILobbyMessage
+    {
+        [BlubMember(0)]
+        public ushort Unk1 { get; set; }
+
+        [BlubMember(1)]
+        public byte Unk2 { get; set; }
+    }
 }

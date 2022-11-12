@@ -93,7 +93,7 @@ namespace Warfare.Network.Message.Lobby
         public byte Unk8 { get; set; }
 
         [BlubMember(11, typeof(StringWithPrefixSerializer))]
-        public string Unk9 { get; set; }
+        public string Password { get; set; }
 
         [BlubMember(12)]
         public byte Unk10 { get; set; }
@@ -122,11 +122,62 @@ namespace Warfare.Network.Message.Lobby
             Unk6 = 1;
             Unk7 = 1;
             Unk8 = 1;
-            Unk9 = "Another test";
+            Unk10 = 1;
+            Unk11 = 1;
+            Unk12 = 1;
+            Unk13 = 1;
+            Unk14 = 1;
+            Password = "Another test";
         }
 
     }
 
+    [BlubContract]
+    public class SetupRoomInfo : ILobbyMessage
+    {
+        [BlubMember(0)]
+        public ushort Unk1 { get; set; }
+
+        [BlubMember(1)]
+        public byte Unk2 { get; set; }
+
+        [BlubMember(2)]
+        public byte Unk3 { get; set; }
+
+        public SetupRoomInfo()
+        {
+            Unk1 = 0;
+            Unk2 = 0;
+            Unk3 = 0;
+        }
+    }
+
+    [BlubContract]
+    public class PlayerReadyAckMessage : ILobbyMessage
+    {
+        [BlubMember(0)]
+        public uint Unk1 { get; set; }
+
+        [BlubMember(1)]
+        public byte Unk2 { get; set; }
+
+        [BlubMember(2, typeof(StringWithPrefixSerializer))]
+        public string PlayerName { get; set; }
+
+        public PlayerReadyAckMessage()
+        {
+            Unk1 = 1;
+            Unk2 = 1;
+            PlayerName = "[GM]-Monster";
+        }
+    }
+
+    [BlubContract]
+    public class GameStartAckMessage : ILobbyMessage
+    {
+        
+
+    }
     [BlubContract]
     public class MiscAckMessage : ILobbyMessage
     {
