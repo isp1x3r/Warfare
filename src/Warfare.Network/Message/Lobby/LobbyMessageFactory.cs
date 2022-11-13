@@ -39,10 +39,10 @@ namespace Warfare.Network.Message.Lobby
             RegisterServerMessage<UnkClanMessage>(LobbyOpCode.Unk3);
             RegisterServerMessage<ClanCreateResultMessage>(LobbyOpCode.ClanCreate);
             RegisterServerMessage<RoomCreateAckMessage>(LobbyOpCode.CreateRoomAck);
-            RegisterServerMessage<SetupRoomInfo>(LobbyOpCode.SetupRoomInfo);
             RegisterServerMessage<RoomInfoMessage>(LobbyOpCode.GameRoomInfo);
+            RegisterServerMessage<SetupRoomInfo>(LobbyOpCode.SetupRoomInfo);
             RegisterServerMessage<PlayerReadyAckMessage>(LobbyOpCode.PlayerReadyAck);
-
+            RegisterServerMessage<GameStartAckMessage>(LobbyOpCode.GameStartAck);
 
 
         }

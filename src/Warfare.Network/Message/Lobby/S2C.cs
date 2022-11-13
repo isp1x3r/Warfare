@@ -113,7 +113,7 @@ namespace Warfare.Network.Message.Lobby
         public RoomInfoMessage()
         {
             RoomName = "Test room name";
-            GameMode = 3;
+            GameMode = 6;
             Unk1 = 1;
             Unk2 = 1;
             Unk3 = 1;
@@ -139,16 +139,16 @@ namespace Warfare.Network.Message.Lobby
         public ushort Unk1 { get; set; }
 
         [BlubMember(1)]
-        public byte Unk2 { get; set; }
+        public byte Index { get; set; }
 
         [BlubMember(2)]
-        public byte Unk3 { get; set; }
+        public bool IsPlayer { get; set; }
 
         public SetupRoomInfo()
         {
-            Unk1 = 0;
-            Unk2 = 0;
-            Unk3 = 0;
+            Unk1 = 2;
+            Index = 5;
+            IsPlayer = false;
         }
     }
 
@@ -175,9 +175,32 @@ namespace Warfare.Network.Message.Lobby
     [BlubContract]
     public class GameStartAckMessage : ILobbyMessage
     {
-        
+        [BlubMember(0)]
+        public uint Unk1 { get; set; }
 
+        [BlubMember(1)]
+        public uint Unk2 { get; set; }
+
+        [BlubMember(2)]
+        public byte Unk3 { get; set; }
+
+        [BlubMember(3, typeof(StringWithPrefixSerializer))]
+        public string MatchServerIP { get; set; }
+
+        [BlubMember(4)]
+        public ushort MatchServerPort { get; set; }
+
+        [BlubMember(5)]
+        public ushort Unk4 { get; set; }
+
+        public GameStartAckMessage()
+        {
+            Unk3 = 1;
+            MatchServerIP = "127.0.0.1";
+            MatchServerPort = 32000;
+        }
     }
+
     [BlubContract]
     public class MiscAckMessage : ILobbyMessage
     {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using log4net;
 using Warfare.Core;
 using Warfare.Network.Message.Lobby;
@@ -18,7 +19,7 @@ namespace Warfare.Server.Lobby.Handlers
 
         public bool Handle(Session session, PlayerReadyReqMessage message)
         {
-            session.SendAsync(new PlayerReadyAckMessage());
+            session.SendAsync(new GameStartAckMessage());
             return true;
         }
     }
