@@ -20,7 +20,7 @@ namespace Warfare.Server.Lobby.Handlers
         {
             session.SendAsync(new RoomCreateAckMessage());
             session.SendAsync(new SetupRoomInfo());
-            session.Send(new RoomInfoMessage());
+            session.SendAsync(new RoomInfoMessage());
             return true;
         }
     }

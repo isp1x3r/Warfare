@@ -143,8 +143,9 @@ namespace Warfare.Network
             FullCapacity2 = 23,
             Kicked = 24
     }
-    public enum RoomGameMode : byte
+    public enum RoomMode : uint
     {
+        Normal = 2, 
         PVE = 3,
         UBA = 6,
     }
