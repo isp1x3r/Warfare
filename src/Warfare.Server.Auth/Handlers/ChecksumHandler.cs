@@ -7,7 +7,7 @@ namespace Warfare.Server.Auth.Handlers
     [Handler(39684)]
     internal class ChecksumHandler
     {
-        private static readonly ILog _logger = LogManager.GetLogger(typeof(AuthenticationHandler));
+        private static readonly ILog _logger = LogManager.GetLogger(typeof(ChecksumHandler));
 
         public ChecksumHandler()
         {

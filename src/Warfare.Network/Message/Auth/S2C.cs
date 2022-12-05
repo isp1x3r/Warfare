@@ -1,84 +1,83 @@
-﻿using Warfare.Core;
-using Warfare.Network.Data.Auth;
+﻿using Warfare.Network.Data.Auth;
 using BlubLib.Serialization;
 using Warfare.Network.Serializers;
 
 namespace Warfare.Network.Message.Auth
 {
     [BlubContract]
-    public class AuthenticationErrorMessage : IAuthMessage
+    public class ReLoginAckMessage : IAuthMessage
     {
-        [BlubMember(1)]
-        public ushort ErrorCode { get; set; }
+        [BlubMember(0)]
+        public ReLoginResult Result { get; set; }
 
-        [BlubMember(2)]
-        public uint AuthErrorCode { get; set; }
-
-        public AuthenticationErrorMessage()
-        { }
-        public AuthenticationErrorMessage(int errorCode, int authErrorCode)
+        public ReLoginAckMessage()
         {
-            ErrorCode = (ushort)errorCode;
-            AuthErrorCode = (uint)authErrorCode;
+
+        }
+        public ReLoginAckMessage(ReLoginResult result)
+        {
+            Result = result;
         }
     }
 
-    [BlubContract]
-    public class AuthenticationAckMessage : AuthenticationErrorMessage
-    {
 
-        [BlubMember(1, typeof(BinarySerializer), 10)]
+    [BlubContract]
+    public class AuthenticationAckMessage : IAuthMessage
+    {
+        [BlubMember(0)]
+        public ushort ErrorCode { get; set; }
+
+        [BlubMember(1)]
+        public uint AuthErrCode { get; set; }
+
+        [BlubMember(2, typeof(BinarySerializer), 10)]
         public byte[] Padding { get; set; }
 
-        [BlubMember(2)]
+        [BlubMember(3)]
         public uint CharacterSlots { get; set; }
 
-        [BlubMember(3)]                      // Was used back in the day when garena was organizing LAN tournaments in internet coffee shops 
-        public uint IsPCRoom { get; set; }    // Client actually expects 1 byte only since it's a boolean but them ape devs forgot to correctly cast it on their end *sigh*
-
-        [BlubMember(4)]
-        public byte Padding2 { get; set; }
+        [BlubMember(4)]                     // Client actually expects 1 byte only since it's a boolean but them ape devs forgot to correctly cast it on their end *sigh*
+        public int IsPCRoom { get; set; }   // Was used back in the day when garena was organizing LAN tournaments in internet coffee shops  
 
         [BlubMember(5)]
+        public byte Padding2 { get; set; }
+
+        [BlubMember(6)]
         public uint AccountNumber { get; set; }
 
-        [BlubMember(6, typeof(StringSerializer), 4)]
+        [BlubMember(7, typeof(StringSerializer), 4)]
         public string Country { get; set; }
 
-        [BlubMember(7)]
+        [BlubMember(8)]
         public bool IsBanned { get; set; }
 
-        [BlubMember(8)]
+        [BlubMember(9)]
         public byte Unk1 { get; set; }
 
-        [BlubMember(9, typeof(StringSerializer), 16)]
+        [BlubMember(10, typeof(StringSerializer), 16)]
         public string TimeStamp { get; set; }
 
-        public AuthenticationAckMessage() : base(0,0)
+        public AuthenticationAckMessage()
         {
             Padding = Array.Empty<byte>();
             Unk1 = 0;
         }
 
+        public AuthenticationAckMessage(ushort errcode, uint autherrcode) : this()
+        {
+            ErrorCode = errcode;
+            AuthErrCode = autherrcode;
+        }
+
     }
 
+
     [BlubContract]
-    public class CharacterListErrorMessage : IAuthMessage
+    public class CharacterListAckMessage : IAuthMessage
     {
-        [BlubMember(1)]
+        [BlubMember(0)]
         public CharacterInfoError ErrorCode { get; set; }
 
-        public CharacterListErrorMessage()
-        { }
-        public CharacterListErrorMessage(CharacterInfoError error)
-        {
-            ErrorCode = error;
-        }
-    }
-
-    [BlubContract]
-    public class CharacterListAckMessage : CharacterListErrorMessage
-    {
         [BlubMember(1)]
         public uint CharacterCount { get; set; }
 
@@ -100,7 +99,7 @@ namespace Warfare.Network.Message.Auth
         [BlubMember(7)]
         public byte Flag { get; set; }
 
-        public CharacterListAckMessage() : base(0)
+        public CharacterListAckMessage()
         {
             Padding = Array.Empty<byte>();
         }
@@ -108,22 +107,11 @@ namespace Warfare.Network.Message.Auth
     }
 
     [BlubContract]
-    public class CharacterInfoErrorMessage : IAuthMessage
+    public class CharacterInfoAckMessage : IAuthMessage
     {
-        [BlubMember(1)]
+        [BlubMember(0)]
         public CharacterInfoError ErrorCode { get; set; }
 
-        public CharacterInfoErrorMessage()
-        { }
-        public CharacterInfoErrorMessage(CharacterInfoError error)
-        {
-            ErrorCode = error;
-        }
-    }
-
-    [BlubContract]
-    public class CharacterInfoAckMessage : CharacterInfoErrorMessage
-    {   
         [BlubMember(1)]
         public uint CharacterID { get; set; }
 
@@ -181,7 +169,7 @@ namespace Warfare.Network.Message.Auth
        // [BlubMember(19, typeof(ArraySerializer))]
         //public CharacterItemDto[] Items { get; set; }
 
-        public CharacterInfoAckMessage() : base()
+        public CharacterInfoAckMessage()
         {
             Padding = Array.Empty<byte>();
             Unk1 = 0;
@@ -189,96 +177,83 @@ namespace Warfare.Network.Message.Auth
             Unk3 = 0;
             //Items = Array.Empty<CharacterItemDto>();
         }
-    }
 
-    [BlubContract]
-    public class CharacterCreationErrorMessage : IAuthMessage
-    {
-        [BlubMember(1)]
-        public CharacterCreationError ErrorCode { get; set; }
-
-        public CharacterCreationErrorMessage()
-        { }
-        public CharacterCreationErrorMessage(CharacterCreationError error)
+        public CharacterInfoAckMessage(CharacterInfoError error)
         {
             ErrorCode = error;
         }
     }
 
     [BlubContract]
-    public class CharacterCreateAckMessage : CharacterCreationErrorMessage
-    {      
+    public class CharacterCreateAckMessage : IAuthMessage
+    {
+        [BlubMember(0)]
+        public CharacterCreationError ErrorCode { get; set; }
+
         [BlubMember(1)]
         public uint Unk1 { get; set; } // Slot?
 
-        public CharacterCreateAckMessage() : base()
+        public CharacterCreateAckMessage()
         {
 
+        }
+
+        public CharacterCreateAckMessage(CharacterCreationError error)
+        {
+            ErrorCode = error;
         }
     }
 
     [BlubContract]
-    public class CharacterDeleteErrorMessage : IAuthMessage
+    public class CharacterDeleteAckMessage : IAuthMessage
     {
-        [BlubMember(1)]
+        [BlubMember(0)]
         public CharacterScreenResult ScreenResult { get; set; }
 
-        public CharacterDeleteErrorMessage()
-        { }
-        public CharacterDeleteErrorMessage(CharacterScreenResult result)
-        {
-            ScreenResult = result;
-        }
-    }
-    [BlubContract]
-    public class CharacterDeleteAckMessage : CharacterDeleteErrorMessage
-    {
         [BlubMember(1)]
         public uint Unk1 { get; set; }
 
-        public CharacterDeleteAckMessage() : base()
+        public CharacterDeleteAckMessage()
         {
 
         }
-    }
 
-    [BlubContract]
-    public class ConnectErrorMessage : IAuthMessage
-    {
-        [BlubMember(1)]
-        public CharacterScreenResult ScreenResult { get; set; }
-
-        public ConnectErrorMessage()
-        { }
-        public ConnectErrorMessage(CharacterScreenResult result)
+        public CharacterDeleteAckMessage(CharacterScreenResult result)
         {
             ScreenResult = result;
         }
     }
 
     [BlubContract]
-    public class ConnectAckMessage : ConnectErrorMessage
-    {     
+    public class ConnectAckMessage : IAuthMessage
+    {
+        [BlubMember(0)]
+        public CharacterScreenResult ScreenResult { get; set; }
+
         [BlubMember(1, typeof(BinarySerializer), 125)]
         public byte[] Checksum { get; set; } // This is sent right back from the client on server join (Check Mercenary.Server.Lobby.Messages => LoginReqMessage.Unk1)
 
-        public ConnectAckMessage() : base()
+        public ConnectAckMessage()
         {
             Checksum = Array.Empty<byte>();
         }
 
+        public ConnectAckMessage(CharacterScreenResult result)
+        {
+            ScreenResult = result;
+        }
     }
 
     [BlubContract]
     public class ServerListAckMessage : IAuthMessage
     {
-        [BlubMember(1)]
+        [BlubMember(0)]
         public ushort Padding { get; set; } // Message starts after 6 bytes of the payload so this is useless
 
-        [BlubMember(2)]
+        [BlubMember(1)]
         public byte ServerEntries { get; set; }
 
-        [BlubMember(3, typeof(ArraySerializer))]
+        [BlubMember(2, typeof(ArraySerializer))]
         public ServerInfoDto[] Servers { get; set; }
 
         public ServerListAckMessage()
@@ -290,7 +265,7 @@ namespace Warfare.Network.Message.Auth
     [BlubContract]
     public class ChannelListAckMessage : IAuthMessage
     {
-        [BlubMember(1, typeof(ArraySerializer))]
+        [BlubMember(0, typeof(ArraySerializer))]
         public ChannelDto[] Channels { get; set; }
 
         public ChannelListAckMessage()
@@ -302,10 +277,10 @@ namespace Warfare.Network.Message.Auth
     [BlubContract]
     public class PlayerCashMessage : IAuthMessage
     {
-        [BlubMember(1)]
+        [BlubMember(0)]
         public uint Unk1 { get; set; }
 
-        [BlubMember(2)]
+        [BlubMember(1)]
         public uint PlayerCash { get; set; }
 
         public PlayerCashMessage()
@@ -321,7 +296,7 @@ namespace Warfare.Network.Message.Auth
     [BlubContract]
     public class NoticeMessage : IAuthMessage
     {
-        [BlubMember(1)]
+        [BlubMember(0)]
         public string Message { get; set; }
 
         public NoticeMessage()
@@ -344,13 +319,13 @@ namespace Warfare.Network.Message.Auth
     [BlubContract]
     public class UserBanMessage : IAuthMessage
     {
-        [BlubMember(1)]
+        [BlubMember(0)]
         public uint Unk1 { get; set; }
 
-        [BlubMember(2, typeof(BinarySerializer), 51)]
+        [BlubMember(1, typeof(BinarySerializer), 51)]
         public byte[] Padding { get; set; }
 
-        [BlubMember(3)]
+        [BlubMember(2)]
         public string BanReason { get; set; }
 
         public UserBanMessage()
@@ -368,10 +343,10 @@ namespace Warfare.Network.Message.Auth
     [BlubContract]
     public class LoadBannerMessage : IAuthMessage
     {
-        [BlubMember(1)]
+        [BlubMember(0)]
         public string Unk1 { get; set; }
 
-        [BlubMember(2)]
+        [BlubMember(1)]
         public string Unk2 { get; set; } // This is most likely the filename of the banner inside of Scene\Interface 
     }
 

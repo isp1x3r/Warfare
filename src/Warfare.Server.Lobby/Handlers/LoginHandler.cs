@@ -22,6 +22,8 @@ namespace Warfare.Server.Lobby.Handlers
         public bool Handle(Session session, LoginReqMessage message)
         {
             session.SendAsync(new LoginAckMessage(LoginResult.Success));
+            session.SendAsync(new LobbyPlayer("[GM]-Monster", 76));
+            //session.SendAsync(new ClanBoardMessage("GameMasters"));
             return true;
         }
     }

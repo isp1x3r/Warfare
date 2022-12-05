@@ -10,18 +10,18 @@ using Warfare.Network.Message.Lobby;
 
 namespace Warfare.Server.Lobby.Handlers
 {
-    [Handler(74)]
-    internal class ClanScreenHandler
+    [Handler(64)]
+    internal class ClanLookUpHandler
     {
         private static readonly ILog _logger = LogManager.GetLogger(typeof(ClanScreenHandler));
 
-        public ClanScreenHandler()
+        public ClanLookUpHandler()
         {
 
         }
-        public bool Handle(Session session, ClanBoardReqMessage message)
+        public bool Handle(Session session, ClanLookUpReqMessage message)
         {
-            session.SendAsync(new ClanBoardMessage("GameMasters"));
+            _logger.Debug("Got clan look up request for clan name : " + message.ClanName);
             return true;
         }
     }

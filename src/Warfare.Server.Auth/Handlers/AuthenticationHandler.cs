@@ -23,7 +23,7 @@ namespace Warfare.Server.Auth.Handlers
             session.SendAsync(new AuthenticationAckMessage()
             {
                 CharacterSlots = 3,
-                IsPCRoom = 1,
+                IsPCRoom = 0,
                 AccountNumber = message.AccountNumber,
                 Country = "US",
                 IsBanned = false,

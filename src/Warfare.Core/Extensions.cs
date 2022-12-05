@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlTypes;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -40,20 +41,19 @@ namespace Warfare.Core
             return Encoding.ASCII.GetString(r.ReadBytes(length));
 
         }
-        public static void CWriteString(this BinaryWriter w, string value, int length)
+        public static void CWriteString(this BinaryWriter w, string value)
         {
-            byte[] a = new byte[length + 2];
             ushort size = Convert.ToUInt16(value.Length);
-            a = Encoding.ASCII.GetBytes(value);
+            byte[] strbytes = new byte[size + 2];
+            strbytes = Encoding.ASCII.GetBytes(value);
             w.Write(size);
-            w.Write(a);
+            w.Write(strbytes);
         }
         public static string CReadString(this BinaryReader r)
         {
             ushort size = r.ReadUInt16();
-            byte[] test = r.ReadBytes(size);
-            Console.WriteLine(BitConverter.ToString(test));
-            return Encoding.ASCII.GetString(test);
+            byte[] strbytes = r.ReadBytes(size);
+            return Encoding.ASCII.GetString(strbytes);
         }
     }
     

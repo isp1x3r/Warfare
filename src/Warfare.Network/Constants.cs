@@ -3,6 +3,11 @@
 namespace Warfare.Network
 {
     #region Authentication
+    public enum ReLoginResult : ushort
+    {
+        Success = 0,
+        Failed = 1
+    }
     public enum CharacterListError : ushort
     {
         Success = 0,
@@ -84,7 +89,12 @@ namespace Warfare.Network
         AssistantMaster = 2,
         Elite = 3,
         Normal = 4
-}
+    }
+    public enum ClanMemberLeaveReason : byte
+    {
+        ByDecision = 0,
+        Dismissed = 1
+    }
     public enum ClanCreateResult : byte
     {
         Success = 0,
@@ -99,6 +109,11 @@ namespace Warfare.Network
         InsufficientFunds = 9,
         NotFound = 10,
         UserNotFound = 11,
+    }
+    public enum RoomCreateResult : byte
+    {
+        Success = 0,
+        Failed = 1
     }
     public enum RoomEnterResult : byte
     {
@@ -128,8 +143,9 @@ namespace Warfare.Network
             FullCapacity2 = 23,
             Kicked = 24
     }
-    public enum RoomGameMode : byte
+    public enum RoomMode : uint
     {
+        Normal = 2, 
         PVE = 3,
         UBA = 6,
     }

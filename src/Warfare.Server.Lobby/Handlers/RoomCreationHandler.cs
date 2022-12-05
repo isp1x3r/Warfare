@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using log4net;
 using Warfare.Core;
 using Warfare.Network.Message.Lobby;
@@ -21,7 +18,9 @@ namespace Warfare.Server.Lobby.Handlers
 
         public bool Handle(Session session, RoomCreateReqMessage message)
         {
-
+            session.SendAsync(new RoomCreateAckMessage());
+            session.SendAsync(new SetupRoomInfo());
+            session.SendAsync(new RoomInfoMessage());
             return true;
         }
     }
